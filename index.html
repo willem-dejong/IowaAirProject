@@ -1,0 +1,66 @@
+<!DOCTYPE HTML>
+<link rel="stylesheet" href="/css/homestyle.css" type="text/css">
+<html>
+<head>
+    <!--include link to javascript here for help email willem-dejong@uiowa.edu-->
+    <title>IowaAir</title>
+    <link rel="icon" href="/img/lolo.pgn" />
+    <link rel="stylesheet" href="/css/homestyle.css" type="text/css">
+</head>
+<body>
+     <div id="hdr">
+         <div id="home" >
+            <a id="homel" href="localhost"><img id="logo" src="/img/lolo.png" ></img>Home</a>
+         </div>
+         <div id="log"><a href="">login</a>/<a href="">register</a></div>
+     </div>
+     <div id="main">
+         <br/>
+         <br/>
+         <div class="que">
+             <h1 id="qhead">
+                 Search Flights
+             </h1>
+             <form id="quein" action="/node/flights" method="get">
+                 <div id="ports">
+                     <div id="orgport">
+                        <label for="org">From*</label><a id="err1"></a>
+                        <input list="lports"id="org" name="org" form="quein"/>
+                     </div>
+                     <div id="destport">
+                        <label for="dest">To*</label><a id="err2"></a>
+                        <input list="lports" id="dest" name="dest" form="quein"/>
+                     </div>
+                 </div>
+                <datalist id="lports">
+                    <option value="abc"/>
+                    <option value="bcd"/>
+                    <option value="cde"/>
+                </datalist>
+                <div id="dates">
+                    <div id="dated">
+                        <label for="date">Depart Date*</label>
+                        <input type="date" id="date" name="date" form="quein"/>
+                    </div>
+                    <div id="dated">
+                        <label for="date">Return Date</label>
+                        <input type="date" id="date" name="date2" form="quein"/>
+                    </div>
+                </div>
+                <div id="passd">
+                    <label for="pass"># of Passengers</label>
+                    <input type="number" id="pass" name="pass" value=1 min=1 form="quein">
+                </div>
+                <!--see https://www.formget.com/javascript-submit-form/ for making the javascript client side javascript!-->
+                <input type="submit" value="Search" id="but" /><!--for Javascript change this input in the html! make type="button", and add onclick="verifyAndSubmit(this.parentElement)"! verifyAndSubmit should verify that the required feilds are filled and if they are then submit the form, if not change the unfilled fields' labels' text red-->
+                <div id="req">*Required.<br/>leave return date empty for one way trip.</div>
+             </form>
+         </div>
+     </div>
+</body>
+
+<body>
+
+</body>
+
+</html>
