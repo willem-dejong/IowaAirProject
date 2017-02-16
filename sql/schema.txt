@@ -1,0 +1,62 @@
+account (
+  idaccount int(11) NOT NULL AUTO_INCREMENT,
+  account_type varchar(25) NOT NULL,
+  fname varchar(45) NOT NULL,
+  lname varchar(45) NOT NULL,
+  email varchar(45) NOT NULL,
+  password varchar(45) NOT NULL,
+  PRIMARY KEY (idaccount)
+)
+	{simplified: (idaccount,account_type, fname,lname,lname,email,password)}
+airports (
+  portid varchar(25) NOT NULL,
+  airport varchar(45) NOT NULL,
+  location varchar(50) NOT NULL,
+  PRIMARY KEY (portid)
+)
+	{simplified:(portid, airport,location)}
+  
+flights (
+  Flight_num varchar(50) NOT NULL,
+  departue_time datetime NOT NULL,
+  arrival_time datetime NOT NULL,
+  seats_available int(11) NOT NULL,
+  seats_booked int(11) NOT NULL,
+  cost_per_seat float NOT NULL,
+  plane_id varchar(25) NOT NULL,
+  origin_port varchar(25) NOT NULL,
+  destined_port varchar(25) NOT NULL,
+  Gate varchar(25) DEFAULT NULL,
+  PRIMARY KEY (Flight_num),
+  KEY plane_idx (plane_id),
+  KEY orig_idx (origin_port),
+  KEY dest_idx (destined_port),
+  CONSTRAINT dest FOREIGN KEY (destined_port) REFERENCES airports (portid) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT orig FOREIGN KEY (origin_port) REFERENCES airports (portid) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT plane FOREIGN KEY (plane_id) REFERENCES planes (plane_id) ON DELETE NO ACTION ON UPDATE NO ACTION
+)
+	{simplified:(Flight_num,departue_time,arrival_time,seats_available,seats_booked,cost_per_seat,plane_id,origin_port,destined_port,Gate)}
+
+planes (
+  plane_id varchar(25) NOT NULL,
+  model varchar(50) NOT NULL,
+  num_seats int(11) NOT NULL,
+  PRIMARY KEY (plane_id)
+)
+	{simplified:(plane_id,model,num_seats)}
+  
+reservations (
+  res_num int(11) NOT NULL AUTO_INCREMENT,
+  fname varchar(45) NOT NULL,
+  lname varchar(45) NOT NULL,
+  DOB date NOT NULL,
+  gender varchar(1) NOT NULL,
+  account_ID int(11) NOT NULL,
+  flight_num varchar(50) NOT NULL,
+  PRIMARY KEY (res_num),
+  KEY account_idx (account_ID),
+  KEY flight_idx (flight_num),
+  CONSTRAINT account FOREIGN KEY (account_ID) REFERENCES account (idaccount) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT flight FOREIGN KEY (flight_num) REFERENCES flights (Flight_num) ON DELETE NO ACTION ON UPDATE NO ACTION
+)
+	{simplified:(res_num,fname,lname,DOB,gender,account_ID,flight_num)
