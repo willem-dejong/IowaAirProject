@@ -60,3 +60,15 @@ reservations (
   CONSTRAINT flight FOREIGN KEY (flight_num) REFERENCES flights (Flight_num) ON DELETE NO ACTION ON UPDATE NO ACTION
 )
 	{simplified:(res_num,fname,lname,DOB,gender,account_ID,flight_num)
+	
+session (
+  idsession int(64) NOT NULL,
+  lastpage varchar(100) NOT NULL,
+  meta mediumtext,
+  date date NOT NULL,
+  idaccount int(11) DEFAULT NULL,
+  PRIMARY KEY (`idsession`),
+  KEY account_idx (idaccount),
+  CONSTRAINT acc FOREIGN KEY (idaccount) REFERENCES account (idaccount) ON DELETE NO ACTION ON UPDATE NO ACTION
+)
+	{simplified:(idsession,lastpage,meta,date,idaccount)}
