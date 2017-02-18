@@ -16,31 +16,31 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `account`
+-- Table structure for table `session`
 --
 
-DROP TABLE IF EXISTS `account`;
+DROP TABLE IF EXISTS `session`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `account` (
-  `idaccount` int(11) NOT NULL AUTO_INCREMENT,
-  `account_type` varchar(25) NOT NULL,
-  `fname` varchar(45) NOT NULL,
-  `lname` varchar(45) NOT NULL,
-  `email` varchar(45) NOT NULL,
-  `password` varchar(45) NOT NULL,
-  PRIMARY KEY (`idaccount`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+CREATE TABLE `session` (
+  `idsession` int(64) NOT NULL,
+  `lastpage` varchar(100) NOT NULL,
+  `meta` mediumtext,
+  `date` date NOT NULL,
+  `idaccount` int(11) DEFAULT NULL,
+  PRIMARY KEY (`idsession`),
+  KEY `account_idx` (`idaccount`),
+  CONSTRAINT `acc` FOREIGN KEY (`idaccount`) REFERENCES `account` (`idaccount`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `account`
+-- Dumping data for table `session`
 --
 
-LOCK TABLES `account` WRITE;
-/*!40000 ALTER TABLE `account` DISABLE KEYS */;
-INSERT INTO `account` VALUES (1,'M','man','maning','cswdejong@gmail.com','IowaAir2017'),(2,'U','test','test','cswdejong@gmail.com','IowaAir2017'),(3,'A','Admin','Admin','cswdejong@gmail.com','IowaAir2017');
-/*!40000 ALTER TABLE `account` ENABLE KEYS */;
+LOCK TABLES `session` WRITE;
+/*!40000 ALTER TABLE `session` DISABLE KEYS */;
+/*!40000 ALTER TABLE `session` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
