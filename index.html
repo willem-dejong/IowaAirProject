@@ -4,15 +4,17 @@
 <head>
     <!--include link to javascript here for help email willem-dejong@uiowa.edu-->
     <title>IowaAir</title>
-    <link rel="icon" href="/img/lolo.pgn" />
-    <link rel="stylesheet" href="/css/homestyle.css" type="text/css">
+    <link rel="icon" href="img/lolo.png" />
+    <link rel="stylesheet" href="css/homestyle.css" type="text/css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 </head>
 <body>
      <div id="hdr">
          <div id="home" >
-            <a id="homel" href="localhost"><img id="logo" src="/img/lolo.png" ></img>Home</a>
+            <a id="homel" href="/"><img id="logo" src="img/lolo.png" ></img>Home</a>
          </div>
-         <div id="log"><a href="">login</a>/<a href="">register</a></div>
+         <div id="log">
+         </div>
      </div>
      <div id="main">
          <br/>
@@ -21,7 +23,7 @@
              <h1 id="qhead">
                  Search Flights
              </h1>
-             <form id="quein" action="/node/flights" method="get">
+             <form id="quein" action="/result.html" method="get">
                  <div id="ports">
                      <div id="orgport">
                         <label for="org">From*</label><a id="err1"></a>
@@ -33,9 +35,7 @@
                      </div>
                  </div>
                 <datalist id="lports">
-                    <option value="abc"/>
-                    <option value="bcd"/>
-                    <option value="cde"/>
+
                 </datalist>
                 <div id="dates">
                     <div id="dated">
@@ -51,6 +51,7 @@
                     <label for="pass"># of Passengers</label>
                     <input type="number" id="pass" name="pass" value=1 min=1 form="quein">
                 </div>
+                <input type="text" value="localhost" name="last" form="quein" class="hidden"/>
                 <!--see https://www.formget.com/javascript-submit-form/ for making the javascript client side javascript!-->
                 <input type="submit" value="Search" id="but" /><!--for Javascript change this input in the html! make type="button", and add onclick="verifyAndSubmit(this.parentElement)"! verifyAndSubmit should verify that the required feilds are filled and if they are then submit the form, if not change the unfilled fields' labels' text red-->
                 <div id="req">*Required.<br/>leave return date empty for one way trip.</div>
@@ -58,9 +59,94 @@
          </div>
      </div>
 </body>
+<script>
+    $.ajax({url: "/node/getports", success: function(result){
+        var i=0;
+        var ii =result.indexOf(",");
+        if (ii==-1){
+            ii=result.length;
+        }
+        while (i<result.length){
+            var opt=document.createElement("OPTION");
+            opt.value=result.substring(i,ii);
+            document.querySelector("#lports").appendChild(opt);
+            i=ii+1;
+            ii =result.indexOf(",",i);
+            if (ii==-1){
+                ii=result.length;
+            }
+        }
+    }});
 
-<body>
-
-</body>
-
+</script>
+<script>
+    //remove this
+    //document.cookie="IOWAAIRSESSION=1;path=/"
+    function loginreg(){
+        var aa=document.createElement("A");//login  ##########Stuff to do here##########
+        aa.setAttribute("href","fill me in");
+        aa.appendChild(document.createTextNode("login"));
+        document.querySelector("#log").appendChild(aa);
+        document.querySelector("#log").appendChild(document.createTextNode("/"));
+        var aa2=document.createElement("A");//registar  ##########Stuff to do here##########
+        aa2.setAttribute("href","fill me in");
+        aa2.appendChild(document.createTextNode("register"));
+        document.querySelector("#log").appendChild(aa2);
+    }
+    function removewelcome(){
+        var list = document.querySelector("#log");
+        while (list.hasChildNodes()) {
+            list.removeChild(list.firstChild);
+        }
+    }
+    function logout(){
+        var i =document.cookie.search("IOWAAIRSESSION=[A-Za-z0-9]+");
+        var IAses="/node/logout?cookie="+document.cookie.substring(i+15,ii);
+        $.ajax({url:IAses, success: function(result){
+            if(result="success"){
+                removewelcome();
+                loginreg();
+            }
+        }});
+    }
+    var i =document.cookie.search("IOWAAIRSESSION=[A-Za-z0-9]+");
+    if (i==-1){
+        $.ajax({url:"/node/getnewsession", success: function(result){
+            document.cookie=result;
+            console.log(result);
+            console.log(document.cookie);
+            loginreg();
+        }});
+    }
+    else{
+        ii= document.cookie.indexOf(";",i);
+        if (ii==-1){
+            ii=document.cookie.length;
+        }
+        var IAses="/node/autologin?cookie="+document.cookie.substring(i+15,ii);
+        $.ajax({url:IAses, success: function(result){ //result if active session=> sessionid=XXXX;
+            var ai=result.search("idaccount=[A-Za-z0-9]+");
+            if (ai>-1){
+                var ss=document.createTextNode("Welcome Back ");
+                document.querySelector("#log").appendChild(ss);
+                var aa=document.createElement("A");//account ##########Stuff to do here##########
+                aa.setAttribute("href","fill me in");
+                var iii= result.search("fname=")+6;
+                var name=result.substring(iii,result.indexOf(";",iii));
+                var ss2=document.createTextNode(name);
+                aa.appendChild(ss2);
+                document.querySelector("#log").appendChild(aa);
+                document.querySelector("#log").appendChild(document.createTextNode("!/"));
+                var aa2=document.createElement("A");//logout ##########Stuff to do here##########
+                aa2.setAttribute("onclick","logout()");
+                aa2.setAttribute("href","javascript:void(0)");
+                aa2.appendChild(document.createTextNode("logout"));
+                document.querySelector("#log").appendChild(aa2);
+            }
+            else{
+                loginreg()
+            }
+        }});
+    }
+</script>
 </html>
