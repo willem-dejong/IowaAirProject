@@ -26,11 +26,11 @@
              <form id="quein" action="/result.html" method="get">
                  <div id="ports">
                      <div id="orgport">
-                        <label for="org">From*</label><a id="err1"></a>
+                        <label for="org" id="err1"> From*
                         <input list="lports"id="org" name="org" form="quein"/>
                      </div>
                      <div id="destport">
-                        <label for="dest">To*</label><a id="err2"></a>
+                        <label for="dest" id="err2"> To*
                         <input list="lports" id="dest" name="dest" form="quein"/>
                      </div>
                  </div>
@@ -39,12 +39,12 @@
                 </datalist>
                 <div id="dates">
                     <div id="dated">
-                        <label for="date">Depart Date*</label>
-                        <input type="date" id="date" name="date" form="quein"/>
+                        <label for="date" id="depart">Depart Date*</label>
+                        <input type="date" id="dateDepart" name="date" form="quein"/>
                     </div>
-                    <div id="dated">
-                        <label for="date">Return Date</label>
-                        <input type="date" id="date" name="date2" form="quein"/>
+                    <div id="dater">
+                        <label for="date" id="arrive">Return Date</label>
+                        <input type="date" id="dateArrive" name="date2" form="quein"/>
                     </div>
                 </div>
                 <div id="passd">
@@ -53,8 +53,8 @@
                 </div>
                 <input type="text" value="localhost" name="last" form="quein" class="hidden"/>
                 <!--see https://www.formget.com/javascript-submit-form/ for making the javascript client side javascript!-->
-                <input type="submit" value="Search" id="but" /><!--for Javascript change this input in the html! make type="button", and add onclick="verifyAndSubmit(this.parentElement)"! verifyAndSubmit should verify that the required feilds are filled and if they are then submit the form, if not change the unfilled fields' labels' text red-->
-                <div id="req">*Required.<br/>leave return date empty for one way trip.</div>
+                <input type="button" onClick="verifyAndSubmit()" value="Search" id="but" /><!--for Javascript change this input in the html! make type="button", and add onclick="verifyAndSubmit(this.parentElement)"! verifyAndSubmit should verify that the required feilds are filled and if they are then submit the form, if not change the unfilled fields' labels' text red-->
+                <div id="req"> <b>*Required. </b> <br/>leave return date empty for one way trip.</div>
              </form>
          </div>
      </div>
@@ -93,21 +93,34 @@
         aa2.appendChild(document.createTextNode("register"));
         document.querySelector("#log").appendChild(aa2);
     }
-    function validate(){            //validate for required fields ##########Don't know where to call this frm -Matt ##########
-        var org = document.getElementByName("org");
-        var destination = document.getElementByName("dest");
-        var departDate = document.getElementByName("date");
-        var arriveDate = document.getElementByName("date2");
+    function verifyAndSubmit(){            //validate for required fields ##########Don't know where to call this frm -Matt ##########
+    	//alert("here");
+        var org = document.getElementById("org").value;
+        var destination = document.getElementById("dest").value;
+        var departDate = document.getElementById("dateDepart").value;
+        var arriveDate = document.getElementById("dateArrive").value;
+        var failFlag = false;
         
-        if(org === ''){
-            document.getElementByName("org").style.color = "red";
+        document.getElementById('err1').style.color = "black";
+        document.getElementById('err2').style.color = "black";
+        document.getElementById('depart').style.color = "black";
+
+        if(!org){
+            document.getElementById('err1').style.color = "red";
+            failFlag = true;
         }
-        if(destination === ''){
-            document.getElementByName("dest").style.color = "red";
+        if(!destination){
+            document.getElementById('err2').style.color = "red";
+            failFlag = true;
         }
-        if(departDate === ''){
-            document.getElementByName("date").style.color = "red";
+        if(!departDate){
+            document.getElementById('depart').style.color = "red";
+            failFlag = true;
         }
+        if(failFlag){
+        	alert("One or more required fields are empty or incorrect!");
+        }
+        
             
     }
     function removewelcome(){
