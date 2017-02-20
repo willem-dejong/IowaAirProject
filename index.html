@@ -93,6 +93,23 @@
         aa2.appendChild(document.createTextNode("register"));
         document.querySelector("#log").appendChild(aa2);
     }
+    function validate(){            //validate for required fields ##########Don't know where to call this frm -Matt ##########
+        var org = document.getElementByName("org");
+        var destination = document.getElementByName("dest");
+        var departDate = document.getElementByName("date");
+        var arriveDate = document.getElementByName("date2");
+        
+        if(org === ''){
+            document.getElementByName("org").style.color = "red";
+        }
+        if(destination === ''){
+            document.getElementByName("dest").style.color = "red";
+        }
+        if(departDate === ''){
+            document.getElementByName("date").style.color = "red";
+        }
+            
+    }
     function removewelcome(){
         var list = document.querySelector("#log");
         while (list.hasChildNodes()) {
