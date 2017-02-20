@@ -4,14 +4,21 @@
 <head>
     <title>IowaAir</title>
     <link rel="icon" href="/img/lolo.pgn" />
-    <link rel="stylesheet" href="/Users/Chris/Documents/2017_Spring/Foundations of Software Engineering/Sample HTML Files/homestyle.css" type="text/css">
+    <link rel="stylesheet" href="/Users/Chris/Documents/2017_Spring/Foundations of Software Engineering/Project HTML Files/homestyle.css" type="text/css">
 </head>
 
 <body>
 
+	<div id="hdr">
+         <div id="home" >
+            <a id="homel" href="/"><img id="logo" src="img/lolo.png" ></img>Home</a>
+         </div>
+         <div id="log">
+	</div>
+
 	<div id="main">
-		<div class = "que">
-			<h2 id = "qhead"> ACCOUNT SETTINGS </h2> <br><br>
+		<div class = "settings">
+			<h2 id = "settingshead"> ACCOUNT SETTINGS </h2>
 
 			<!-- Inputs need to be populated with user info -->
 			<h4> FIRST NAME: <input type="text" name="firstname"> </h4> 
@@ -26,5 +33,16 @@
 		</div>
 	</div>
 </body>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"> 
+// loads the ajax library
+<script>
+
+//command possibility 1:"/node/command?firstname=string1&lastname=string2&email=string3&phonenumber=string4&password=string5&confirmpassword=string6"
+
+//Server should update the corresponding customer's record in the Customer Table
+
+
+</script>
 
 </html>
