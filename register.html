@@ -60,49 +60,4 @@
     //command possibility 1:"/node/command?firstname=string1&lastname=string2&email=string3&phonenumber=string4&password=string5&confirmpassword=string6"
     //Server should insert the inputted data into the Customer Table
 </script>
-<script>
-    function validateForm(){
-        var missingFlag = false;
-        var emailFlag = false;
-
-        document.getElementById('missingErr').style.display = 'none';
-        document.getElementById('invalidEmail').style.display = 'none';
-        document.getElementById('emailInUse').style.display = 'none';
-
-        if(!(document.getElementById('fnamein').value)){
-            document.getElementById('fnamelab').style.color = 'red';
-            missingFlag = true;
-        }
-        if(!(document.getElementById('lnamein').value)){
-            document.getElementById('lnamelab').style.color = 'red';
-            missingFlag = true;
-        }
-        if(!(document.getElementById('emailin').value)){
-            document.getElementById('emaillab').style.color = 'red';
-            missingFlag = true;
-        }
-        else{
-            var emailMatch = document.getElementById('emailin').value.match(/[A-Za-z0-9]+([.\-_][A-Za-z0-9]+)*@[A-Za-z0-9]+([.\-_][A-Za-z0-9]+)*\.[A-Za-z]+/g)
-            console.log(emailMatch);
-            if(emailMatch && document.getElementById('emailin').value != emailMatch[0]){
-                console.log("incorrect");
-                emailFlag = true;
-            }
-            else{
-                console.log("correct");
-            }
-
-        }
-
-        if(missingFlag || emailFlag){
-            if(missingFlag){
-                document.getElementById('missingErr').style.display = 'block';
-            }
-            if(emailFlag){
-                document.getElementById('invalidEmail').style.display = 'block';
-            }
-        }
-
-    }
-</script>
 </html>
