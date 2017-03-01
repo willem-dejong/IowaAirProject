@@ -1,40 +1,5 @@
 @charset "utf-8";
-#hdr{
-    position:absolute;
-    top: 0px;
-    left: 0px;
-    right:0px;
-    height:80px;
-    width:100%;
-    /*background-color:red;   */
-    vertical-align: middle;
-    border-bottom: solid;
 
-}
-#logo{
-    height: 75px;
-    width 75px;
-    vertical-align: middle;
-}
-#home{
-    position: absolute;
-    font-size: xx-large;
-    text-align: center;
-    left:2.5px;
-    top: 2.5px;
-}
-
-#log{
-    position:relative;
-    left:75%;
-    height:auto;
-    right:2.5px;
-    top: 35%;
-    width:24.75%;
-    /*background-color:yellow;    */
-    text-align: center;
-    font-size: 200%;
-}
 #main{
     position: absolute;
     top: 80px;
@@ -46,7 +11,6 @@
 #qhead{
     text-align: center;
     font-size: 100px;
-    height: 75px;
 }
 
 .que{
@@ -110,7 +74,7 @@
 
 }
 
-#dated{
+.dated{
     position: relative;
     display: inline-block;
     width:50%;
@@ -123,8 +87,7 @@
     margin: auto;
     /*background-color: blue;*/
 }
-
-#date{
+.date{
     font-size: 75%;
     width:80%;
     display: block;
