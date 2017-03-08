@@ -1,0 +1,15 @@
+<div id="hdr">
+         <div id="home" >
+                <a id="homel" href="/"><img id="logo" src="img/Logo1465.png" /><img id="namelogo" src="img/NameLogo.png"/></a>
+         </div>
+        <% if (user.type=="G"){ %>
+        <div id="log">
+            <a href="javascript:void(0)" id="loginlink" onclick="createloginbox();">login</a>/<a href="/register">register</a>
+        </div>
+        <% } else{%>
+        <script>getSession()</script>
+        <div id="log">
+            Welcome Back <a href=""><%=user.fname%></a>!   <a href="javascript:void(0);" onclick="logout();">logout</a>
+        </div>
+        <%}%>
+</div>
