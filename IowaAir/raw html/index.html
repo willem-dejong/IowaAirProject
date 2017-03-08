@@ -1,0 +1,72 @@
+<!DOCTYPE HTML>
+<link rel="stylesheet" href="/css/homestyle.css" type="text/css">
+<html>
+<head>
+    <!--include link to javascript here for help email willem-dejong@uiowa.edu-->
+    <title>IowaAir</title>
+    <link rel="icon" href="img/Logo1465.png" />
+    <link rel="stylesheet" href="css/homestyle.css" type="text/css"/>
+    <link rel="stylesheet" href="css/login.css" type="text/css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script type="text/javascript" src="/js/md5.js"></script>
+    <script type="text/javascript" src="/js/index.js"></script>
+    <script type="text/javascript" src="/js/logsess.js"></script>
+</head>
+<body>
+
+
+     <div id="hdr">
+         <div id="home" >
+            <a id="homel" href="/"><img id="logo" src="img/Logo1465.png" ></img><img id="namelogo" src="img/NameLogo.png"/></a>
+         </div>
+     </div>
+     <div id="main">
+         <br/>
+         <br/>
+         <div class="que">
+             <div id="qhead">
+                 Search Flights
+             </div>
+             <form id="quein" action="/result.html" method="get">
+                <div id="missReq" style="display: none; color: red"> - One or more required fields are empty or incorrect * </div>
+                <div id="dateErr" style="display: none; color: red"> - Return Date can not be earlier than Depart Date * </div>
+                 <div id="ports">
+                     <div id="orgport">
+                        <label id="orglab" for="org">From*</label>
+                        <input list="lports"id="org" name="org" form="quein"/>
+                     </div>
+                     <div id="destport">
+                        <label id="destlab" for="dest">To*</label>
+                        <input list="lports" id="dest" name="dest" form="quein"/>
+                     </div>
+                 </div>
+                <datalist id="lports">
+
+                </datalist>
+                <div id="dates">
+                    <div class="dated">
+                        <label id="datelab" for="date">Depart Date*</label>
+                        <input type="date" id="date" class="date" name="date" form="quein"/>
+                    </div>
+                    <div class="dated">
+                        <label id="date2lab" for="date2">Return Date</label>
+                        <input type="date" id="date2" class="date" name="date2" form="quein"/>
+                    </div>
+                </div>
+                <div id="passd">
+                    <label for="pass"># of Passengers</label>
+                    <input type="number" id="pass" name="pass" value=1 min=1 form="quein">
+                </div>
+                <input type="text" value="'localhost'" name="last" form="quein" class="hidden"/>
+                <!--see https://www.formget.com/javascript-submit-form/ for making the javascript client side javascript!-->
+                <input type="button" value="Search" id="but" onclick="verifyAndSubmit();" /><!--for Javascript change this input in the html! make type="button", and add onclick="verifyAndSubmit(this.parentElement)"! verifyAndSubmit should verify that the required feilds are filled and if they are then submit the form, if not change the unfilled fields' labels' text red-->
+                <div id="req">*Required.<br/>leave return date empty for one way trip.</div>
+             </form>
+         </div>
+     </div>
+</body>
+<script>
+    populateports();
+    homesession();
+</script>
+</html>
