@@ -12,7 +12,7 @@ function sendregistration(){
 			var form = document.createElement("form");
 			form.appendChild(div);
 				var label = document.createElement("label");
-				label.appendChile(document.createTextNode("Account Registered Successfully!"));
+				label.appendChild(document.createTextNode("Account Registered Successfully!"));
 		}
 
 		else if(result=="email in use"){
