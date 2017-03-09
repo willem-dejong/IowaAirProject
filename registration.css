@@ -1,57 +1,69 @@
 @charset "utf-8";
 
 #main{
-    position: absolute;
+    position: relative;
     top: 80px;
     left: 0px;
     right:0px;
     height: 500%;
+    /*border: solid;*/
     /*background-color: blue;       */
 }
 
-#regbutdiv{
-    margin-left: 600px;
-}
-
-label{
-  display: block;
-  float: left;
-  width : 180px;    
-  text-align : right;
-  font-size : 24px;
-  margin-left: 400px;
-}
-
-input {
-    
-}
-
-/*label{
-    display: inline-block;
-    float: left;
-    clear: left;
-    width: 550px;
-    text-align: right;
-    align-items: center;
-}
-
-input {
-  display: inline-block;
-  float: left;
-}
-
-#submit {
-    align-self: center;
-    display: block;
-}*/
-
-.registration{
-    width: 80%;
+#registration{
+    width: 60%;
     margin:auto;
-    text-align: center;
+    /*text-align: center;*/
+    border: solid;
+    /*background-color: red;*/
+    font-size: 24px;
 }
+
+#regbut{
+    width: 44%;
+    font-size: 24px;
+    left: 38%;
+    position: absolute;
+}
+
+.lab{
+  /*display: block;*/
+  /*float: left;*/
+  /*width : 180px;  */ 
+  width: 30%; 
+  text-align : right;
+  /*font-size : 24px;*/
+  /*margin-left: 200px;*/
+  /*border: solid;*/
+  position: absolute;
+}
+
+.inp {
+  border: solid;
+  font-size: 24px;
+  width: 70%;
+  left: 31%;
+  position: absolute;
+}
+
 #registrationhead{
     text-align: center;
     font-size: 80px;
-    height: 75px;
+    /*border: solid;*/
+    /*background-color: gray;*/
+}
+
+.lidiv{
+  position: relative;
+  /*border: solid;*/
+  margin: auto;
+  width: 60%;
+  height: 38px;
+}
+
+#regform{
+  position: relative;
+  width: 100%;
+  border: solid;
+  /*background-color: blue;*/
 }
