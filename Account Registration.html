@@ -1,60 +1,64 @@
 <!doctype HTML>
 <html>
 <head>
-<head>
-    <title>IowaAir</title>
-    <link rel="icon" href="/img/lolo.pgn" />
-     <link rel="stylesheet" href="/Users/Chris/Documents/2017_Spring/Foundations of Software Engineering/Project HTML Files/registration.css" type="text/css">
-    <script type="text/javascript" src="/js/md5.js"></script>
-    <script type="text/javascript" src="/js/logsess.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-</head>
+    <head>
+        <title>IowaAir</title>
+        <link rel="icon" href="/img/lolo.pgn" />
+        <link rel="stylesheet" href="/Users/Chris/Documents/2017_Spring/Foundations of Software Engineering/Project HTML Files/login.css" type="text/css">
+        <link rel="stylesheet" href="/Users/Chris/Documents/2017_Spring/Foundations of Software Engineering/Project HTML Files/registration.css" type="text/css">
+        <script type="text/javascript" src="/js/md5.js"></script>
+        <script type="text/javascript" src="/js/logsess.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    </head>
 
 <body>
 
-	<div id="hdr">
-        <div id="home" >
-           <a id="homel" href="/"><img id="logo" src="img/Logo1465.png" ></img><img id="namelogo" src="img/NameLogo.png"/></a>
-        </div>
-   </div>
+<div id="hdr">
+    <div id="home" >
+        <a id="homel" href="/"><img id="logo" src="img/Logo1465.png" ></img><img id="namelogo" src="img/NameLogo.png"/></a>
+    </div>
+</div>
 
-	<div id="main">
-		<div id = "registration">
-			<div id = "registrationhead"> ACCOUNT REGISTRATION </div> <br>
+<div id="main">
+    <div id = "registration">
+        <div id = "registrationhead"> ACCOUNT REGISTRATION </div> <br>
+        <div id="missingErr" style="display: none; color:red">-One more more fields were left empty</div>
+        <div id="invalidEmail" style="display: none; color:red">-Invalid email</div>
+        <div id="emailInUse" style="display: none; color:red">-Email is already in use</div>
         <form id="regform">
-        <br/>
-        <div id="fnamediv">
-            <label for="fnamein" id="fnamelab">First Name:</label>
-            <input type="text" id="fnamein" name="fnamein" form="regform"/>
-        </div>
-        <br/>
-        <div id="lnamediv">
-            <label for="lnamein" id="lnamelab">Last Name:</label>
-            <input type="text" id="lnamein" name="lnamein" form="regform"/>
-        </div>
-        <br/>
-        <div id="emaildiv">
-            <label for="emailin" id="emaillab">Email:</label>
-            <input type="text" id="emailin" name="emailin" form="regform"/>
-        </div>
-        <br/>
-        <div id="phonediv">
-            <label for="phonein" id="phonelab">Phone Number:</label>
-            <input type="text" id="phonein" name="phonein" form="regform"/>
-        </div>
-        <br/>
-        <div id="regbutdiv">
-            <input type="button" value="register" id="regbut"/>
-        </div>
-        <br/>
-      </form>
-		</div>
-	</div>
+
+            <div class="lidiv" id="fnamediv">
+                <label class="lab" for="fnamein" id="fnamelab">First Name:</label>
+                <input class="inp" type="text" id="fnamein" name="fnamein" form="regform"/>
+            </div>
+            <br/>
+            <div class="lidiv" id="lnamediv">
+                <label class="lab" for="lnamein" id="lnamelab">Last Name:</label>
+                <input class="inp" type="text" id="lnamein" name="lnamein" form="regform"/>
+            </div>
+            <br/>
+            <div class="lidiv" id="emaildiv">
+                <label class="lab" for="emailin" id="emaillab">Email:</label>
+                <input class="inp" type="text" id="emailin" name="emailin" form="regform"/>
+            </div>
+            <br/>
+            <div class="lidiv" id="phonediv">
+                <label class="lab" for="phonein" id="phonelab">Phone #:</label>
+                <input class="inp" type="text" id="phonein" name="phonein" form="regform"/>
+            </div>
+            <br/>
+            
+            <input  type="button" onClick="validateForm()" value="register" id="regbut"/>
+            
+            <br/>
+            <br/>
+        </form>
+    </div>
+</div>
 </body>
 <script>
     homesession();
-//command possibility 1:"/node/command?firstname=string1&lastname=string2&email=string3&phonenumber=string4&password=string5&confirmpassword=string6"
-//Server should insert the inputted data into the Customer Table
+    //command possibility 1:"/node/command?firstname=string1&lastname=string2&email=string3&phonenumber=string4&password=string5&confirmpassword=string6"
+    //Server should insert the inputted data into the Customer Table
 </script>
-
 </html>
