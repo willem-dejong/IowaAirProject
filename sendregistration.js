@@ -1,5 +1,5 @@
 function sendregistration(){
-	var cmd = "/node/createaccount?fname="+document.getElementById('fnamein').value+"&lname="+document.getElementById('lnamein').value+"&email="+document.getElementById('emailin').value+"&phone="+document.getElementById('phonein').value;
+	var cmd = "/createaccount?fname="+document.getElementById('fnamein').value+"&lname="+document.getElementById('lnamein').value+"&email="+document.getElementById('emailin').value+"&phone="+document.getElementById('phonein').value;
 	
 	$.ajax({url:cmd,success:function(result){
 
