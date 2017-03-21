@@ -1,0 +1,60 @@
+<!doctype HTML>
+<html>
+<head>
+    <head>
+        <title>IowaAir</title>
+        <link rel="icon" href="/img/lolo.pgn" />
+        <link rel="stylesheet" href="/css/login.css" type="text/css">
+        <link rel="stylesheet" href="/css/registration.css" type="text/css">
+        <script type="text/javascript" src="/js/md5.js"></script>
+        <script type="text/javascript" src="/js/logsess.js"></script>
+        <script type="text/javascript" src="/js/registration.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    </head>
+
+<body>
+<% include partial/hdr %>
+<div id="main">
+    <img id="backimg" src="/img/corn.jpg" />
+    <br/>
+    <br/>
+    <div id = "registration">
+        <div id = "registrationhead"> ACCOUNT REGISTRATION </div> <br>
+        <form id="regform">
+            <div id="missingErr" style="display: none; color:red">-One more more fields were left empty</div>
+            <div id="invalidEmail" style="display: none; color:red">-Invalid email</div>
+            <div id="invalidPhone" style="display: none; color:red">-Invalid Phone #</div>
+            <div id="emailInUse" style="display: none; color:red">-Email is already in use</div>
+            <div id="genErr" style="display: none; color:red">-Error try again. If persists contact support.</div>
+
+            <div class="lidiv" id="fnamediv">
+                <label class="lab" for="fnamein" id="fnamelab">First Name:</label>
+                <input class="inp" type="text" id="fnamein" name="fnamein" form="regform"/>
+            </div>
+            <br/>
+            <div class="lidiv" id="lnamediv">
+                <label class="lab" for="lnamein" id="lnamelab">Last Name:</label>
+                <input class="inp" type="text" id="lnamein" name="lnamein" form="regform"/>
+            </div>
+            <br/>
+            <div class="lidiv" id="emaildiv">
+                <label class="lab" for="emailin" id="emaillab">Email:</label>
+                <input class="inp" type="text" id="emailin" name="emailin" form="regform"/>
+            </div>
+            <br/>
+            <div class="lidiv" id="phonediv">
+                <label class="lab" for="phonein" id="phonelab">Phone #:</label>
+                <input class="inp" type="text" id="phonein" name="phonein" form="regform" placeholder="#-###-###-####"/>
+            </div>
+            <br/>
+            
+           <div class="lidiv">
+                <input  type="button" onClick="register()" value="register" id="regbut"/>
+            </div>
+            <br/>
+            <br/>
+        </form>
+    </div>
+</div>
+</body>
+</html>

@@ -4,9 +4,9 @@
 <head>
     <!--include link to javascript here for help email willem-dejong@uiowa.edu-->
     <title>IowaAir</title>
-    <link rel="icon" href="img/Logo1465.png" />
-    <link rel="stylesheet" href="css/homestyle.css" type="text/css"/>
-    <link rel="stylesheet" href="css/login.css" type="text/css" />
+    <link rel="icon" href="/img/Logo1465.png" />
+    <link rel="stylesheet" href="/css/homestyle.css" type="text/css"/>
+    <link rel="stylesheet" href="/css/login.css" type="text/css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script type="text/javascript" src="/js/md5.js"></script>
     <script type="text/javascript" src="/js/index.js"></script>
@@ -15,15 +15,17 @@
 <body>
     <% include partial/hdr %>
      <div id="main">
+        <img id="backimg" src="/img/corn.jpg" />
          <br/>
          <br/>
-         <div class="que">
+         <div id="que">
              <div id="qhead">
                  Search Flights
              </div>
              <form id="quein" action="/result.html" method="get">
                 <div id="missReq" style="display: none; color: red"> - One or more required fields are empty or incorrect * </div>
-                <div id="dateErr" style="display: none; color: red"> - Return Date can not be earlier than Depart Date * </div>
+                <div id="dateErr" style="display: none; color: red"> - Return Date can not be earlier than Depart Date  nor can you book in the past* </div>
+                <div id="portErr" style="display: none; color: red"> - Not a valid airport*</div>
                  <div id="ports">
                      <div id="orgport">
                         <label id="orglab" for="org">From*</label>
@@ -35,7 +37,10 @@
                      </div>
                  </div>
                 <datalist id="lports">
-
+                    <% for(var i in ports){ %>
+                    <%var port=ports[i]%>
+                    <option id=<%=port["portid"]%> value=<%=port["portid"]%>><%=port["airport"]%></option>
+                    <%}%>
                 </datalist>
                 <div id="dates">
                     <div class="dated">
@@ -59,7 +64,4 @@
          </div>
      </div>
 </body>
-<script>
-    populateports();
-</script>
 </html>
