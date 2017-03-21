@@ -7,8 +7,16 @@
     height:80px;
     width:100%;
     /*background-color:red;   */
-    vertical-align: middle;
+    /*vertical-align: middle;*/
     border-bottom: solid;
+}
+#main{
+    position: absolute;
+    top: 80px;
+    left: 0px;
+    right:0px;
+    /*height: 500%;*/
+    /*background-color: blue;       */
 }
 #logo{
     height: 75px;
@@ -22,8 +30,6 @@
 }
 #home{
     position: absolute;
-    font-size: xx-large;
-    text-align: center;
     left:2.5px;
     top: 2.5px;
 }
@@ -83,6 +89,35 @@
     width: 30%;
     left: 35%;
 }
-#g{
-
+#toolbit{
+   position:absolute;
+   left:30%;
+   top:28px;
+   width:20%;
+   font-size:200%;
+   text-align:center;
+   border:solid;
+}
+#tools{
+   position:absolute;
+   left:30%;
+   height:auto;
+   top:70px;
+   width:20%;
+   font-size:200%;
+   text-align:center;
+   background-color:white;
+   border:solid;
+   z-index:100;
+   display:none;
+}
+.toolopt{
+   width:100%;
+   border-bottom:solid;
+   border-top:solid;
+}
+#backimg{
+   position:absolute;
+   width:100%;
+   z-index:-100;
 }

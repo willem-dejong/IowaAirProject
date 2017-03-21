@@ -1,23 +1,17 @@
 @charset "utf-8";
 
-#main{
-    position: absolute;
-    top: 80px;
-    left: 0px;
-    right:0px;
-    height: 500%;
-    /*background-color: blue;       */
-}
+
 #qhead{
     text-align: center;
     font-size: 100px;
 }
 
-.que{
+#que{
     /*background-color:red;   */
     width: 60%;
     margin:auto;
     border: solid;
+    background-color: rgba(255,255,255,0.5);
 }
 #quein{
     position: relative;
@@ -107,5 +101,8 @@
    font-size:medium;
 }
 #dateErr{
+   font-size:medium;
+}
+#portErr{
    font-size:medium;
 }
