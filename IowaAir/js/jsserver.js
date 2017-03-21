@@ -1,5 +1,10 @@
-var flightq=require('./flightq');
+//var flightq=require('./flightq');
 var sql=require('./sql');
+var jsindex=require('./jsindex');
+var jsadmin=require('./jsadmin');
+var jsregistration=require('./jsregistration');
+var jscreateAccount=require('./jscreateAccount');
+var jsaccount=require('./jsaccount');
 var express=require("C:\\Program Files\\nodejs\\node_modules\\express");
 var ejs=require("C:\\Program Files\\nodejs\\node_modules\\ejs");
 var body=require("C:\\Program Files\\nodejs\\node_modules\\body-parser");
@@ -8,25 +13,6 @@ var localstrat=require("C:\\Program Files\\nodejs\\node_modules\\passport-local"
 var passport=require("C:\\Program Files\\nodejs\\node_modules\\passport");
 var cookie=require("C:\\Program Files\\nodejs\\node_modules\\cookie-parser");
 
-function getURL(req){
-	return req.url;
-}
-	
-function getports(req,res){
-	console.log("getports");
-	sql.getairports(res);
-}
-function getFlights(req,res){
-	console.log("getFlights");
-	flightq.flights(req,res,req.url.substring(13));
-}
-function changepass(req,res){
-	//console.log("getnewsession");
-	sql.updatepass(req,res);
-}
-function loginvalidate(req,res){
-	sql.checklogin(req,res);
-}
 var app=express();
 app.set("view engine","ejs");
 app.set("views","C:\\Users\\the Crimson Moon\\Desktop\\IowaAir\\views");
@@ -35,25 +21,27 @@ app.use(body.urlencoded({extended:false}));
 app.use(cookie());
 app.use(session({resave:true,saveUninitialized:true,secret:"sashfdgsfgier"}));
 app.use(express.static("C:\\Users\\the Crimson Moon\\Desktop\\IowaAir\\public"));
-app.use("/getports",getports);
-app.use("/changepass",changepass);
-app.use("/loginvalidate",loginvalidate);
+app.use("/getports",sql.getairports);
+app.use("/changepass",sql.updatepass);
+app.use("/loginvalidate",sql.checklogin);
 app.use("/logout",function(req,res){
+		console.log("logout");
 		req.session.user={fname:"",lname:"",email:"",passw:"",type:"G"};
+		res.redirect("/");
 	});
 app.use("/getSession",function(req,res){
-		var u=req.session.user;
-		result="fname="+u.fname+";lname="+u.lname+";email="+u.email+";type="+u.type+";"
-		res.writeHead(200, {'Content-Type': 'text/plain'});
-		res.end(result);
-	});
-app.use("/", function(req,res){
-	if(!req.session.user){
-		req.session.user={fname:"",lname:"",email:"",passw:"",type:"G"};
-	}
-	console.log(req.session);
-	//console.log(req);
-	res.render("index",{user:req.session.user});
+	var u=req.session.user;
+	result="fname="+u.fname+";lname="+u.lname+";email="+u.email+";type="+u.type+";"
+	res.writeHead(200, {'Content-Type': 'text/plain'});
+	res.end(result);
 });
+app.use("/account",jsaccount.accountRender);
+app.use("/forgotpass",jscreateAccount.forgotPass)
+app.use("/createuser",jscreateAccount.createUser);
+app.use("/updateaccount",jscreateAccount.updateAccount);
+app.use("/admin/addEmployee",jsadmin.addEmployeeRender);
+app.use("/admin/createmanager",jsadmin.createManager);
+app.use("/registration",jsregistration.registrationRender);
+app.use("/", jsindex.indexRender);
 app.listen(80,function(){
 	});
