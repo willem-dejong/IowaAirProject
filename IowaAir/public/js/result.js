@@ -39,34 +39,7 @@ function createfboxes(url,twoway,second){
             }
     }});
 }
-//createresultlist("fromID;destID;FromNM;ToNM;DeptTime;ArriveTime;TotTime;ListedTimes\nerer\nwrewrewr;NumStops;StopChain-sfdf-sdfs-sdfsdf;PlaneDetails\ndfsdf\ndsfdfs\nsfdsafsd;Price;fnum;,fromID;destID;FromNM;ToNM;DeptTime;ArriveTime;TotTime;ListedTimes\nerer\nwrewrewr;NumStops;StopChain-sfdf-sdfs-sdfsdf;PlaneDetails\ndfsdf\ndsfdfs\nsfdsafsd;Price;fnum;,fromID;destID;FromNM;ToNM;DeptTime;ArriveTime;TotTime;ListedTimes\nerer\nwrewrewr;NumStops;StopChain-sfdf-sdfs-sdfsdf;PlaneDetails\ndfsdf\ndsfdfs\nsfdsafsd;Price;fnum;");
-function loginreg(){
-    var aa=document.createElement("A");//login  ##########Stuff to do here##########
-    aa.setAttribute("href","fill me in");
-    aa.appendChild(document.createTextNode("login"));
-    document.querySelector("#log").appendChild(aa);
-    document.querySelector("#log").appendChild(document.createTextNode("/"));
-    var aa2=document.createElement("A");//registar  ##########Stuff to do here##########
-    aa2.setAttribute("href","fill me in");
-    aa2.appendChild(document.createTextNode("register"));
-    document.querySelector("#log").appendChild(aa2);
-}
-function removewelcome(){
-    var list = document.querySelector("#log");
-    while (list.hasChildNodes()) {
-            list.removeChild(list.firstChild);
-    }
-}
-function logout(){
-    var i =document.cookie.search("IOWAAIRSESSION=[A-Za-z0-9]+");
-    var IAses="/node/logout?cookie="+document.cookie.substring(i+15,ii);
-    $.ajax({url:IAses, success: function(result){
-            if(result="success"){
-                    removewelcome();
-                    loginreg();
-            }
-    }});
-}
+
 
 
 
