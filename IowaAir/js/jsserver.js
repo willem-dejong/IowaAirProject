@@ -1,6 +1,9 @@
 //var flightq=require('./flightq');
-var sql=require('./sql');
+//var sql=require('./sql');
+var jsgetairports=require('./jsgetairports');
+var jsupdatepass=require('./jsupdatepass');
 var jsindex=require('./jsindex');
+var jslogin=require('./jslogin');
 var jsadmin=require('./jsadmin');
 var jsregistration=require('./jsregistration');
 var jscreateAccount=require('./jscreateAccount');
@@ -21,9 +24,9 @@ app.use(body.urlencoded({extended:false}));
 app.use(cookie());
 app.use(session({resave:true,saveUninitialized:true,secret:"sashfdgsfgier"}));
 app.use(express.static("C:\\Users\\the Crimson Moon\\Desktop\\IowaAir\\public"));
-app.use("/getports",sql.getairports);
-app.use("/changepass",sql.updatepass);
-app.use("/loginvalidate",sql.checklogin);
+app.use("/getports",jsgetairports.getairports);
+app.use("/changepass",jsupdatepass.updatepass);
+app.use("/loginvalidate",jslogin.login);
 app.use("/logout",function(req,res){
 		console.log("logout");
 		req.session.user={fname:"",lname:"",email:"",passw:"",type:"G"};

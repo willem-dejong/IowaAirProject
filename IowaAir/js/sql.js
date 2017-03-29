@@ -1,5 +1,5 @@
 var mysql=require('C:\\Program Files\\nodejs\\node_modules\\mysql');
-function todoubleA(rows){
+/*function todoubleA(rows){
     console.log("todoubleA");
     var na=[];
     for (var i in rows){
@@ -12,7 +12,7 @@ function todoubleA(rows){
         na.push(na2);
     }
     return na;
-}
+}*/
 function p2s(rows){
     console.log("p2s");
     console.log(rows);
@@ -122,37 +122,18 @@ function p2s2(rows){
     console.log(s);
     return s;
 }
-function p2s3(row){
-	console.log("p2s3");
-	var b=false;
-	//"email="+email+";fname="+first name+";lname="+last name+";type="+account type+";accountid="+account_id+";forcepw="+ force passchange+";"
-	s="email="+row.email+";accountid="+String(row.idaccount)+";fname="+row.fname+";lname="+row.lname+";type="+row.account_type+";forcepw=";
-	if(row.forcePass){
-		s=s+"true;";
-		b=true
-	}	
-	else{
-		s=s+"false;";
-		b=false
-	}
-	return [s,b];
-}
-function getairports(req,res){
-    console.log("getairports");
+function getairports(req,res,errhandler,successhandler,args){
+    console.log("sqlgetairports");
     var connection=mysql.createConnection({user:"admin",password:"IowaAir2017",port:"3306",dateString:"date"});
     connection.connect();
     connection.query('SELECT * FROM iowaair.airports;', function (err, rows, fields) {
-        if (err){
-        		console.log(err);
-    			connection.end();
-    			return null
-        } 
-        //console.log(rows);
-        na=  p2s(rows);
-        console.log('The solution is: ', na) ;
-        res.writeHead(200, {'Content-Type': 'text/plain'});
-        res.end(na);
     	  connection.end();
+        if (err){
+        		errhandler(err,req,res,args);
+        } 
+        else{
+        		successhandler(rows,req,res,args);
+        }
     });
 }
 
@@ -231,10 +212,10 @@ function getFlight(res,pass,fnum){
        conn.end();
     });
 }
-function checklogin(req,res){
+/*function checklogin(req,res){
 	var i=req.url.search("email=[A-Za-z0-9]");
 	var i2=req.url.search("passw=[a-z0-9]+");
-	if (i==-1||i2==-1){
+	if (i==-1||i2==-1||!req.session.user||req.session.user.type!="G"){
 		res.writeHead(500, {'Content-Type': 'text/plain'});
 		res.end("oops");
 	}
@@ -253,24 +234,24 @@ function checklogin(req,res){
 		var tpassw=req.url.substring(i2,ii2);
 		console.log("checklogin");
 		console.log(tpassw);
-		getLogin(temail,tpassw,req,res);
+		getLogin(temail,tpassw,req,res,args);
 	}
-}
-function getLogin(email,passw,req,res){
-	 console.log("getLogin");
-	 console.log(passw);
+}*/
+/*function getLogin(email,passw,req,res){
+	 //console.log("getLogin");
+	 //console.log(passw);
 	 var conn=mysql.createConnection({user:"admin",password:"IowaAir2017",port:"3306"});
     conn.connect();
     var inn="SELECT idaccount,email,fname,lname,account_type,forcePass from iowaair.account where email=? and password=?;"
-    var args=[email,passw];
-    conn.query(inn,args,function(err,rows,feilds){
+    var argz=[email,passw];
+    conn.query(inn,argz,function(err,rows,feilds){
     	console.log(rows)
     	if (!rows||rows.length==0){
 			res.writeHead(404, {'Content-Type': 'text/plain'});
 			res.end();
     	}
     	else{
-    		console.log(rows);
+    		//console.log(rows);
     		var temp=p2s3(rows[0]);
     		if(!temp[1]){
 				req.session.user={fname:rows[0].fname,lname:rows[0].lname,email:rows[0].email,passw:passw,type:rows[0].account_type};
@@ -280,67 +261,85 @@ function getLogin(email,passw,req,res){
     	}
     	conn.end();
    });
+}*/
+function getLogin(temail,topassw,req,res,errHandler,successHandler,args){
+	//console.log("getLogin")
+	args.temail=temail;
+	args.topassw=topassw;
+	var conn=mysql.createConnection({user:"admin",password:"IowaAir2017",port:"3306"});
+   conn.connect();
+   var inn="SELECT * from iowaair.account where email=? and password=?;"
+   var argz=[temail,topassw];
+   conn.query(inn,argz,function(err,rows,feilds){
+   	conn.end();
+   	if (err){
+   		errHandler(err,req,res,args);
+   	}
+   	else{
+   		successHandler(rows,req,res,args);
+		}
+	});
+	//console.log("getLogin end")
 }
-function updatepass(req,res){
-	var i=req.url.search("email=[A-Za-z0-9]");
-	var i2=req.url.search("opassw=[a-z0-9]+");
-	var i3=req.url.search("npassw=[a-z0-9]+");
-	if (i==-1||i2==-1||i3==-1){
-		res.writeHead(500, {'Content-Type': 'text/plain'});
-		res.end();
+function updatepass(temail,topassw,tnpassw,req,res,errhandler,successhandler,args){
+	args.temail=temail;
+	args.topassw=topassw;
+	args.tnpassw=tnpassw;
+	var conn=mysql.createConnection({user:"admin",password:"IowaAir2017",port:"3306"});
+   conn.connect();
+	inn="update iowaair.account set password=?,forcePass=0 where email=? and password=?;"
+	argz=[tnpassw,temail,topassw];
+	conn.query(inn,argz,function(err,rows,feilds){
+		conn.end();
+    	if (err){
+    		errhandler(err,req,res,args);
+    	}
+    	else{
+    		successhandler(rows,req,res,args);
+		}
+	});
+}
+function updateFlights(flights,req,res,errhandler,successhandler,args){
+	var conn=mysql.createConnection({user:"admin",password:"IowaAir2017",port:"3306"});
+   conn.connect();
+   inn=""
+   argz=[];
+   for (i in flights){
+		inn=inn+"update iowaair.flights set Flight_num=?,departure_time=?,arrival_time=?,origin_port=?,destined_port=?,plane_id=?,gate=?,ec_seats_available=?,ec_seats_booked=?,ec_cost_per_seat=?,fc_seats_available=?,fc_seats_booked=?,fc_cost_per_seat=? where flightID=?;\n"
+		argz=argz.concat([flights[i][1],flights[i][2],flights[i][3],flights[i][4],flights[i][5],flights[i][6],flights[i][7],flights[i][8],flights[i][9],flights[i][10],flights[i][11],flights[i][12],flights[i][0]])
 	}
-	else{
-		i=i+6;
-		i2=i2+7;
-		i3=i3+7;
-		var ii=req.url.indexOf("&",i);
-		var ii2=req.url.indexOf("&",i2);
-		var ii3=req.url.indexOf("&",i3);
-		if(ii==-1){
-			ii=req.url.length;
+	conn.query(inn,argz,function(err,rows,feilds){
+		conn.end();
+    	if (err){
+    		errhandler(err,req,res,args);
+    	}
+    	else{
+    		successhandler(rows,req,res,args);
 		}
-		if(ii2==-1){
-			ii2=req.url.length;
-		}
-		if(ii3==-1){
-			ii3=req.url.length;
-		}
-		var temail=req.url.substring(i,ii);
-		var topassw=req.url.substring(i2,ii2);
-		var tnpassw=req.url.substring(i3,ii3);
-		var conn=mysql.createConnection({user:"admin",password:"IowaAir2017",port:"3306"});
-	    conn.connect();
-	    var inn="SELECT * from iowaair.account where email=? and password=?;"
-	    var args=[temail,topassw];
-	    conn.query(inn,args,function(err,rows,feilds){
-	    	if (err){
-					res.writeHead(200, {'Content-Type': 'text/plain'});
-					res.end("err");
-	    	}
-	    	else if(rows.length==0){
-					res.writeHead(200, {'Content-Type': 'text/plain'});
-					res.end("invalid cred");
-			}
-	    	else{
-	    		var row=rows[0];
-	    		inn="update iowaair.account set password=?,forcePass=0 where email=? and password=?;"
-	    		args=[tnpassw,temail,topassw];
-	    		conn.query(inn,args,function(err,rows2,feilds){
-			    	if (err){
-						res.writeHead(200, {'Content-Type': 'text/plain'});
-						res.end("false");
-			    	}
-			    	else{
-						req.session.user={fname:row.fname,lname:row.lname,email:row.email,passw:tnpassw,type:row.account_type};
-						res.writeHead(200, {'Content-Type': 'text/plain'});
-						res.end("true");
-					}
-					conn.end();
-				});
-			}
-		});
+	});
+}
+function addFlights(flights,req,res,errhandler,successhandler,args){
+	var conn=mysql.createConnection({user:"admin",password:"IowaAir2017",port:"3306"});
+   conn.connect();
+	inn="insert into iowaair.flights (Flight_num,departure_time,arrival_time,origin_port,destined_port,plane_id,gate,ec_seats_available,ec_seats_booked,ec_cost_per_seat,fc_seats_available,fc_seats_booked,fc_cost_per_seat) values "
+	var x=1
+	inn=inn+"(?,?,?,?,?,?,?,?,?,?,?,?,?)"
+	argz=flights[0]
+	while (flights.length>x){
+		argz=argz.concat(flights[x]);
+		inn=inn+",(?,?,?,?,?,?,?,?,?,?,?,?,?)";
+		x=x+1;
 	}
-		
+	inn=inn+";";
+	conn.query(inn,argz,function(err,rows,feilds){
+		conn.end();
+    	if (err){
+    		errhandler(err,req,res,args);
+    	}
+    	else{
+    		successhandler(rows,req,res,args);
+		}
+	});
 }
 //getLogin("cswdejong@gmail.com","f3c2f0a0c08e2f7a82c92ae64a836cf5");
 //getFlights("ORD","CID","2017-7-12",2);
@@ -359,7 +358,7 @@ module.exports={
     //getSession:getSession,
     //logout:logout,
     updatepass:updatepass,
-    checklogin:checklogin,
+    getLogin:getLogin,
     //getFlights:getFlights,
     //getFlight:getFlight
     };
