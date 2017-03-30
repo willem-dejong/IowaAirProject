@@ -1,0 +1,235 @@
+<html><head><link rel="stylesheet" href="/css/homestyle.css" type="text/css">
+
+
+    <!--include link to javascript here for help email willem-dejong@uiowa.edu-->
+    <title>IowaAir</title>
+    <link rel="icon" href="/img/Logo1465.png">
+    <link rel="stylesheet" href="/css/upplane.css" type="text/css">
+    <link rel="stylesheet" href="/css/login.css" type="text/css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script type="text/javascript" src="/js/md5.js"></script>
+    <script type="text/javascript" src="/js/logsess.js"></script>
+</head>
+<body>
+    <div id="hdr">
+         <div id="home">
+                <a id="homel" href="/"><img id="logo" src="/img/Logo1465.png"><img id="namelogo" src="/img/NameLogo.png"></a>
+         </div>
+        
+        <div id="log">
+            <a href="javascript:void(0)" id="loginlink" onclick="createloginbox();">login</a>/<a href="/registration">register</a>
+        </div>
+        
+</div>
+     <div id="main">
+        <img id="backimg" src="/img/corn.jpg">
+         <br>
+         <br>
+         <div id="upbox">
+  <div id="uphead">Update Planes</div>
+<form id="uppform">
+  <div id="tbl">
+    <table>
+      <tr>
+  		  <th>
+          <div>Plane ID</div>
+  		  </th>
+  		  <th>
+          <div>Model</div>
+  		  </th>
+  		  <th>
+          <div># Ec seats</div>
+  		  </th>
+        <th>
+          <div># Fc seats</div>
+  		  </th>
+      </tr>
+      <tr id="r0">
+  		  <td>
+          <input type="text" id="pidcrit"/>
+  		  </td>
+  		  <td>
+          <input id="modelcrit"/>
+  	    </td>
+  		  <td>
+          <input id="ecnumcrit" type="number" min="0"/>
+  	    </td>
+  		  <td>
+          <input id="fjcnumcrit" type="number" min="0"/>
+  		  </td>
+        <td>
+          <input id="searchbutton" type="submit" value="SEARCH" />
+        </td>
+      </tr>
+
+      
+      <% for (var i in planes) { %>
+          <tr id = <%= 'r' + i %> >
+            <td>
+              <input value = <%= planes[i].pid %> />
+            </td>
+            <td>
+              <input value = <%= planes[i].model %> />
+            </td>
+            <td>
+              <input value = <%= planes[i].ecnum %> />
+            </td>
+            <td>
+              <input value = <%= planes[i].fjcnum %> />
+            </td>
+            <td>
+              <input class="updatebutton" type="button" value="UPDATE" />
+            </td>
+      <%}%>
+
+      
+      
+<!--
+      <tr id="r1">
+  		  <td>
+          <input class="pidedit" type="text" disabled/>
+  		  </td>
+  		  <td>
+          <input class="modeledit"/>
+  	    </td>
+  		  <td>
+          <input class="ecnumedit" type="number" min="0"/>
+  	    </td>
+  		  <td>
+          <input class="fjcnumedit" type="number" min="0"/>
+  		  </td>
+        <td>
+          <input id="updatebutton" type="submit" value="UPDATE" />
+        </td>
+      </tr>
+      <tr id="r2">
+  		  <td>
+          <input class="pidedit" type="text" disabled/>
+  		  </td>
+  		  <td>
+          <input class="modeledit"/>
+  	    </td>
+  		  <td>
+          <input class="ecnumedit" type="number" min="0"/>
+  	    </td>
+  		  <td>
+          <input class="fjcnumedit" type="number" min="0"/>
+  		  </td>
+        <td>
+          <input id="updatebutton" type="submit" value="UPDATE" />
+        </td>
+      </tr>
+      <tr id="r3">
+  		  <td>
+          <input class="pidedit" type="text" disabled/>
+  		  </td>
+  		  <td>
+          <input class="modeledit"/>
+  	    </td>
+  		  <td>
+          <input class="ecnumedit" type="number" min="0"/>
+  	    </td>
+  		  <td>
+          <input class="fjcnumedit" type="number" min="0"/>
+  		  </td>
+        <td>
+          <input id="updatebutton" type="submit" value="UPDATE" />
+        </td>
+      </tr>
+      <tr id="r4">
+  		  <td>
+          <input class="pidedit" type="text" disabled/>
+  		  </td>
+  		  <td>
+          <input class="modeledit"/>
+  	    </td>
+  		  <td>
+          <input class="ecnumedit" type="number" min="0"/>
+  	    </td>
+  		  <td>
+          <input class="fjcnumedit" type="number" min="0"/>
+  		  </td>
+        <td>
+          <input id="updatebutton" type="submit" value="UPDATE" />
+        </td>
+      </tr>
+      <tr id="r5">
+  		  <td>
+          <input class="pidedit" type="text" disabled/>
+  		  </td>
+  		  <td>
+          <input class="modeledit"/>
+  	    </td>
+  		  <td>
+          <input class="ecnumedit" type="number" min="0"/>
+  	    </td>
+  		  <td>
+          <input class="fjcnumedit" type="number" min="0"/>
+  		  </td>
+        <td>
+          <input id="updatebutton" type="submit" value="UPDATE" />
+        </td>
+      </tr>
+      <tr id="r6">
+  		  <td>
+          <input class="pidedit" type="text" disabled/>
+  		  </td>
+  		  <td>
+          <input class="modeledit"/>
+  	    </td>
+  		  <td>
+          <input class="ecnumedit" type="number" min="0"/>
+  	    </td>
+  		  <td>
+          <input class="fjcnumedit" type="number" min="0"/>
+  		  </td>
+        <td>
+          <input id="updatebutton" type="submit" value="UPDATE" />
+        </td>
+      </tr>
+      <tr id="r7">
+  		  <td>
+          <input class="pidedit" type="text" disabled/>
+  		  </td>
+  		  <td>
+          <input class="modeledit"/>
+  	    </td>
+  		  <td>
+          <input class="ecnumedit" type="number" min="0"/>
+  	    </td>
+  		  <td>
+          <input class="fjcnumedit" type="number" min="0"/>
+  		  </td>
+        <td>
+          <input id="updatebutton" type="submit" value="UPDATE" />
+        </td>
+      </tr>
+      <tr id="r8">
+  		  <td>
+          <input class="pidedit" type="text" disabled/>
+  		  </td>
+  		  <td>
+          <input class="modeledit"/>
+  	    </td>
+  		  <td>
+          <input class="ecnumedit" type="number" min="0"/>
+  	    </td>
+  		  <td>
+          <input class="fjcnumedit" type="number" min="0"/>
+  		  </td>
+        <td>
+          <input id="updatebutton" type="submit" value="UPDATE" />
+        </td>
+      </tr>
+      -->
+    </table>
+    <br>
+    <div id="updateallbuttondiv">
+      <input id="updateallbutton" type="button" value="UPDATE ALL" />
+    </div>
+  </div>
+</form>
+  
+</div></div>
+
+</body></html>
