@@ -1,0 +1,237 @@
+<html><head><link rel="stylesheet" href="/css/homestyle.css" type="text/css">
+
+
+    <!--include link to javascript here for help email willem-dejong@uiowa.edu-->
+    <title>IowaAir</title>
+    <link rel="icon" href="/img/Logo1465.png">
+    <link rel="stylesheet" href="/css/upflight.css" type="text/css">
+    <link rel="stylesheet" href="/css/login.css" type="text/css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script type="text/javascript" src="/js/md5.js"></script>
+    <script type="text/javascript" src="/js/logsess.js"></script>
+</head>
+<body>
+<div id="hdr">
+    <div id="home">
+        <a id="homel" href="/"><img id="logo" src="/img/Logo1465.png"><img id="namelogo" src="/img/NameLogo.png"></a>
+    </div>
+
+    <div id="log">
+        <a href="javascript:void(0)" id="loginlink" onclick="createloginbox();">login</a>/<a href="/registration">register</a>
+    </div>
+
+</div>
+<div id="main">
+    <img id="backimg" src="/img/corn.jpg">
+    <br>
+    <br>
+    <div id="upbox">
+        <div id="uphead">Update Flights</div>
+        <form id="uppform">
+            <div id="tbl">
+                <table>
+                    <tr>
+                        <th>
+                            <div>Flight ID</div>
+                        </th>
+                        <th>
+                            <div>Flight Num</div>
+                        </th>
+                        <th>
+                            <div>Gate</div>
+                        </th>
+                        <th>
+                            <div>Plane ID</div>
+                        </th>
+                        <th>
+                            <div>Departure Date</div>
+                        </th>
+                        <th>
+                            <div>Departure Location</div>
+                        </th>
+                        <th>
+                            <div>Arrival Date</div>
+                        </th>
+                        <th>
+                            <div>Arrival Location</div>
+                        </th>
+                        <th>
+                            <div>EC Seats Available</div>
+                        </th>
+                        <th>
+                            <div>EC Seats Booked</div>
+                        </th>
+                        <th>
+                            <div>EC $/seat</div>
+                        </th>
+                        <th>
+                            <div>FC Seats Available</div>
+                        </th>
+                        <th>
+                            <div>FC Seats Booked</div>
+                        </th>
+                        <th>
+                            <div>FC $/seat</div>
+                        </th>
+                    </tr>
+
+                    <tr id="r0">
+                        <td>
+                            <input id="flightID"/>
+                        </td>
+                        <td>
+                            <input id="flightNum"/>
+                        </td>
+                        <td>
+                            <input class ="smallBox" id="gate"/>
+                        </td>
+                        <td>
+                            <input id="planeID"/>
+                        </td>
+                        <td>
+                            <input id="dDate" type="date"/>
+                        </td>
+                        <td>
+                            <input id="dLoc"/>
+                        </td>
+                        <td>
+                            <input id="aDate" type="date"/>
+                        </td>
+                        <td>
+                            <input id="aLoc"/>
+                        </td>
+                        <td>
+                            <input class ="smallBox" id="ECAvail" type="number" min="0"/>
+                        </td>
+                        <td>
+                            <input class ="smallBox" id="ECBooked" type="number" min="0"/>
+                        </td>
+                        <td>
+                            <input class ="smallBox" id="ECCost" type="number" min="0"/>
+                        </td>
+                        <td>
+                            <input class ="smallBox" id="FCAvail" type="number" min="0"/>
+                        </td>
+                        <td>
+                            <input class ="smallBox" id="FCBooked" type="number" min="0"/>
+                        </td>
+                        <td>
+                            <input class ="smallBox" id="FCCost" type="number" min="0"/>
+                        </td>
+                        <td>
+                            <input id="searchButton" type="submit" value="Search" onclick=""/>
+                        </td>
+                    </tr>
+                    <% for(var i=0; i<flights.length; i++) {%>
+                        <tr id=<%="r"+String(i+1) %>>
+                            <td>
+                                <input class="flightIDEdit" disabled value= <%= flights[i].flightID %>/>
+                            </td>
+                            <td>
+                                <input class="flightNumEdit" value= <%= flights[i].flight_num %>/>
+                            </td>
+                            <td>
+                                <input class="gateEdit" value= <%= flights[i].gate %>/>
+                            </td>
+                            <td>
+                                <input class="planeIDEdit" value= <%= flights[i].plane_id %>/>
+                            </td>
+                            <td>
+                                <input class="dDateEdit" type="date" value= <%= flights[i].departure_time %>/>
+                            </td>
+                            <td>
+                                <input class="dLocEdit" value= <%= flights[i].origin %>/>
+                            </td>
+                            <td>
+                                <input class="aDateEdit" type="date" value= <%= flights[i].arrival_time %>/>
+                            </td>
+                            <td>
+                                <input class="aLocEdit" value= <%= flights[i].destined %>/>
+                            </td>
+                            <td>
+                                <input class="ECAvailEdit" type="number" min="0" value= <%= flights[i].ec_seats_available %>/>
+                            </td>
+                            <td>
+                                <input class="ECBookedEdit" type="number" min="0" value= <%= flights[i].ec_seats_booked %>/>
+                            </td>
+                            <td>
+                                <input class="ECCostEdit" type="number" min="0" value= <%= flights[i].ec_cost_per_seat %>/>
+                            </td>
+                            <td>
+                                <input class="FCAvailEdit" type="number" min="0" value= <%= flights[i].fc_seats_available %>/>
+                            </td>
+                            <td>
+                                <input class="FCBookedEdit" type="number" min="0" value= <%= flights[i].fc_seats_booked %>/>
+                            </td>
+                            <td>
+                                <input class="FCCostEdit" type="number" min="0" value= <%= flights[i].fc_cost_per_seat %>/>
+                            </td>
+                            <td>
+                                <input class="updateButton" type="button" value="Update" onclick=""/>
+                            </td>
+                        </tr>
+                    <% } %>
+
+                    <!--
+                    <tr id="r">
+                        <td>
+                            <input id="flightIDEdit" disabled/>
+                        </td>
+                        <td>
+                            <input id="flightNumEdit"/>
+                        </td>
+                        <td>
+                            <input class="smallBox" id="gateEdit"/>
+                        </td>
+                        <td>
+                            <input id="planeIDEdit"/>
+                        </td>
+                        <td>
+                            <input id="dDateEdit" type="date"/>
+                        </td>
+                        <td>
+                            <input id="dLocEdit"/>
+                        </td>
+                        <td>
+                            <input id="aDateEdit" type="date"/>
+                        </td>
+                        <td>
+                            <input id="aLocEdit"/>
+                        </td>
+                        <td>
+                            <input class ="smallBox" id="ECAvailEdit" type="number" min="0"/>
+                        </td>
+                        <td>
+                            <input class ="smallBox" id="ECBookedEdit" type="number" min="0"/>
+                        </td>
+                        <td>
+                            <input class ="smallBox" id="ECCostEdit" type="number" min="0"/>
+                        </td>
+                        <td>
+                            <input class ="smallBox" id="FCAvailEdit" type="number" min="0"/>
+                        </td>
+                        <td>
+                            <input class ="smallBox" id="FCBookedEdit" type="number" min="0"/>
+                        </td>
+                        <td>
+                            <input class ="smallBox" id="FCCostEdit" type="number" min="0"/>
+                        </td>
+                        <td>
+                            <input type="submit" value="Update" onclick=""/>
+                        </td>
+                    </tr>
+                    -->
+
+
+                </table>
+
+            </div>
+            <div style="text-align: center;">
+                <button id="updateAllButton" class="btnExample" type="button" value="Submit"/>Update All</button>
+            </div>
+            <br>
+        </form>
+
+    </div></div>
+
+</body></html>

@@ -1,0 +1,55 @@
+@charset "utf-8";
+
+
+#uphead{
+    text-align: center;
+    font-size: 100px;
+}
+
+#upbox{
+    /*background-color:red;   */
+    width: 90%;
+    margin:auto;
+    border: solid;
+    background-color: rgba(255,255,255,0.5);
+}
+#uppform{
+    position: relative;
+    margin:auto;
+    /*background-color: yellow;      */
+    font-size: 50px;
+}
+table{
+    border:solid;
+    border-collapse:collapse;
+    margin:auto;
+}
+td{
+    border:solid;
+}
+th{
+    border:solid;
+    border-bottom:double;
+    border-bottom-width:3px;
+}
+#tbl{
+    overflow-y:scroll;
+    height:300px;
+}
+.btnExample {
+    color: gold;
+    background: green;
+    font-weight: bold;
+    border: 1px solid darkgreen;
+    width: 150px;
+    height: 30px;
+    margin: auto;
+}
+
+.btnExample:hover {
+    color: green;
+    background: gold;
+}
+.smallBox{
+    width: 50px;
+}
