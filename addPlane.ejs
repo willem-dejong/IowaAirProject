@@ -1,0 +1,65 @@
+<html><head><link rel="stylesheet" href="/css/homestyle.css" type="text/css">
+
+
+    <!--include link to javascript here for help email willem-dejong@uiowa.edu-->
+    <title>IowaAir</title>
+    <link rel="icon" href="/img/Logo1465.png">
+    <link rel="stylesheet" href="/css/upplane.css" type="text/css">
+    <link rel="stylesheet" href="/css/login.css" type="text/css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script type="text/javascript" src="/js/md5.js"></script>
+    <script type="text/javascript" src="/js/logsess.js"></script>
+</head>
+<body>
+    <div id="hdr">
+         <div id="home">
+                <a id="homel" href="/"><img id="logo" src="/img/Logo1465.png"><img id="namelogo" src="/img/NameLogo.png"></a>
+         </div>
+        
+        <div id="log">
+            <a href="javascript:void(0)" id="loginlink" onclick="createloginbox();">login</a>/<a href="/registration">register</a>
+        </div>
+        
+</div>
+     <div id="main">
+        <img id="backimg" src="/img/corn.jpg">
+         <br>
+         <br>
+         <div id="upbox">
+  <div id="uphead">Add Plane</div>
+<form id="uppform">
+  <div id="tbl">
+    <table>
+      <tr>
+  		  <th>
+          <div>Model</div>
+  		  </th>
+  		  <th>
+          <div># Ec seats</div>
+  		  </th>
+        <th>
+          <div># Fc seats</div>
+  		  </th>
+      </tr>
+      <tr id="r0">
+  		  <td>
+          <input id="modelcrit"/>
+  	    </td>
+  		  <td>
+          <input id="ecnumcrit" type="number" min="0"/>
+  	    </td>
+  		  <td>
+          <input id="fjcnumcrit" type="number" min="0"/>
+  		  </td>
+        <td>
+          <input id="searchbutton" type="button" value="ADD" />
+        </td>
+      </tr>
+
+    </table>
+  </div>
+</form>
+  
+</div></div>
+
+</body></html>
