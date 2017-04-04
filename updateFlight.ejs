@@ -30,7 +30,7 @@
         <div id="uphead">Update Flights</div>
         <form id="uppform">
             <div id="tbl">
-                <table>
+                <table id="wholeTable">
                     <tr>
                         <th>
                             <div>Flight ID</div>
@@ -252,7 +252,7 @@
                                 <input class="FCCostEdit smallBox" type="number" min="0" value= <%= flights[i].fc_cost_per_seat %>>
                             </td>
                             <td>
-                                <input class="updateButton" type="button" value="Update" onclick="updateRow(this)"/>
+                                <input class="updateButton" type="button" value="Update" onclick="updateSingle(this)"/>
                             </td>
                         </tr>
                     <% } %>
@@ -266,10 +266,13 @@
                     <%}%>
                 </datalist>
 
-            </div>
-            <div style="text-align: center;">
-                <button id="updateAllButton" class="btnExample" type="button" value="Submit"/>Update All</button>
-            </div>
+                </div>
+                
+                <div id="invalidInput" style="display: none ;font-size:50%; color:red"align="center">*Some information is missing or incorrect</div>
+                
+                <div style="text-align: center;"><button id="updateAllButton" class="updateAllButton" type="button" onclick="updateAll(this)"/>Update All</button></div>
+           
+               <div class="success" style="display: none ;font-size:50%; color:green"align="center">Updated!</div>
             <br>
         </form>
 

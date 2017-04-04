@@ -36,7 +36,7 @@ th{
     overflow-y:scroll;
     height:300px;
 }
-.btnExample {
+.updateAllButton {
     color: gold;
     background: green;
     font-weight: bold;
@@ -44,12 +44,27 @@ th{
     width: 150px;
     height: 30px;
     margin: auto;
+    margin-top: 20px;
 }
 
-.btnExample:hover {
+.updateAllButton:hover {
     color: green;
     background: gold;
+    cursor: pointer;
 }
 .smallBox{
     width: 50px;
+}
+.bigBox{
+    width: 90px;
+}
+.medBox{
+    width: 120px;
+}
+.currencyinput {
+    border: 1px;
+    padding-bottom: 1px;//FOR IE & Chrome
+}
+.currencyinput input {
+    border: 0;
 }
