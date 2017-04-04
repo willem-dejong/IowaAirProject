@@ -9,6 +9,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script type="text/javascript" src="/js/md5.js"></script>
     <script type="text/javascript" src="/js/logsess.js"></script>
+    <script type="text/javascript" src="/js/upplane.js"></script>
 </head>
 <body>
     <div id="hdr">
@@ -64,168 +65,30 @@
 
       
       <% for (var i in planes) { %>
-          <tr id = <%= 'r' + i %> >
+          <tr id = <%="r"+String(i+1)%>>
             <td>
-              <input value = <%= planes[i].pid %> />
+              <input class = "pidEdit" value = <%= planes[i].pid %> />
             </td>
             <td>
-              <input value = <%= planes[i].model %> />
+              <input class = "modelEdit" value = <%= planes[i].model %> />
             </td>
             <td>
-              <input value = <%= planes[i].ecnum %> />
+              <input class = "ecnumEdit" value = <%= planes[i].ecnum %> />
             </td>
             <td>
-              <input value = <%= planes[i].fjcnum %> />
+              <input class = "fjcnumEdit" value = <%= planes[i].fjcnum %> />
             </td>
             <td>
-              <input class="updatebutton" type="button" value="UPDATE" />
+              <input class="updatebutton" type="button" value="UPDATE" onclick="updateSingle(this)" />
             </td>
       <%}%>
 
       
-      
-<!--
-      <tr id="r1">
-  		  <td>
-          <input class="pidedit" type="text" disabled/>
-  		  </td>
-  		  <td>
-          <input class="modeledit"/>
-  	    </td>
-  		  <td>
-          <input class="ecnumedit" type="number" min="0"/>
-  	    </td>
-  		  <td>
-          <input class="fjcnumedit" type="number" min="0"/>
-  		  </td>
-        <td>
-          <input id="updatebutton" type="submit" value="UPDATE" />
-        </td>
-      </tr>
-      <tr id="r2">
-  		  <td>
-          <input class="pidedit" type="text" disabled/>
-  		  </td>
-  		  <td>
-          <input class="modeledit"/>
-  	    </td>
-  		  <td>
-          <input class="ecnumedit" type="number" min="0"/>
-  	    </td>
-  		  <td>
-          <input class="fjcnumedit" type="number" min="0"/>
-  		  </td>
-        <td>
-          <input id="updatebutton" type="submit" value="UPDATE" />
-        </td>
-      </tr>
-      <tr id="r3">
-  		  <td>
-          <input class="pidedit" type="text" disabled/>
-  		  </td>
-  		  <td>
-          <input class="modeledit"/>
-  	    </td>
-  		  <td>
-          <input class="ecnumedit" type="number" min="0"/>
-  	    </td>
-  		  <td>
-          <input class="fjcnumedit" type="number" min="0"/>
-  		  </td>
-        <td>
-          <input id="updatebutton" type="submit" value="UPDATE" />
-        </td>
-      </tr>
-      <tr id="r4">
-  		  <td>
-          <input class="pidedit" type="text" disabled/>
-  		  </td>
-  		  <td>
-          <input class="modeledit"/>
-  	    </td>
-  		  <td>
-          <input class="ecnumedit" type="number" min="0"/>
-  	    </td>
-  		  <td>
-          <input class="fjcnumedit" type="number" min="0"/>
-  		  </td>
-        <td>
-          <input id="updatebutton" type="submit" value="UPDATE" />
-        </td>
-      </tr>
-      <tr id="r5">
-  		  <td>
-          <input class="pidedit" type="text" disabled/>
-  		  </td>
-  		  <td>
-          <input class="modeledit"/>
-  	    </td>
-  		  <td>
-          <input class="ecnumedit" type="number" min="0"/>
-  	    </td>
-  		  <td>
-          <input class="fjcnumedit" type="number" min="0"/>
-  		  </td>
-        <td>
-          <input id="updatebutton" type="submit" value="UPDATE" />
-        </td>
-      </tr>
-      <tr id="r6">
-  		  <td>
-          <input class="pidedit" type="text" disabled/>
-  		  </td>
-  		  <td>
-          <input class="modeledit"/>
-  	    </td>
-  		  <td>
-          <input class="ecnumedit" type="number" min="0"/>
-  	    </td>
-  		  <td>
-          <input class="fjcnumedit" type="number" min="0"/>
-  		  </td>
-        <td>
-          <input id="updatebutton" type="submit" value="UPDATE" />
-        </td>
-      </tr>
-      <tr id="r7">
-  		  <td>
-          <input class="pidedit" type="text" disabled/>
-  		  </td>
-  		  <td>
-          <input class="modeledit"/>
-  	    </td>
-  		  <td>
-          <input class="ecnumedit" type="number" min="0"/>
-  	    </td>
-  		  <td>
-          <input class="fjcnumedit" type="number" min="0"/>
-  		  </td>
-        <td>
-          <input id="updatebutton" type="submit" value="UPDATE" />
-        </td>
-      </tr>
-      <tr id="r8">
-  		  <td>
-          <input class="pidedit" type="text" disabled/>
-  		  </td>
-  		  <td>
-          <input class="modeledit"/>
-  	    </td>
-  		  <td>
-          <input class="ecnumedit" type="number" min="0"/>
-  	    </td>
-  		  <td>
-          <input class="fjcnumedit" type="number" min="0"/>
-  		  </td>
-        <td>
-          <input id="updatebutton" type="submit" value="UPDATE" />
-        </td>
-      </tr>
-      -->
+ 
     </table>
     <br>
     <div id="updateallbuttondiv">
-      <input id="updateallbutton" type="button" value="UPDATE ALL" />
+      <button id="updateallbutton" class = "btnExample" type="button" onclick="updateAll(this)" >UPDATE ALL</button>
     </div>
   </div>
 </form>
