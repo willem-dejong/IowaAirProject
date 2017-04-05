@@ -1,0 +1,69 @@
+<html>
+    <head>
+        <title>IowaAir</title>
+        <link rel="icon" href="/img/lolo.pgn" />
+        <link rel="stylesheet" href="/css/login.css" type="text/css">
+        <link rel="stylesheet" href="/css/resultstyle.css" type="text/css"/>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        <script type="text/javascript" src="/js/logsess.js"></script>
+        <script type="text/javascript" src="/js/md5.js"></script>
+        <script type="text/javascript" src="/js/result.js"></script>
+    </head>
+    <body>
+    <% include partial/hdr %>
+    <div id="main">
+        <img id="backimg" src="/img/corn.jpg" />
+            <br>
+            <br>
+            <ul id="twoway">
+            </ul>
+            <br>
+            <div id="result">
+                <div id="resulthdr">
+                    <div id="restext">
+                        Results
+                    </div>
+                    <div id="order">
+                        <label for="orderby">Order By</label>
+                        <select name="orderby" id="orderby" onchange="sortby(this[this.selectedIndex].value)">
+                            <option value="ec_price">EC Price</option>
+                            <option value="fc_price">FC Price</option>
+                            <option value="nstops">Num. of stops</option>
+                            <option value="tottime">Flight time</option>
+                            <option value="dept-time">depart time</option>
+                            <option value="arrive-time">arrival time</option>
+                        </select>
+                    </div>
+                </div>
+                <ul id="resultlist">
+                    <%if(toTrips.length==0){%>
+                        <li class="resultitem">
+                            Sorry no Flights found. Please try different Search parameters.
+                        </li>
+                    <%}else{%>
+                        <%var tobook=false;%>
+                        <%var mode=twoway;%>
+                        <%for (i in toTrips){%>
+                            <%var trip=toTrips[i];%>
+                            <% include partial/tripitem %>
+                        <%}%>
+                    <%}%>
+                </ul>
+                <ul id="resultlist_return">
+                    <%if(fromTrips.length==0){%>
+                        <li class="resultitem">
+                            Sorry no Flights found. Please try different Search parameters.
+                        </li>
+                    <%}else{%>
+                        <%var tobook=false;%>
+                        <%var mode=false;%>
+                        <%for (i in fromTrips){%>
+                            <%var trip=fromTrips[i];%>
+                            <% include partial/tripitem %>
+                        <%}%>
+                    <%}%>
+                </ul>
+            </div>
+        </div>
+    </body>
+</html>
