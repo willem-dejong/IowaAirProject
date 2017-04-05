@@ -1,0 +1,120 @@
+                        <%var ec_price=trip.tot_ec_price%>
+                        <%if(!trip.has_ec){%>
+                        <%ec_price=Number.MAX_SAFE_INTEGER%>
+                        <%}%>
+                        <%var fc_price=trip.tot_fc_price%>
+                        <%if(!trip.has_fc){%>
+                        <%fc_price=Number.MAX_SAFE_INTEGER%>
+                        <%}%>
+                        <li class="resultitem" flightids=<%=trip.flightIDs%> dept-time="<%=trip.flights[0].depart_time.getFullYear()%>-<%=trip.flights[0].depart_time.getMonth()%>-<%=trip.flights[0].depart_time.getDate()%> <%=trip.flights[0].depart_time.getHours()%>:<%=trip.flights[0].depart_time.getMinutes()%>:<%=trip.flights[0].depart_time.getSeconds()%>" arrive-time="<%=trip.flights[trip.flights.length-1].arrive_time.getFullYear()%>-<%=trip.flights[trip.flights.length-1].arrive_time.getMonth()%>-<%=trip.flights[trip.flights.length-1].arrive_time.getDate()%> <%=trip.flights[trip.flights.length-1].arrive_time.getHours()%>:<%=trip.flights[trip.flights.length-1].arrive_time.getMinutes()%>:<%=trip.flights[trip.flights.length-1].arrive_time.getSeconds()%>" ec_price=<%=ec_price%> fc_price=<%=fc_price%> nstops=<%=trip.num_stops%>  tottime=<%=trip.tot_time%> >
+                            <div class="tofrombox">
+                                <br>
+                                <div class="from tofromh1">
+                                    <b><%=trip.flights[0].origin_portID%> </b>
+                                </div>
+                                <div class="mid tofromh1">
+                                    <b>to</b>
+                                </div>
+                                <div class="to tofromh1">
+                                    <b><%=trip.flights[trip.flights.length-1].destined_portID%></b>
+                                </div>
+                                <br>
+                                <br>
+                                <div class="tofromh2">
+                                    <div>From: <%=trip.flights[0].origin_port_name%> </div>
+                                </div>
+                                <br>
+                                <%var n=0%>
+                                <%while(n<trip.flights.length-1){%>
+                                <div class="tofromh2">
+                                    <div>Stop: <%=trip.flights[n].destined_port_name%></div>
+                                </div>
+                                <%n=n+1%>
+                                <br>
+                                <%}%>
+                                <div class="tofromh2">
+                                    <div>To: <%=trip.flights[trip.flights.length-1].destined_port_name%></div>
+                                </div>
+                                <br>
+                                <div id="timeRange">
+                                    <div class="from tofromh3">
+                                        <div class="tofrom3">
+                                            <%=trip.flights[0].depart_time%>
+                                        </div>
+                                    </div>
+                                    <div class="mid tofromh3">
+                                        <div class="tofrom3">
+                                            <span class="dash" onclick="this.parentElement.parentElement.parentElement.parentElement.querySelector('.flighttimes').style.display='block';">-</span>
+                                        </div>
+                                    </div>
+                                    <div class="to tofromh3">
+                                        <div class="tofrom3">
+                                            <%=trip.flights[trip.flights.length-1].arrive_time%>
+                                        </div>
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="tofromh4">
+                                    <div><%=trip.tot_time%></div>
+                                </div>
+                                <div class="flighttimes">
+                                    <span class="close" onclick="this.parentElement.style.display='none';">&times</span>
+                                    <br>
+                                    <% for (ii in trip.flights){%>
+                                    <%var ii2=parseInt(ii)+1%>
+                                        flight<%=ii2%>: <%=trip.flights[ii].depart_time%>-<%=trip.flights[ii].arrive_time%>
+                                        <br>
+                                        <br>
+                                    <%}%>
+                                </div>
+                            </div>
+                            <div class="flights">
+                                <br>
+                                <div class="numstops">
+                                    <b><%=trip.num_stops%> Stops</b>
+                                </div>
+                                <div class="indstops">
+                                    <%=trip.flights[0].origin_portID%>
+                                    <%for (ii in trip.flights){%>
+                                       &rArr; <%=trip.flights[ii].destined_portID%>
+                                    <%}%>
+                                    <br>
+                                    <%for(ii in trip.flights){%>
+                                        Flight <%=parseInt(ii)+1%>: <%=trip.flights[ii].Flight_num%>
+                                        <br>
+                                        Plane <%=parseInt(ii)+1%>: <%=trip.flights[ii].PlaneDetails%>
+                                        <br>
+                                        Gate <%=parseInt(ii)+1%>: <%=trip.flights[ii].gate%>
+                                        <br>
+                                        <br>
+                                    <%}%>
+                                </div>
+                            </div>
+                            <div class="bookit">
+                                <div class="price priceec">
+                                    <%if (trip.has_ec){%>
+                                        <br>
+                                        <b>econemy</b>
+                                        <br>
+                                        $<%=trip.tot_ec_price%>
+                                        <br>
+                                        <%if(!tobook){%>
+                                            <a class="eclink" href="javascript:void(0);" onclick="book(this,true,<%=mode%>)">Book</a>
+                                        <%}%>
+                                        <br>
+                                    <%}%>
+                                </div>
+                                <div class="price pricefc">
+                                    <%if (trip.has_fc){%>
+                                        <br>
+                                        <b>first class</b>
+                                        <br>
+                                        $<%=trip.tot_fc_price%>
+                                        <br>
+                                        <%if(!tobook){%>
+                                            <a class="fclink" href="javascript:void(0);" onclick="book(this,false,<%=mode%>)">Book</a>
+                                        <%}%>
+                                    <%}%>
+                                </div>
+                            </div>
+                        </li>
