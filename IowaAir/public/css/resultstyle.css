@@ -1,182 +1,124 @@
 @charset "utf-8";
-#hdr{
-    position:absolute;
-    top: 0px;
-    left: 0px;
-    right:0px;
-    height:80px;
-    width:100%;
-    /*background-color:red;   */
-    vertical-align: middle;
-    border-bottom: solid;
 
-}
-#logo{
-    height: 75px;
-    width 75px;
-    vertical-align: middle;
-}
-#home{
-    position: absolute;
-    font-size: xx-large;
-    text-align: center;
-    left:2.5px;
-    top: 2.5px;
-}
-
-#log{
-    position:relative;
-    left:75%;
-    height:auto;
-    right:2.5px;
-    top: 35%;
-    width:24.75%;
-    /*background-color:yellow;    */
-    text-align: center;
-    font-size: 200%;
-}
-#main{
-    position: absolute;
-    top: 80px;
-    left: 0px;
-    right:0px;
-    height: 500%;
-    /*background-color: blue;       */
-}
 #result{
     width: 60%;
     height: auto;
     margin:auto;
-    border: solid;
 }
 #twoway{
     width: 60%;
     height: auto;
     margin:auto;
-    border: solid;
+    list-style: none;
+    padding:0px;
 }
 #resulthdr{
-    position:absolute;
+    position:relative;
     height: 100px;
-    width:60%;
+    width:100%;
     border: solid;
     text-align: center;
     font-size:75px;
+    background-color:rgba(255,255,255,0.75);
 }
 #resultlist{
-    position: absolute;
-    margin-top:100px;
-    width:60%;
-    border:solid;
-    color : red;
+    position: relative;
     list-style: none;
-    padding: 0px;
+    padding:0px;
 }
 
+#resultlist_return{
+    position: relative;
+    list-style: none;
+    padding:0px;
+    display:none;
+}
 .resultitem{
+    margin-top:10px;
     position:relative;
-    height: 175px;
     width:100%;
-    color:black;
     border: solid;
+    background-color:rgba(255,255,255,0.75);
 }
 .tofrombox{
-    position:absolute;
-    height: 100%;
-    width:45%;
+    position: relative;
+    width:44%;
     margin-left:0%;
-    border: solid;
     text-align: center;
+    display: inline-block;
 }
 .flights{
     position: absolute;
     height: 100%;
-    margin-left:45%;
-    width:35%;
-    border: solid;
+    width:34%;
     text-align:center;
+    display: inline-block;
+    border-left:solid;
+    border-right:solid;
 }
 .bookit{
     position: absolute;
     height: 100%;
-    margin-left:80%;
-    width:20%;
-    margin-right:0px;
-    border: solid;
+    margin-left:35%;
+    width:21%;
     text-align:center;
+    display: inline-block;
 
 }
 .from{
-    position:absolute;
-    width:40%;
-    border:solid;
+    position:relative;
+    width:39%;
 }
 .mid{
-    position: absolute;
-    width:20%;
-    margin-left:40%;
-    border: solid;
 }
 .to{
-    position:absolute;
-    width:40%;
-    border:solid;
-    margin-left:60%;
+    position:relative;
+    width:39%;
 }
 .tofromh1{
-    position:absolute;
+    position:relative;
     font-size: 150%;
-    margin-top:0px;
+    margin-top:0px;    
+    display: inline-block;
 }
-.tofromh2a{
-    position:absolute;
+.tofromh2{
+    position:relative;
     font-size: 110%;
-    margin-top:40px;
-}
-.tofromh2b{
-    position:absolute;
-    font-size: 110%;
-    margin-top:65px;
+    text-align:left;
 }
 .tofromh3{
-    position:absolute;
+    position:relative;
     font-size: 110%;
-    margin-top:90px;
-    border:solid;
+    display: inline-block;
+    vertical-align:middle;
 }
 .tofromh4{
-    position:absolute;
+    position:relative;
     width:100%;
     font-size: 110%;
-    margin-top:128px;
-    border:solid;
 }
 .numstops{
-    position: absolute;
+    position:relative;
     width:100%;
-    margin-top:0px;
     font-size:120%;
-    border:solid;
 }
 .indstops{
-    position:absolute;
-    margin-top:40px;
+    position:relative;
     width:100%;
     text-align: center;
     border:solid;
-
+    border-right-width: 0px;
+    border-left-width: 0px;
 }
 .price{
-    position: absolute;
-    margin-top: 60px;
+    position:relative;
     width:100%;
     font-size:150%;
 }
 #order{
     position:relative;
-    border:solid;
     width:25%;
-    margin-right: 0px;
+    margin-right: 10px;
     margin-left: auto;
     font-size: 50%;
 }
@@ -188,9 +130,9 @@
     display:none;
     position: absolute;
     background-color: white;
-    width:100%;
-    margin-left:-3px;
-    margin-top:-3px;
+    width:200%;
+    left:-3px;
+    top:-3px;
     border: solid;
     text-align: center;
     z-index: 2;
@@ -208,7 +150,4 @@
 }
 .dash{
     color: blue;
-}
-#lports{
-    display: none;
 }
