@@ -3,25 +3,30 @@ function verifyAndSubmit(){            //validate for required fields
    var org = document.getElementById("org").value;
    var destination = document.getElementById("dest").value;
    var departDate = document.getElementById("date").value;
-   var arriveDate = document.getElementById("date2").value;
+   var returnDate = document.getElementById("date2").value;
+   console.log(!departDate)
+   console.log(!returnDate)
    var requiredFlag = false;
    var invalidDate = false;
    var portFlag=false;
-   var depDate = new Date(departDate);
-   var arrDate = new Date(arriveDate);
-   var now=new Date(1970,0,1);
-   now.setMilliseconds(Date.now());
-   now=new Date(now.getFullYear(),now.getMonth(),now.getDate());
+   var portFlag2=false;
+   var depdl=departDate.split("-")
+   var depDate = new Date(parseInt(depdl[0]),parseInt(depdl[1])-1,parseInt(depdl[2]));
+   var retdl=returnDate.split("-")
+   var retDate = new Date(parseInt(retdl[0]),parseInt(retdl[1])-1,parseInt(retdl[2]));
+   var nowt=new Date;
+   var now=new Date(nowt.getFullYear(),nowt.getMonth(),nowt.getDate())
    console.log(now);
    console.log("Departure Date: " + depDate);
-   console.log("Arrival Date: " + arrDate);
+   console.log("Arrival Date: " + retDate);
    document.getElementById('orglab').style.color = "black";
    document.getElementById('destlab').style.color = "black";
    document.getElementById('datelab').style.color = "black";
    document.getElementById('date2lab').style.color = "black";
    document.getElementById('missReq').style.display = "none";
    document.getElementById('dateErr').style.display = "none";
-  document.getElementById('portErr').style.display ="none";
+   document.getElementById('portErr').style.display ="none";
+   document.getElementById('portErr2').style.display ="none";
    if(!org){
        document.getElementById('orglab').style.color = "red";
        requiredFlag = true;
@@ -29,6 +34,11 @@ function verifyAndSubmit(){            //validate for required fields
    else if(!document.querySelector("#"+org)){
    	document.getElementById('orglab').style.color="red";
    	portFlag=true;
+   }
+   else if(org==destination){
+   	document.getElementById('orglab').style.color="red";
+    	document.getElementById('destlab').style.color = "red";
+   	portFlag2=true;
    }
    if(!destination){
        document.getElementById('destlab').style.color = "red";
@@ -46,19 +56,19 @@ function verifyAndSubmit(){            //validate for required fields
        document.getElementById('datelab').style.color = "red";
        invalidDate = true;
    }
-   if(!arriveDate){
+   if(!returnDate){
        console.log("No arrival date");
    }
-   else if(now>arrDate){
+   else if(now>retDate){
        document.getElementById('date2lab').style.color = "red";
        invalidDate = true;	
    }
-   else if(depDate > arrDate){
+   else if(depDate > retDate){
        	invalidDate = true;
-           document.getElementById('date2lab').style.color = "red";
+         document.getElementById('date2lab').style.color = "red";
    }
     
-   if (requiredFlag||invalidDate||portFlag){
+   if (requiredFlag||invalidDate||portFlag||portFlag2){
        if(requiredFlag){
        	document.getElementById('missReq').style.display ="block";
        }
@@ -68,9 +78,17 @@ function verifyAndSubmit(){            //validate for required fields
        if(portFlag){
            document.getElementById('portErr').style.display = "block";
        }
+       if(portFlag2){
+           document.getElementById('portErr2').style.display = "block";
+       }
    }
    else{
    	console.log("submit");
-   	document.getElementById('quein').submit();
+   	cmd="/result?port1="+org+"&port2="+destination+"&date1="+departDate
+   	if(returnDate){
+   		cmd=cmd+"&date2="+returnDate
+   	}
+   	cmd=cmd+"&pass="+ document.getElementById("pass").value;
+   	window.location=cmd
    }
 }
