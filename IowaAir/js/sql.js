@@ -24,7 +24,7 @@ function p2s(rows){
     s=s.substring(0,s.length-1);
     return s;
 }
-function p2s2(rows){
+/*function p2s2(rows){
     console.log("p2s2");
     var lens=rows.length;
     console.log(lens);
@@ -121,7 +121,7 @@ function p2s2(rows){
     }
     console.log(s);
     return s;
-}
+}*/
 function getairports(req,res,errhandler,successhandler,args){
     console.log("sqlgetairports");
     var connection=mysql.createConnection({user:"admin",password:"IowaAir2017",port:"3306",dateString:"date"});
@@ -136,61 +136,99 @@ function getairports(req,res,errhandler,successhandler,args){
         }
     });
 }
-
-function getFlights(res,org,dest,date,pass){
+function test(){
+	var conn=mysql.createConnection({user:"admin",password:"IowaAir2017",port:"3306"});
+ 	conn.connect();
+ 	inn="call iowaair.new_procedure();"
+ 	argz=[new Date]
+   conn.query(inn,argz,function(err,rows,fields){
+   	  conn.end();
+       if (err){
+       		//errhandler(err,req,res,args);
+       } 
+       else{
+       		//successhandler(rows,req,res,args);
+       		console.log(rows)
+       }
+   });
+	
+}
+//test()
+function getFlights1(org,dest,date,pass,req,res,errhandler,successhandler,args){
+    //console.log("getFlights")
+    args.org=org;
+    args.dest=dest;
+    args.date=date;
+    args.pass=pass;
+    console.log("Args",org,dest,date,pass)
+    var conn=mysql.createConnection({user:"admin",password:"IowaAir2017",port:"3306"});
+    conn.connect();
+    var inn="call iowaair.getFlights1(?,?,?,?);"
+    //var inn="SELECT f.origin_port, f.destined_port, ap1.airport as port1,ap1.location portl1,ap2.airport as port2,ap2.location as portl2,f.departure_time,f.arrival_time,p.model,f.cost_per_seat*? as cost,f.Gate  FROM iowaair.flights as f, iowaair.airports as ap1,iowaair.airports as ap2,iowaair.planes as p where f.plane_id=p.plane_id and f.origin_port=ap1.portid and f.destined_port=ap2.portid and date(f.departure_time)= ? and f.origin_port=? and f.destined_port=? and f.seats_available>=?;";
+    //console.log(inn)
+    var argz=[pass,org,dest,date];
+    //console.log(inn);
+    conn.query(inn,argz,function(err,rows,feilds){
+    	  conn.end();
+        if (err){
+        		errhandler(err,req,res,args);
+        } 
+        else{
+        		successhandler(rows[0],req,res,args);
+        		//console.log(rows)
+        }
+    });
+}
+//getFlights1("ORD","CID",new Date(2017,6,12,7,45),1)
+function getFlights2(org,dest,date,pass,req,res,errhandler,successhandler,args){
+    args.org=org;
+    args.dest=dest;
+    args.date=date;
+    args.pass=pass;
     //console.log("getFlights")
     console.log("Args",org,dest,date,pass)
     var conn=mysql.createConnection({user:"admin",password:"IowaAir2017",port:"3306"});
     conn.connect();
-    var inn="SELECT f.origin_port, f.destined_port, ap1.airport as port1,ap1.location portl1,ap2.airport as port2,ap2.location as portl2,f.departure_time,f.arrival_time,p.model,f.cost_per_seat*? as cost,f.Flight_num,f.Gate  FROM iowaair.flights as f, iowaair.airports as ap1,iowaair.airports as ap2,iowaair.planes as p where f.plane_id=p.plane_id and f.origin_port=ap1.portid and f.destined_port=ap2.portid and date(f.departure_time)= ? and f.origin_port=? and f.destined_port=? and f.seats_available>=?;";
+    var inn="call iowaair.getFlights2(?,?,?,?);"
+    //var inn="SELECT f.origin_port, f.destined_port, ap1.airport as port1,ap1.location portl1,ap2.airport as port2,ap2.location as portl2,f.departure_time,f.arrival_time,p.model,f.cost_per_seat*? as cost,f.Gate  FROM iowaair.flights as f, iowaair.airports as ap1,iowaair.airports as ap2,iowaair.planes as p where f.plane_id=p.plane_id and f.origin_port=ap1.portid and f.destined_port=ap2.portid and date(f.departure_time)= ? and f.origin_port=? and f.destined_port=? and f.seats_available>=?;";
     //console.log(inn)
-    var args=[parseInt(pass),date,org,dest,parseInt(pass)];
+    var argz=[pass,org,dest,date];
     //console.log(inn);
-    conn.query(inn,args,function(err,rows,feilds){
-        if(err){ 
-        		console.log(err);
-        }
+    conn.query(inn,argz,function(err,rows,feilds){
+    	  conn.end();
+        if (err){
+        		errhandler(err,req,res,args);
+        } 
         else{
-            //console.log(rows);
-            ss=p2s2(rows);
-            res.writeHead(200, {'Content-Type': 'text/plain'});
-            res.end(ss);
+        		successhandler(rows[0],req,res,args);
+        		//console.log(rows)
         }
-        conn.end();
     });
 }
-function getFlights2(res,org,dest,date,pass){
-    console.log("getFlights")
-    /*var lst=prevtime.split(":");
-    var hr=parseInt(lst[0]);
-    if (lst[2]=="PM"){
-        hr=hr+12;
-    }
-    if (hr==12 &&lst[2]=="AM"){
-        hr="00";
-    }
-    var ptime=String(hr)+":"+lst[1]+":00";
-    console.log(ptime)
-    var pdatetime=date+" "+ptime;*/
+function getFlights3(org,dest,date,pass,req,res,errhandler,successhandler,args){
+    args.org=org;
+    args.dest=dest;
+    args.date=date;
+    args.pass=pass;
+    //console.log("getFlights")
     console.log("Args",org,dest,date,pass)
     var conn=mysql.createConnection({user:"admin",password:"IowaAir2017",port:"3306"});
     conn.connect();
-    var inn="SELECT f.origin_port, f.destined_port, ap1.airport as port1,ap1.location portl1,ap2.airport as port2,ap2.location as portl2,f.departure_time,f.arrival_time,p.model,f.cost_per_seat*? as cost,f.Flight_num,f.Gate  FROM iowaair.flights as f, iowaair.airports as ap1,iowaair.airports as ap2,iowaair.planes as p where f.plane_id=p.plane_id and f.origin_port=ap1.portid and f.destined_port=ap2.portid and date(f.departure_time)= ? and f.origin_port=? and f.destined_port=? and f.seats_available>=?;";
-    console.log(inn)
-    var args=[parseInt(pass),date,org,dest,parseInt(pass)];
+    var inn="call iowaair.getFlights3(?,?,?,?);"
+    //var inn="SELECT f.origin_port, f.destined_port, ap1.airport as port1,ap1.location portl1,ap2.airport as port2,ap2.location as portl2,f.departure_time,f.arrival_time,p.model,f.cost_per_seat*? as cost,f.Gate  FROM iowaair.flights as f, iowaair.airports as ap1,iowaair.airports as ap2,iowaair.planes as p where f.plane_id=p.plane_id and f.origin_port=ap1.portid and f.destined_port=ap2.portid and date(f.departure_time)= ? and f.origin_port=? and f.destined_port=? and f.seats_available>=?;";
+    //console.log(inn)
+    var argz=[pass,org,dest,date];
     //console.log(inn);
-    conn.query(inn,args,function(err,rows,feilds){
-        if(err){ 
-        		console.log(err);
-        }
+    conn.query(inn,argz,function(err,rows,feilds){
+    	  conn.end();
+        if (err){
+        		errhandler(err,req,res,args);
+        } 
         else{
-            console.log(rows);
-            ss=p2s2(rows);
-            res.writeHead(200, {'Content-Type': 'text/plain'});
-            res.end(ss);
+        		successhandler(rows[0],req,res,args);
+        		//console.log(rows)
         }
-        conn.end();
-    }); //SELECT f.origin_port, f.destined_port, ap1.airport as port1,ap1.location portl1,ap2.airport as port2,ap2.location as portl2,f.departure_time,f.arrival_time,p.model,f.cost_per_seat*? as cost,f.Flight_num,f.Gate  FROM iowaair.flights as f, iowaair.airports as ap1,iowaair.airports as ap2,iowaair.planes as p where f.plane_id=p.plane_id and f.origin_port=ap1.portid and f.destined_port=ap2.portid and f.Flight_num=?;
+    });
 }
 function getFlight(res,pass,fnum){
     console.log("getFlight")
@@ -299,14 +337,71 @@ function updatepass(temail,topassw,tnpassw,req,res,errhandler,successhandler,arg
 		}
 	});
 }
-function updateFlights(flights,req,res,errhandler,successhandler,args){
+function getPlanes(plane_id,model,ec_num_seats,fc_num_seats,req,res,errhandler,successhandler,args){
+	inn="select * from iowaair.planes";
+	argz=[]
+	b=false;
+	args.plane_id=plane_id;
+	args.model=model;
+	args.fcs=fcs;
+	args.ecs=ecs;
+	var where=" where";
+	if (plane_id){
+		argz.push(plane_id)
+		if (b){
+			where=where+" and";
+		}
+		where=where+" plane_id=?"
+		b=true
+	}
+	if (model){
+		argz.push(model)
+		if (b){
+			where=where+" and";
+		}
+		where=where+" model=?"
+		b=true
+	}
+	if (ec_num_seats){
+		argz.push(ec_num_seats)
+		if (b){
+			where=where+" and";
+		}
+		where=where+" ec_num_seats=?"
+		b=true
+	}
+	if (fc_num_seats){
+		argz.push(fc_num_seats)
+		if (b){
+			where=where+" and";
+		}
+		where=where+" fc_num_seats=?"
+		b=true
+	}
+	if (b){
+		inn=inn+where;
+	}
+	inn=inn+";";
+	var conn=mysql.createConnection({user:"admin",password:"IowaAir2017",port:"3306"});
+   conn.connect();
+	conn.query(inn,argz,function(err,rows,feilds){
+		conn.end();
+    	if (err){
+    		errhandler(err,req,res,args);
+    	}
+    	else{
+    		successhandler(rows,req,res,args);
+		}
+	});
+}
+function updateFlights(flights,errhandler,successhandler,args){//allows for one or more row updates but not as safe to do more than one row at a time.
 	var conn=mysql.createConnection({user:"admin",password:"IowaAir2017",port:"3306"});
    conn.connect();
    inn=""
    argz=[];
    for (i in flights){
 		inn=inn+"update iowaair.flights set Flight_num=?,departure_time=?,arrival_time=?,origin_port=?,destined_port=?,plane_id=?,gate=?,ec_seats_available=?,ec_seats_booked=?,ec_cost_per_seat=?,fc_seats_available=?,fc_seats_booked=?,fc_cost_per_seat=? where flightID=?;\n"
-		argz=argz.concat([flights[i][1],flights[i][2],flights[i][3],flights[i][4],flights[i][5],flights[i][6],flights[i][7],flights[i][8],flights[i][9],flights[i][10],flights[i][11],flights[i][12],flights[i][0]])
+		argz=argz.concat([flights[i].Flight_num,flights[i].departure_time,flights[i].arrival_time,flights[i].origin_port,flights[i].destined_port,flights[i].plane_id,flights[i].gate,flights[i].ec_seats_available,flights[i].ec_seats_booked,flights[i].ec_cost_per_seat,flights[i].fc_seats_available,flights[i].fc_seats_booked,flights[i].fc_cost_per_seat,flights[i].flightID])
 	}
 	conn.query(inn,argz,function(err,rows,feilds){
 		conn.end();
@@ -318,6 +413,7 @@ function updateFlights(flights,req,res,errhandler,successhandler,args){
 		}
 	});
 }
+//updateFlights([{Flight_num:"3rddw",departure_time:new Date(),arrival_time:"2017-07-12 08:45:00",origin_port:"ORD",destined_port:"CID",plane_id:"d33sj",gate:null,ec_seats_available:100,ec_seats_booked:40,ec_cost_per_seat:500,fc_seats_available:25,fc_seats_booked:15,fc_cost_per_seat:1000,flightID:1}]);
 function addFlights(flights,req,res,errhandler,successhandler,args){
 	var conn=mysql.createConnection({user:"admin",password:"IowaAir2017",port:"3306"});
    conn.connect();
@@ -359,6 +455,7 @@ module.exports={
     //logout:logout,
     updatepass:updatepass,
     getLogin:getLogin,
-    //getFlights:getFlights,
+    getFlights1:getFlights1,
+    getFlights2:getFlights2,
     //getFlight:getFlight
     };

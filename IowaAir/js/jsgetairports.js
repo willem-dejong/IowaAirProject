@@ -1,5 +1,5 @@
 var sql=require("./sql");
-function errHandle(err,req,res,args){
+function errHandler(err,req,res,args){
 	//console.log(err)
    res.writeHead(500, {'Content-Type': 'text/plain'});
    res.end();
@@ -24,6 +24,6 @@ function rowMapper(rows){
 function getairports(req,res){
     //console.log("getairports");
     var args={};
-    sql.getairports(req,res,errHandle,successHandler,args);
+    sql.getairports(req,res,errHandler,successHandler,args);
 }
 module.exports={getairports:getairports}

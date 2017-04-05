@@ -8,6 +8,7 @@ var jsadmin=require('./jsadmin');
 var jsregistration=require('./jsregistration');
 var jscreateAccount=require('./jscreateAccount');
 var jsaccount=require('./jsaccount');
+var jsresult=require('./jsresult');
 var express=require("C:\\Program Files\\nodejs\\node_modules\\express");
 var ejs=require("C:\\Program Files\\nodejs\\node_modules\\ejs");
 var body=require("C:\\Program Files\\nodejs\\node_modules\\body-parser");
@@ -45,6 +46,7 @@ app.use("/updateaccount",jscreateAccount.updateAccount);
 app.use("/admin/addEmployee",jsadmin.addEmployeeRender);
 app.use("/admin/createmanager",jsadmin.createManager);
 app.use("/registration",jsregistration.registrationRender);
+app.use("/result",jsresult.resultRender);
 app.use("/", jsindex.indexRender);
 app.listen(80,function(){
 	});

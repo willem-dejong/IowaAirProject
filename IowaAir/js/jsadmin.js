@@ -1,5 +1,6 @@
 var mysql=require('C:\\Program Files\\nodejs\\node_modules\\mysql');
 var jscreateAccount=require('./jscreateAccount');
+var jsupdatePlanes=require('./jsupdatePlanes');
 function forbidden(req,res){
 	req.session.user={fname:"",lname:"",email:"",passw:"",type:"G"};
 	res.writeHead(401, {'Content-Type': 'text/plain'});
@@ -60,10 +61,14 @@ function aER(req,res){
 function addEmployeeRender(req,res){
 	pagevalidate(req,res,aER);
 }
+function updatePlaneRender(req,res){
+	pagevalidate(req,res,jsupdatePlanes.updatePlaneRender);
+}
 function createManager(req,res){
 	cmdvalidate(req,res,jscreateAccount.createManager);
 }
 module.exports={
 	addEmployeeRender:addEmployeeRender,
-	createManager:createManager
+	createManager:createManager,
+	updatePlaneRender:updatePlaneRender
 };
