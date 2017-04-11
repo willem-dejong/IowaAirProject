@@ -1,6 +1,7 @@
 var mysql=require('C:\\Program Files\\nodejs\\node_modules\\mysql');
 var jscreateAccount=require('./jscreateAccount');
 var jsupdatePlanes=require('./jsupdatePlanes');
+var jsaddPlane=require('./jsaddPlane');
 function forbidden(req,res){
 	req.session.user={fname:"",lname:"",email:"",passw:"",type:"G"};
 	res.writeHead(401, {'Content-Type': 'text/plain'});
@@ -31,7 +32,6 @@ function pagevalidate(req,res,toCall){
 	else{
 		redirect(req,res);	
 	}
-	
 }
 function validateandcall(req,res,toCall,handleUnAuth){
 	var conn=mysql.createConnection({user:"admin",password:"IowaAir2017",port:"3306",dateString:"date"});
@@ -61,14 +61,26 @@ function aER(req,res){
 function addEmployeeRender(req,res){
 	pagevalidate(req,res,aER);
 }
+function createManager(req,res){
+	cmdvalidate(req,res,jscreateAccount.createManager);
+}
 function updatePlaneRender(req,res){
 	pagevalidate(req,res,jsupdatePlanes.updatePlaneRender);
 }
-function createManager(req,res){
-	cmdvalidate(req,res,jscreateAccount.createManager);
+function updatePlane(req,res){
+	cmdvalidate(req,res,jsupdatePlanes.updatePlane);
+}
+function addPlaneRender(req,res){
+	pagevalidate(req,res,jsaddPlane.addPlaneRender);
+}
+function addPlane(req,res){
+	cmdvalidate(req,res,jsaddPlane.addPlane);
 }
 module.exports={
 	addEmployeeRender:addEmployeeRender,
 	createManager:createManager,
-	updatePlaneRender:updatePlaneRender
+	updatePlaneRender:updatePlaneRender,
+	addPlaneRender:addPlaneRender,
+	addPlane:addPlane,
+	updatePlane:updatePlane
 };

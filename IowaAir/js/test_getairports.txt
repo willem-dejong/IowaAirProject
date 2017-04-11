@@ -1,0 +1,3 @@
+test_getairports start
+	CID;Cedar Rapids Airpot,ORD;Some port,OSS;Some port 2
+test_getairports end

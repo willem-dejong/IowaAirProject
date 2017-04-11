@@ -1,0 +1,14 @@
+test_checklogin start
+	No req.session.user start
+		GOOD!!!
+	No req.session.user end
+	Already logged in start
+		GOOD!!!
+	Already logged in end
+	No email in url start
+		GOOD!!!
+	No email in url end
+	No pass in url start
+		GOOD!!!
+	No pass in url end
+	Incorrect password start

@@ -1,0 +1,8 @@
+test_registrationRender start
+	No req.session.user start
+		GOOD!!!
+	No req.session.user end
+	Yes req.session.user start
+		GOOD!!!
+	Yes req.session.user end
+test_registrationRender end

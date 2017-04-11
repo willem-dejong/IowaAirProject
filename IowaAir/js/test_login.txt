@@ -1,0 +1,26 @@
+test_login start
+	No req.session.user start
+		GOOD!!!
+	No req.session.user end
+	Already logged in start
+		GOOD!!!
+	Already logged in end
+	No email in url start
+		GOOD!!!
+	No email in url end
+	No pass in url start
+		GOOD!!!
+	No pass in url end
+	Incorrect password start
+		GOOD!!!
+	Incorrect password end
+	Incorrect email start
+		GOOD!!!
+	Incorrect email end
+	Need to change pass start
+		GOOD!!!
+	Need to change pass end
+	No need to change pass start
+		GOOD!!!
+	No need to change pass end
+test_login end
