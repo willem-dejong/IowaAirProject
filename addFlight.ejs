@@ -1,0 +1,168 @@
+<html><head><link rel="stylesheet" href="/css/homestyle.css" type="text/css">
+
+
+    <!--include link to javascript here for help email willem-dejong@uiowa.edu-->
+    <title>IowaAir</title>
+    <link rel="icon" href="/img/Logo1465.png">
+    <link rel="stylesheet" href="/css/addflight.css" type="text/css">
+    <link rel="stylesheet" href="/css/login.css" type="text/css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script type="text/javascript" src="/js/md5.js"></script>
+    <script type="text/javascript" src="/js/logsess.js"></script>
+    <script type="text/javascript" src="/js/addflight.js"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+</head>
+<body>
+<div id="hdr">
+    <div id="home">
+        <a id="homel" href="/"><img id="logo" src="/img/Logo1465.png"><img id="namelogo" src="/img/NameLogo.png"></a>
+    </div>
+
+    <div id="log">
+        <a href="javascript:void(0)" id="loginlink" onclick="createloginbox();">login</a>/<a href="/registration">register</a>
+    </div>
+
+</div>
+<div id="main">
+    <img id="backimg" src="/img/corn.jpg">
+    <br>
+    <br>
+    <div id="upbox">
+        <div id="uphead">Add Flight</div>
+        <form id="uppform">
+            <div id="tbl">
+                <table id="wholeTable">
+                    <tr>
+                        <th>
+                            <div>Flight ID</div>
+                        </th>
+                        <th>
+                            <div>Flight #</div>
+                        </th>
+                        <th>
+                            <div>Gate</div>
+                        </th>
+                        <th>
+                            <div>Plane ID</div>
+                        </th>
+                        <th>
+                            <div>Dep. Date</div>
+                        </th>
+                        <th>
+                            <div>Dep. Time</div>
+                        </th>
+                        <th>
+                            <div>Dep. Loc.</div>
+                        </th>
+                        <th>
+                            <div>Ar. Date</div>
+                        </th>
+                        <th>
+                            <div>Ar. Time</div>
+                        </th>
+                        <th>
+                            <div>Ar. Loc.</div>
+                        </th>
+                        <th>
+                            <div>EC Seats Avail</div>
+                        </th>
+                        <th>
+                            <div>EC Seats Bk'd</div>
+                        </th>
+                        <th>
+                            <div>EC $/seat</div>
+                        </th>
+                        <th>
+                            <div>FC Seats Avail</div>
+                        </th>
+                        <th>
+                            <div>FC Seats Bk'd</div>
+                        </th>
+                        <th>
+                            <div>FC $/seat</div>
+                        </th>
+                    </tr>
+
+                    <tr id="r0">
+                        <td>
+                            <input class="bigBox flightIDSearch" value=""/>
+                        </td>
+                        <td>
+                            <input class="bigBox flightNumSearch"/>
+                        </td>
+                        <td>
+                            <input class ="smallBox gateSearch"/>
+                        </td>
+                        <td>
+                            <input class="bigBox planeIDSearch" list="lplanes"/>
+                        </td>
+                        <td>
+                            <input class="medBox dDateSearch" type="date"/>
+                        </td>
+                        <td>
+                            <input class="dTimeSearch" type="time"/>
+                        </td>
+                        <td>
+                            <input class="smallBox dLocSearch" id="dLoc" list="lports"/>
+
+                        </td>
+                        <td>
+                            <input class="medBox aDateSearch" type="date"/>
+                        </td>
+                        <td>
+                            <input class="aTimeSearch" type="time"/>
+                        </td>
+                        <td>
+                            <input class="smallBox aLocSearch" id="aLoc" list="lports"/>
+                        </td>
+                        <td>
+                            <input class ="smallBox ECAvailSearch" type="number" min="0"/>
+                        </td>
+                        <td>
+                            <input class ="smallBox ECBookedSearch" type="number" min="0"/>
+                        </td>
+                        <td>
+                            <input class ="smallBox ECCostSearch" type="number" min="0"/>
+                        </td>
+                        <td>
+                            <input class ="smallBox FCAvailSearch" type="number" min="0"/>
+                        </td>
+                        <td>
+                            <input class ="smallBox FCBookedSearch" type="number" min="0"/>
+                        </td>
+                        <td>
+                            <input class ="smallBox FCCostSearch" type="number" min="0"/>
+                        </td>
+                        <td>
+                            <input id="addButton" type="button" value="Add" onclick="getRow(this)"/>
+                        </td>
+                    </tr>
+
+                </table>
+
+                <datalist id="lports">
+                    <% for(var i in ports){ %>
+                    <%var port=ports[i]%>
+                    <option id=<%=port["portid"]%> value=<%=port["portid"]%>><%=port["airport"]%></option>
+                    <%}%>
+                </datalist>
+
+                <datalist id="lplanes">
+                    <% for(var i in planes){ %>
+                    <%var plane=planes[i]%>
+                    <option id=<%=plane["planeid"]%> value=<%=plane["planeid"]%>><%=plane["model"]%></option>
+                    <%}%>
+                </datalist>
+
+            </div>
+
+            <div id="invalidInput" style="display: none ;font-size:50%; color:red"align="center">*Some information is missing or incorrect</div>
+
+            <div class="success" style="display: none ;font-size:50%; color:green"align="center">Updated!</div>
+            <br>
+        </form>
+
+    </div></div>
+
+</body></html>

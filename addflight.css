@@ -1,0 +1,54 @@
+@charset "utf-8";
+
+
+#uphead{
+    text-align: center;
+    font-size: 100px;
+}
+
+#upbox{
+    /*background-color:red;   */
+    width: 90%;
+    margin:auto;
+    border: solid;
+    background-color: rgba(255,255,255,0.5);
+}
+#uppform{
+    position: relative;
+    margin:auto;
+    /*background-color: yellow;      */
+    font-size: 50px;
+}
+table{
+    border:solid;
+    border-collapse:collapse;
+    margin:auto;
+}
+td{
+    border:solid;
+}
+th{
+    border:solid;
+    border-bottom:double;
+    border-bottom-width:3px;
+}
+#tbl{
+    overflow-y:scroll;
+    height:300px;
+}
+.smallBox{
+    width: 50px;
+}
+.bigBox{
+    width: 90px;
+}
+.medBox{
+    width: 120px;
+}
+.currencyinput {
+    border: 1px;
+    padding-bottom: 1px;//FOR IE & Chrome
+}
+.currencyinput input {
+    border: 0;
+}

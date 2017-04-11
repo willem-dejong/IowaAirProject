@@ -10,6 +10,8 @@
     <script type="text/javascript" src="/js/md5.js"></script>
     <script type="text/javascript" src="/js/logsess.js"></script>
     <script type="text/javascript" src="/js/upflight.js"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 </head>
 <body>
 <div id="hdr">
@@ -93,7 +95,7 @@
                             <input class ="smallBox" id="gate"/>
                         </td>
                         <td>
-                            <input class="bigBox" id="planeID"/>
+                            <input class="bigBox" list="lplanes" id="planeID"/>
                         </td>
                         <td>
                             <input class="medBox" id="dDate" type="date"/>
@@ -148,7 +150,7 @@
                                 <input class="gateEdit smallBox" value= <%= flights[i].gate %>>
                             </td>
                             <td>
-                                <input class="planeIDEdit bigBox" value= <%= flights[i].plane_id %>>
+                                <input class="planeIDEdit bigBox" list="lplanes" value= <%= flights[i].plane_id %>>
                             </td>
 
                             <%var year=flights[i].departure_time.getFullYear()%>
@@ -263,6 +265,13 @@
                     <% for(var i in ports){ %>
                     <%var port=ports[i]%>
                     <option id=<%=port["portid"]%> value=<%=port["portid"]%>><%=port["airport"]%></option>
+                    <%}%>
+                </datalist>
+
+                <datalist id="lplanes">
+                    <% for(var i in planes){ %>
+                    <%var plane=planes[i]%>
+                    <option id=<%=plane["planeid"]%> value=<%=plane["planeid"]%>><%=plane["model"]%></option>
                     <%}%>
                 </datalist>
 

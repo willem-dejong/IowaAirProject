@@ -53,12 +53,20 @@ function updateRow(row){
     document.getElementById("invalidInput").style.display = "none";
     
     if(flightID == "" || flightNum == "" || gate == "" || planeID == "" || dDate == "" || dTime == "" || dLoc == "" || aDate == "" || aTime == "" || aLoc == "" || ECAvail == "" || ECBooked == "" || ECCost == "" || FCAvail == "" || FCBooked == "" || FCCost == ""){
+    	
+        flag = true;
+        row.bgColor = "#FF0000";
+        
+    }
+    else if(dLoc == aLoc){
         flag = true;
         row.bgColor = "#FF0000";
     }
     else{     
-        row.bgColor = "transparent";
+        row.bgColor = "green";
+        setTimeout(function(){row.bgColor = "transparent"},3000);
         var address = "/admin/updateFlight?flightID="+flightID+"&flightNum="+flightNum+"&gate="+gate+"&planeID="+planeID+"&dDate="+dDate+"&dTime="+dTime+"&dLoc="+dLoc+"&aDate="+aDate+"&aTime="+aTime+"&aLoc="+aLoc+"&ECAvail="+ECAvail+"&ECBooked="+ECBooked+"&ECCost="+ECCost+"&FCAvail="+FCAvail+"&FCBooked="+FCBooked+"&FCCost="+FCCost;
+        //$.ajax({url:address,success:successHandler(row),error:errorHandler(row)});
         console.log("Address: "+address);
     }
 }
@@ -74,9 +82,20 @@ function checkErrors(){
     var error = document.getElementById("invalidInput");
     if(flag){
         error.style.display = "block";
+        setTimeout(function(){error.style.display = "none"},10000);
     }
-    else{
+    /*else{
         error.style.display = "none";
-    }
+    }*/
     $('.success').fadeIn().delay(2000).fadeOut(1000);
 }
+
+/*function successHandler(row){
+    row.bgColor = "green";
+    setTimeout(function(){row.bgColor = "transparent"},5000);
+    $('.success').fadeIn().delay(2000).fadeOut(1000);
+}
+
+function errorHandler(row){
+    row.bgColor = "red"
+}*/
