@@ -1,0 +1,56 @@
+<html>
+    <head>
+        <!--include link to javascript here for help email willem-dejong@uiowa.edu-->
+        <title>IowaAir</title>
+        <link rel="icon" href="/img/Logo1465.png">
+        <link rel="stylesheet" href="/css/upplane.css" type="text/css">
+        <link rel="stylesheet" href="/css/login.css" type="text/css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        <script type="text/javascript" src="/js/md5.js"></script>
+        <script type="text/javascript" src="/js/logsess.js"></script>>
+        <script type="text/javascript" src="/js/addPlane.js"></script>
+    </head>
+    <body>
+         <% include partial/hdr %>
+         <div id="main">
+            <img id="backimg" src="/img/corn.jpg">
+             <br>
+             <br>
+             <div id="upbox">
+                <div id="uphead">Add Plane</div>
+                <form id="uppform">
+                    <table>
+                        <tr>
+  		        <th>
+                                <div>Model</div>
+  		        </th>
+  		        <th>
+                                <div># Ec seats</div>
+  		        </th>
+                            <th>
+                                <div># Fc seats</div>
+  		            </th>
+                        </tr>
+                        <tr id="r0">
+                            <td>
+                                <input id="modelcrit"/>
+                            </td>
+                            <td>
+                                <input id="ecnumcrit" type="number" min="0"/>
+                            </td>
+                            <td>
+                                <input id="fcnumcrit" type="number" min="0"/>
+                            </td>
+                            <td>
+                                <input id="addbutton" type="button" value="ADD" onclick="addSingle(this)" />
+                            </td>
+                        </tr>
+                    </table>
+                    <div id="invalidInput" style="display:none;color:red"> *invalid input in a field</div>
+                </form>
+                <br>
+                <br>
+            </div>
+         </div>
+    </body>
+</html>

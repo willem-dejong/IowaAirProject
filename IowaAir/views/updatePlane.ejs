@@ -1,0 +1,91 @@
+<html><head>
+    <!--include link to javascript here for help email willem-dejong@uiowa.edu-->
+    <title>IowaAir</title>
+    <link rel="icon" href="/img/Logo1465.png">
+    <link rel="stylesheet" href="/css/updatePlane.css" type="text/css">
+    <link rel="stylesheet" href="/css/login.css" type="text/css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script type="text/javascript" src="/js/md5.js"></script>
+    <script type="text/javascript" src="/js/logsess.js"></script>
+    <script type="text/javascript" src="/js/updatePlane.js"></script>
+</head>
+<body>
+        <% include partial/hdr %>
+</div>
+     <div id="main">
+        <img id="backimg" src="/img/corn.jpg">
+         <br>
+         <br>
+         <div id="upbox">
+  <div id="uphead">Update Planes</div>
+<form id="uppform">
+  <div id="tbl">
+    <table>
+      <tr>
+  		  <th>
+          <div>Plane ID</div>
+  		  </th>
+  		  <th>
+          <div>Model</div>
+  		  </th>
+  		  <th>
+          <div># Ec seats</div>
+  		  </th>
+        <th>
+          <div># Fc seats</div>
+  		  </th>
+      </tr>
+      <tr id="r0">
+  		  <td>
+          <input type="text" id="pidcrit" value="<%=splane.plane_id%>"/>
+  		  </td>
+  		  <td>
+          <input id="modelcrit" value="<%=splane.model%>"/>
+  	    </td>
+  		  <td>
+          <input id="ecnumcrit" type="number" min="0" value="<%=splane.ec_num_seats%>"/>
+  	    </td>
+  		  <td>
+          <input id="fcnumcrit" type="number" min="0" value="<%=splane.fc_num_seats%>"/>
+  		  </td>
+        <td>
+          <input id="searchbutton" type="button" value="SEARCH" onclick="search()"/>
+        </td>
+      </tr>
+
+      
+      <% for (var i in planes) { %>
+          <tr id ="r<%=parseInt(i)+1%>">
+            <td>
+              <input class = "pidEdit" value = "<%= planes[i].plane_id %>" disabled/>
+            </td>
+            <td>
+              <input class = "modelEdit" value = "<%= planes[i].model %>"/>
+            </td>
+            <td>
+              <input class = "ecnumEdit" value = "<%= planes[i].ec_num_seats %>" />
+            </td>
+            <td>
+              <input class = "fcnumEdit" value = "<%= planes[i].fc_num_seats %>" />
+            </td>
+            <td>
+              <input class="updatebutton" type="button" value="UPDATE" onclick="updateSingle(this)" />
+            </td>
+      <%}%>
+
+      
+ 
+    </table>
+    <br>
+    <%if(planes.length>0){%>
+    <div id="updateallbuttondiv">
+      <button id="updateallbutton" class = "btnExample" type="button" onclick="updateAll(this)" >UPDATE ALL</button>
+    </div>
+    <%}%>
+  </div>
+</form>
+<div id="invalidInput" style="display:none;color:red"> *invalid input in a field</div>
+  
+</div></div>
+
+</body></html>
