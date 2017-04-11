@@ -84,7 +84,7 @@
                                         <br>
                                         Plane <%=parseInt(ii)+1%>: <%=trip.flights[ii].PlaneDetails%>
                                         <br>
-                                        Gate <%=parseInt(ii)+1%>: <%=trip.flights[ii].gate%>
+                                        Gate <%=parseInt(ii)+1%>: <%if(trip.flights[ii].gate){%><%=trip.flights[ii].gate%><%}else{%>T/A<%}%>
                                         <br>
                                         <br>
                                     <%}%>
