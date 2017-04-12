@@ -1,3 +1,146 @@
+function search(){
+    url="/admin/updateFlights?";
+    var b=false
+    var flightID=document.getElementById("flightID").value
+    if(flightID){
+        if(b){
+            url=url+"&"
+        }
+        url=url+"flightid="+flightID
+        b=true
+    }
+    var flightNum=document.getElementById("flightNum").value
+    if(flightNum){
+        if(b){
+            url=url+"&"
+        }
+        url=url+"flight_num="+flightNum
+        b=true
+    }
+    var gate=document.getElementById("gate").value
+    if(gate){
+        if(b){
+            url=url+"&"
+        }
+        url=url+"gate="+gate
+        b=true
+    }
+    var model=document.getElementById("model").value
+    while(model.indexOf(" ")!=-1){
+        model=model.replace(" ","_");
+    }
+    if(model){
+        if(b){
+            url=url+"&"
+        }
+        url=url+"model="+model
+        b=true
+    }
+    var dDate=document.getElementById("dDate").value
+    if(dDate){
+        if(b){
+            url=url+"&"
+        }
+        url=url+"deptd="+dDate
+        b=true
+    }
+    var dTime=document.getElementById("dTime").value
+    if(dTime){
+        if(b){
+            url=url+"&"
+        }
+        url=url+"deptt="+dTime
+        b=true
+    }
+    var dLoc=document.getElementById("dLoc").value
+    if(dLoc){
+        if(b){
+            url=url+"&"
+        }
+        url=url+"org="+dLoc
+        b=true
+    }
+    var aDate=document.getElementById("aDate").value
+    if(aDate){
+        if(b){
+            url=url+"&"
+        }
+        url=url+"arvd="+aDate
+        b=true
+    }
+    var aTime=document.getElementById("aTime").value
+    if(aTime){
+        if(b){
+            url=url+"&"
+        }
+        url=url+"arvt="+aTime
+        b=true
+    }
+    var aLoc=document.getElementById("aLoc").value
+    if(aLoc){
+        if(b){
+            url=url+"&"
+        }
+        url=url+"dest="+aLoc
+        b=true
+    }
+    var ECAvail=document.getElementById("ECAvail").value
+    if(ECAvail){
+        if(b){
+            url=url+"&"
+        }
+        url=url+"ecsa="+ECAvail
+        b=true
+    }
+    var ECBooked=document.getElementById("ECBooked").value
+    if(ECBooked){
+        if(b){
+            url=url+"&"
+        }
+        url=url+"ecsb="+ECBooked
+        b=true
+    }
+    var ECCost=document.getElementById("ECCost").value
+    if(ECCost){
+        if(b){
+            url=url+"&"
+        }
+        url=url+"eccs="+ECCost
+        b=true
+    }
+    var FCAvail=document.getElementById("FCAvail").value
+    if(FCAvail){
+        if(b){
+            url=url+"&"
+        }
+        url=url+"fcsa="+FCAvail
+        b=true
+    }
+    var FCBooked=document.getElementById("FCBooked").value
+    if(FCBooked){
+        if(b){
+            url=url+"&"
+        }
+        url=url+"fcsb="+FCBooked
+        b=true
+    }
+    var FCCost=document.getElementById("FCCost").value
+    if(FCCost){
+        if(b){
+            url=url+"&"
+        }
+        url=url+"fccs="+FCCost
+        b=true
+    }
+    if(b){
+        url=url+"&"
+    }
+    url=url+"search=true"
+    window.location=url
+    console.log(url);
+}
+
+
 function updateSingle(but){
     var row = but.parentElement.parentElement;
     updateRow(row);
@@ -19,7 +162,12 @@ function updateRow(row){
     var flightID = row.querySelector(".flightIDEdit").value;
     var flightNum = row.querySelector(".flightNumEdit").value;
     var gate = row.querySelector(".gateEdit").value;
-    var planeID = row.querySelector(".planeIDEdit").value;
+
+    var model = row.querySelector(".modelEdit").value;
+    while(model.indexOf(" ")!=-1){
+        model=model.replace(" ","_");
+    }
+
     var dDate = row.querySelector(".dDateEdit").value;
     var dTime = row.querySelector(".dTimeEdit").value;
     var dLoc = row.querySelector(".dLocEdit").value;
@@ -36,7 +184,7 @@ function updateRow(row){
     console.log("FlightID: "+flightID);
     console.log("FlightNum: "+flightNum);
     console.log("Gate: "+gate);
-    console.log("PlaneID: "+planeID);
+    console.log("Model: "+model);
     console.log("dDate: "+dDate);
     console.log("dTime: "+dTime);
     console.log("dLoc: "+dLoc);
@@ -51,22 +199,32 @@ function updateRow(row){
     console.log("FCCost: "+FCCost);
     
     document.getElementById("invalidInput").style.display = "none";
+
     
-    if(flightID == "" || flightNum == "" || gate == "" || planeID == "" || dDate == "" || dTime == "" || dLoc == "" || aDate == "" || aTime == "" || aLoc == "" || ECAvail == "" || ECBooked == "" || ECCost == "" || FCAvail == "" || FCBooked == "" || FCCost == ""){
-    	
-        flag = true;
+    if(flightID == "" || flightNum == "" || gate == "" || model == "" || dDate == "" || dTime == "" || dLoc == "" || aDate == "" || aTime == "" || aLoc == "" || ECAvail == "" || ECBooked == "" || ECCost == "" || FCAvail == "" || FCBooked == "" || FCCost == ""){
+    	console.log("hihih")
+        //flag = true;
         row.bgColor = "#FF0000";
         
     }
     else if(dLoc == aLoc){
-        flag = true;
+        console.log("fgfgfg")
+        //flag = true;
+        row.bgColor = "#FF0000";
+    }
+    else if(!document.querySelector("#"+model)||!document.querySelector("#"+dLoc)||!document.querySelector("#"+aLoc)){
         row.bgColor = "#FF0000";
     }
     else{     
         row.bgColor = "green";
         setTimeout(function(){row.bgColor = "transparent"},3000);
-        var address = "/admin/updateFlight?flightID="+flightID+"&flightNum="+flightNum+"&gate="+gate+"&planeID="+planeID+"&dDate="+dDate+"&dTime="+dTime+"&dLoc="+dLoc+"&aDate="+aDate+"&aTime="+aTime+"&aLoc="+aLoc+"&ECAvail="+ECAvail+"&ECBooked="+ECBooked+"&ECCost="+ECCost+"&FCAvail="+FCAvail+"&FCBooked="+FCBooked+"&FCCost="+FCCost;
-        //$.ajax({url:address,success:successHandler(row),error:errorHandler(row)});
+        var address = "/admin/updateFlight?flightid="+flightID+"&flight_num="+flightNum+"&gate="+gate+"&model="+model+"&deptd="+dDate+"&deptt="+dTime+"&org="+dLoc+"&arvd="+aDate+"&arvt="+aTime+"&dest="+aLoc+"&ecsa="+ECAvail+"&ecsb="+ECBooked+"&eccs="+ECCost+"&fcsa="+FCAvail+"&fcsb="+FCBooked+"&fccs="+FCCost;
+        $.ajax({url:address,success:function(response){
+            row.bgColor = "green";
+            setTimeout(function(){row.bgColor = "transparent"},5000);
+            $('.success').fadeIn().delay(2000).fadeOut(1000);
+            },error:function(response){row.bgColor = "red"}
+        });
         console.log("Address: "+address);
     }
 }
@@ -87,10 +245,10 @@ function checkErrors(){
     /*else{
         error.style.display = "none";
     }*/
-    $('.success').fadeIn().delay(2000).fadeOut(1000);
+    //$('.success').fadeIn().delay(2000).fadeOut(1000);
 }
 
-/*function successHandler(row){
+function successHandler(row){
     row.bgColor = "green";
     setTimeout(function(){row.bgColor = "transparent"},5000);
     $('.success').fadeIn().delay(2000).fadeOut(1000);
@@ -98,4 +256,4 @@ function checkErrors(){
 
 function errorHandler(row){
     row.bgColor = "red"
-}*/
+}

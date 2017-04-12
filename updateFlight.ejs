@@ -44,7 +44,7 @@
                             <div>Gate</div>
                         </th>
                         <th>
-                            <div>Plane ID</div>
+                            <div>Plane Model</div>
                         </th>
                         <th>
                             <div>Dep. Date</div>
@@ -95,7 +95,7 @@
                             <input class ="smallBox" id="gate"/>
                         </td>
                         <td>
-                            <input class="bigBox" list="lplanes" id="planeID"/>
+                            <input class="bigBox" list="lplanes" id="model"/>
                         </td>
                         <td>
                             <input class="medBox" id="dDate" type="date"/>
@@ -135,23 +135,29 @@
                             <input class ="smallBox" id="FCCost" type="number" min="0"/>
                         </td>
                         <td>
-                            <input id="searchButton" type="submit" value="Search" onclick=""/>
+                            <input id="searchButton" type="button" value="Search" onclick="search()"/>
                         </td>
                     </tr>
                     <% for(var i=0; i<flights.length; i++) {%>
                         <tr id=<%="r"+String(i+1) %>>
                             <td>
-                                <input class="flightIDEdit bigBox" disabled value= <%= flights[i].flightID %>>
+                                <input class="flightIDEdit bigBox" disabled value= "<%= flights[i].flightID %>">
                             </td>
                             <td>
-                                <input class="flightNumEdit bigBox" value= <%= flights[i].flight_num %>>
+                                <input class="flightNumEdit bigBox" value= "<%= flights[i].flight_num %>">
                             </td>
                             <td>
-                                <input class="gateEdit smallBox" value= <%= flights[i].gate %>>
+                                <input class="gateEdit smallBox" value= "<%= flights[i].gate %>">
                             </td>
-                            <td>
-                                <input class="planeIDEdit bigBox" list="lplanes" value= <%= flights[i].plane_id %>>
-                            </td>
+                            <% if (flights[i].booked == 1){%>
+                                <td>
+                                    <input class="modelEdit bigBox" list = "lplanes" disabled value= "<%= flights[i].model %>">
+                                </td>
+                            <%}else{%>
+                                <td><!-- list="lplanes"-->
+                                    <input class="modelEdit bigBox" list = "lplanes" value= "<%= flights[i].model %>">
+                                </td>
+                            <%}%>
 
                             <%var year=flights[i].departure_time.getFullYear()%>
                             <%var month=flights[i].departure_time.getMonth() + 1%>
@@ -168,9 +174,16 @@
                             <%}%>
 
                             <%var sDate = String(year)+"-"+month+"-"+date%>
-                            <td>
-                                <input class="dDateEdit medBox" type="date" value= <%= sDate %>>
-                            </td>
+
+                            <% if (flights[i].booked == 1){%>
+                                <td>
+                                    <input class="dDateEdit medBox" type="date" disabled value= "<%= sDate %>">
+                                </td>
+                            <%}else{%>
+                                <td>
+                                    <input class="dDateEdit medBox" type="date" value= "<%= sDate %>">
+                                </td>
+                            <%}%>
 
                             <%var hour=flights[i].departure_time.getHours()%>
                             <% if (hour<10){%>
@@ -184,14 +197,24 @@
                             <%}else{%>
                                 <%minute = String(minute);%>
                             <%}%>
+
                             <%var sTime = String(hour)+":"+minute%>
 
-                            <td>
-                                <input class="dTimeEdit" type="time" value= <%= sTime %>>
-                            </td>
-                            <td>
-                                <input class="dLocEdit smallBox" list="lports" value= <%= flights[i].origin %>>
-                            </td>
+                            <% if (flights[i].booked == 1){%>
+                                <td>
+                                    <input class="dTimeEdit" type="time" disabled value= "<%= sTime %>">
+                                </td>
+                                <td>
+                                    <input class="dLocEdit smallBox" list="lports" disabled value= "<%= flights[i].origin %>">
+                                </td>
+                            <%}else{%>
+                                <td>
+                                    <input class="dTimeEdit" type="time" value= "<%= sTime %>">
+                                </td>
+                                <td>
+                                    <input class="dLocEdit smallBox" list="lports" value= "<%= flights[i].origin %>">
+                                </td>
+                            <%}%>
 
                             <% year=flights[i].arrival_time.getFullYear()%>
                             <% month=flights[i].arrival_time.getMonth() + 1%>
@@ -209,9 +232,15 @@
 
                             <% sDate = String(year)+"-"+month+"-"+date%>
 
+                            <% if (flights[i].booked == 1){%>
                             <td>
-                                <input class="aDateEdit medBox" type="date" value= <%= sDate %>>
+                                <input class="aDateEdit medBox" type="date" disabled value= "<%= sDate %>">
                             </td>
+                            <%}else{%>
+                            <td>
+                                <input class="aDateEdit medBox" type="date" value= "<%= sDate %>">
+                            </td>
+                            <%}%>
 
                             <% hour=flights[i].arrival_time.getHours()%>
                             <% if (hour<10){%>
@@ -229,17 +258,27 @@
                             <% sTime = hour+":"+minute%>
 
 
+                            <% if (flights[i].booked == 1){%>
+                                <td>
+                                    <input class="aTimeEdit" type="time" disabled value= "<%= sTime %>">
+                                </td>
+                                <td>
+                                    <input class="aLocEdit smallBox" list="lports" disabled value= "<%= flights[i].destined %>">
+                                </td>
+                            <%}else{%>
+                                <td>
+                                    <input class="aTimeEdit" type="time" value= "<%= sTime %>">
+                                </td>
+                                <td>
+                                    <input class="aLocEdit smallBox" list="lports" value= "<%= flights[i].destined %>">
+                                </td>
+                            <%}%>
+
                             <td>
-                                <input class="aTimeEdit" type="time" value= <%= sTime %> >
+                                <input class="ECAvailEdit smallBox" type="number" min="0" value= "<%= flights[i].ec_seats_available %>">
                             </td>
                             <td>
-                                <input class="aLocEdit smallBox" list="lports" value= <%= flights[i].destined %>>
-                            </td>
-                            <td>
-                                <input class="ECAvailEdit smallBox" type="number" min="0" value= <%= flights[i].ec_seats_available %>>
-                            </td>
-                            <td>
-                                <input class="ECBookedEdit smallBox" type="number" min="0" value= <%= flights[i].ec_seats_booked %>>
+                                <input class="ECBookedEdit smallBox" type="number" min="0" disabled value= "<%= flights[i].ec_seats_booked %>">
                             </td>
                             <td>
                                 <input class="ECCostEdit smallBox" type="number" min="0" value= <%= flights[i].ec_cost_per_seat %>>
@@ -248,7 +287,7 @@
                                 <input class="FCAvailEdit smallBox" type="number" min="0" value= <%= flights[i].fc_seats_available %>>
                             </td>
                             <td>
-                                <input class="FCBookedEdit smallBox" type="number" min="0" value= <%= flights[i].fc_seats_booked %>>
+                                <input class="FCBookedEdit smallBox" type="number" min="0" disabled value= <%= flights[i].fc_seats_booked %>>
                             </td>
                             <td>
                                 <input class="FCCostEdit smallBox" type="number" min="0" value= <%= flights[i].fc_cost_per_seat %>>
@@ -271,14 +310,18 @@
                 <datalist id="lplanes">
                     <% for(var i in planes){ %>
                     <%var plane=planes[i]%>
-                    <option id=<%=plane["planeid"]%> value=<%=plane["planeid"]%>><%=plane["model"]%></option>
+                    <%var temp=plane["model"]%>
+                    <%while(temp.indexOf(" ")!=-1){%>
+                    <%temp=temp.replace(" ","_")%>
+                    <%}%>
+                    <option id="<%=temp%>" value="<%=plane["model"]%>"</option>
                     <%}%>
                 </datalist>
 
                 </div>
                 
                 <div id="invalidInput" style="display: none ;font-size:50%; color:red"align="center">*Some information is missing or incorrect</div>
-                
+
                 <div style="text-align: center;"><button id="updateAllButton" class="updateAllButton" type="button" onclick="updateAll(this)"/>Update All</button></div>
            
                <div class="success" style="display: none ;font-size:50%; color:green"align="center">Updated!</div>
