@@ -77,14 +77,19 @@
  
     </table>
     <br>
+
+    <div id="invalidInput" style="display: none ;font-size:50%; color:red"align="center">*Some information is missing or incorrect</div>
+
     <%if(planes.length>0){%>
       <div style="text-align: center;"><button id="updateallbutton" class = "updateallbutton" type="button" onclick="updateAll(this)" >UPDATE ALL</button></div>
-      <!--<div style="text-align: center;"><button id="updateAllButton" class="updateAllButton" type="button" onclick="updateAll(this)"/>Update All</button></div>-->
     
     <%}%>
+
+    <div class="success" style="display: none ;font-size:50%; color:green"align="center">Updated!</div>
+    
   </div>
 </form>
-<div id="invalidInput" style="display:none;color:red"> *invalid input in a field</div>
+<!--<div id="invalidInput" style="display:none;color:red"> *invalid input in a field</div>-->
   
 </div></div>
 
