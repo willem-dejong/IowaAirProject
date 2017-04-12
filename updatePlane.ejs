@@ -1,26 +1,16 @@
-<html><head><link rel="stylesheet" href="/css/homestyle.css" type="text/css">
-
-
+<html><head>
     <!--include link to javascript here for help email willem-dejong@uiowa.edu-->
     <title>IowaAir</title>
     <link rel="icon" href="/img/Logo1465.png">
-    <link rel="stylesheet" href="/css/upplane.css" type="text/css">
+    <link rel="stylesheet" href="/css/updatePlane.css" type="text/css">
     <link rel="stylesheet" href="/css/login.css" type="text/css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script type="text/javascript" src="/js/md5.js"></script>
     <script type="text/javascript" src="/js/logsess.js"></script>
-    <script type="text/javascript" src="/js/upplane.js"></script>
+    <script type="text/javascript" src="/js/updatePlane.js"></script>
 </head>
 <body>
-    <div id="hdr">
-         <div id="home">
-                <a id="homel" href="/"><img id="logo" src="/img/Logo1465.png"><img id="namelogo" src="/img/NameLogo.png"></a>
-         </div>
-        
-        <div id="log">
-            <a href="javascript:void(0)" id="loginlink" onclick="createloginbox();">login</a>/<a href="/registration">register</a>
-        </div>
-        
+        <% include partial/hdr %>
 </div>
      <div id="main">
         <img id="backimg" src="/img/corn.jpg">
@@ -47,36 +37,36 @@
       </tr>
       <tr id="r0">
   		  <td>
-          <input type="text" id="pidcrit"/>
+          <input type="text" id="pidcrit" value="<%=splane.plane_id%>"/>
   		  </td>
   		  <td>
-          <input id="modelcrit"/>
+          <input id="modelcrit" value="<%=splane.model%>"/>
   	    </td>
   		  <td>
-          <input id="ecnumcrit" type="number" min="0"/>
+          <input id="ecnumcrit" type="number" min="0" value="<%=splane.ec_num_seats%>"/>
   	    </td>
   		  <td>
-          <input id="fjcnumcrit" type="number" min="0"/>
+          <input id="fcnumcrit" type="number" min="0" value="<%=splane.fc_num_seats%>"/>
   		  </td>
         <td>
-          <input id="searchbutton" type="button" value="SEARCH" />
+          <input id="searchbutton" type="button" value="SEARCH" onclick="search()"/>
         </td>
       </tr>
 
       
       <% for (var i in planes) { %>
-          <tr id = <%="r"+String(i+1)%>>
+          <tr id ="r<%=parseInt(i)+1%>">
             <td>
-              <input class = "pidEdit" value = <%= planes[i].pid %> />
+              <input class = "pidEdit" value = "<%= planes[i].plane_id %>" disabled/>
             </td>
             <td>
-              <input class = "modelEdit" value = <%= planes[i].model %> />
+              <input class = "modelEdit" value = "<%= planes[i].model %>"/>
             </td>
             <td>
-              <input class = "ecnumEdit" value = <%= planes[i].ecnum %> />
+              <input class = "ecnumEdit" value = "<%= planes[i].ec_num_seats %>" />
             </td>
             <td>
-              <input class = "fjcnumEdit" value = <%= planes[i].fjcnum %> />
+              <input class = "fcnumEdit" value = "<%= planes[i].fc_num_seats %>" />
             </td>
             <td>
               <input class="updatebutton" type="button" value="UPDATE" onclick="updateSingle(this)" />
@@ -87,11 +77,14 @@
  
     </table>
     <br>
-    <div id="updateallbuttondiv">
-      <button id="updateallbutton" class = "btnExample" type="button" onclick="updateAll(this)" >UPDATE ALL</button>
-    </div>
+    <%if(planes.length>0){%>
+      <div style="text-align: center;"><button id="updateallbutton" class = "updateallbutton" type="button" onclick="updateAll(this)" >UPDATE ALL</button></div>
+      <!--<div style="text-align: center;"><button id="updateAllButton" class="updateAllButton" type="button" onclick="updateAll(this)"/>Update All</button></div>-->
+    
+    <%}%>
   </div>
 </form>
+<div id="invalidInput" style="display:none;color:red"> *invalid input in a field</div>
   
 </div></div>
 
