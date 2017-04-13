@@ -56,6 +56,7 @@ function goToBook(bl,cls){
 		flightIDs1=toItem.getAttribute("flightids")
 		url=url+"flightids1="+flightIDs1+"&class1="+class1
 	}
+	url=url+"&pass="+document.querySelector("#main").getAttribute("pass")
 	window.location=url
 }
 //########################sortby functions#########################################
