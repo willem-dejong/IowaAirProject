@@ -24,13 +24,14 @@ function argParser(url){
 			ii=url.length;
 		}
 		argz.model=url.substring(i+6,ii);
-		while(argz.model.indexOf("_")!=-1){
-			argz.model=argz.model.replace("_"," ")
-		}
 	}
 	else{
 		argz.model="";
 	}
+	while(argz.model.indexOf("_")!=-1){
+		argz.model=argz.model.replace("_"," ")
+	}
+	console.log(argz.model)
 	i=url.search("ecnum=[0-9]+");
 	ii=-1;
 	if (i!=-1){
@@ -125,6 +126,9 @@ function updatePlane(req,res){
 	}
 	var pid=req.url.substring(i,ii);
 	var model=req.url.substring(i2,ii2);
+	while(model.indexOf("_")!=-1){
+		model=model.replace("_"," ")
+	}
 	var ecnum=req.url.substring(i3,ii3);
 	var fcnum=req.url.substring(i4,ii4);
 	sql.updatePlane(pid,model,ecnum,fcnum,req,res,send500,successhandler,{})

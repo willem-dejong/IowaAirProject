@@ -1,6 +1,15 @@
 var sql=require("./sql");
-function getTotTime(mili){
-	
+function getUCTime(date){
+	ndate=new Date(2017)
+	ndate.setUTCFullYear(date.getFullYear())
+	ndate.setUTCMonth(date.getMonth())
+	ndate.setUTCDate(date.getDate())
+	ndate.setUTCHours(date.getHours())
+	ndate.setUTCMinutes(date.getMinutes())
+	ndate.setUTCSeconds(date.getSeconds())
+	console.log(ndate)
+	//return ndate
+	return date
 }
 function dq2t1(row){
 	trip={
@@ -11,8 +20,8 @@ function dq2t1(row){
 			destined_portID:row.dpID1,
 			origin_port_name:row.porta1,
 			destined_port_name:row.portb1,
-			depart_time:row.depTime1,
-			arrive_time:row.arrTime1,
+			depart_time:getUCTime(row.depTime1),
+			arrive_time:getUCTime(row.arrTime1),
 			fc_price:row.fc_price1,
 			ec_price:row.ec_price1,
 			PlaneDetails:row.model1
@@ -25,6 +34,7 @@ function dq2t1(row){
     	has_ec:row.has_ec,
 	   has_fc:row.has_fc
 	}
+	console.log(trip)
 	return trip	
 }
 function dq2t2(row){
@@ -36,8 +46,8 @@ function dq2t2(row){
 			destined_portID:row.dpID1,
 			origin_port_name:row.porta1,
 			destined_port_name:row.portb1,
-			depart_time:row.depTime1,
-			arrive_time:row.arrTime1,
+			depart_time:getUCTime(row.depTime1),
+			arrive_time:getUCTime(row.arrTime1),
 			fc_price:row.fc_price1,
 			ec_price:row.ec_price1,
 			PlaneDetails:row.model1
@@ -48,8 +58,8 @@ function dq2t2(row){
 			destined_portID:row.dpID2,
 			origin_port_name:row.porta2,
 			destined_port_name:row.portb2,
-			depart_time:row.depTime2,
-			arrive_time:row.arrTime2,
+			depart_time:getUCTime(row.depTime2),
+			arrive_time:getUCTime(row.arrTime2),
 			fc_price:row.fc_price2,
 			ec_price:row.ec_price2,
 			PlaneDetails:row.model2
@@ -62,6 +72,7 @@ function dq2t2(row){
     	has_ec:row.has_ec,
 	   has_fc:row.has_fc
 	}
+	console.log(trip)
 	return trip	
 }
 function dq2t3(row){
@@ -73,8 +84,8 @@ function dq2t3(row){
 			destined_portID:row.dpID1,
 			origin_port_name:row.porta1,
 			destined_port_name:row.portb1,
-			depart_time:row.depTime1,
-			arrive_time:row.arrTime1,
+			depart_time:getUCTime(row.depTime1),
+			arrive_time:getUCTime(row.arrTime1),
 			fc_price:row.fc_price1,
 			ec_price:row.ec_price1,
 			PlaneDetails:row.model1
@@ -85,8 +96,8 @@ function dq2t3(row){
 			destined_portID:row.dpID2,
 			origin_port_name:row.porta2,
 			destined_port_name:row.portb2,
-			depart_time:row.depTime2,
-			arrive_time:row.arrTime2,
+			depart_time:getUCTime(row.depTime2),
+			arrive_time:getUCTime(row.arrTime2),
 			fc_price:row.fc_price2,
 			ec_price:row.ec_price2,
 			PlaneDetails:row.model2
@@ -97,8 +108,8 @@ function dq2t3(row){
 			destined_portID:row.dpID3,
 			origin_port_name:row.porta3,
 			destined_port_name:row.portb3,
-			depart_time:row.depTime3,
-			arrive_time:row.arrTime3,
+			depart_time:getUCTime(row.depTime3),
+			arrive_time:getUCTime(row.arrTime3),
 			fc_price:row.fc_price3,
 			ec_price:row.ec_price3,
 			PlaneDetails:row.model3
@@ -111,6 +122,7 @@ function dq2t3(row){
     	has_ec:row.has_ec,
 	   has_fc:row.has_fc
 	}
+	console.log(trip)
 	return trip	
 }
 function errHandler(err,req,res,args){
@@ -148,7 +160,7 @@ function successHandler_to2(rows,req,res,args){
 function successHandler_to3(rows,req,res,args){
 	if(args.to){
 		for(i in rows){
-			args.toTrips.push(dq2t2(rows[i]))
+			args.toTrips.push(dq2t3(rows[i]))
 		}
 		if(args.twoway){
 			args.to=false;
@@ -161,10 +173,10 @@ function successHandler_to3(rows,req,res,args){
 	}
 	else{
 		for(i in rows){
-			args.fromTrips.push(dq2t2(rows[i]))
+			args.fromTrips.push(dq2t3(rows[i]))
 		}
 	}
-	res.render("result",{user:req.session.user,twoway:args.twoway,toTrips:args.toTrips,fromTrips:args.fromTrips})
+	res.render("result",{user:req.session.user,pass:args.pass,twoway:args.twoway,toTrips:args.toTrips,fromTrips:args.fromTrips})
 }
 function resultRender(req,res){
 	if(!req.session.user){
@@ -203,6 +215,7 @@ function resultRender(req,res){
 	console.log(date)
 	date=date.split("-")
 	date=new Date(parseInt(date[0]),parseInt(date[1])-1,parseInt(date[2]))
+	date=getUCTime(date)
 	var ii5=req.url.indexOf("&",i5)
 	if(ii5==-1){
 		ii5=req.url.length
@@ -221,6 +234,7 @@ function resultRender(req,res){
 		date2=req.url.substring(i4,ii4)
 		date2=date2.split("-")
 		date2=new Date(parseInt(date2[0]),parseInt(date2[1])-1,parseInt(date2[2]))
+		date2=getUCTime(date2)
 	}
 	console.log(date)
 	args={to:true,org:port1,dest:port2,date:date,date2:date2,pass:pass,twoway:twoway}

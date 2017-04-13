@@ -1,7 +1,9 @@
 var mysql=require('C:\\Program Files\\nodejs\\node_modules\\mysql');
 var jscreateAccount=require('./jscreateAccount');
 var jsupdatePlanes=require('./jsupdatePlanes');
-var jsaddPlane=require('./jsaddPlane');
+var jsupdateFlights=require('./jsupdateFlights');
+var jsaddPlanes=require('./jsaddPlanes');
+var jsaddFlights=require('./jsaddFlights');
 function forbidden(req,res){
 	req.session.user={fname:"",lname:"",email:"",passw:"",type:"G"};
 	res.writeHead(401, {'Content-Type': 'text/plain'});
@@ -71,10 +73,22 @@ function updatePlane(req,res){
 	cmdvalidate(req,res,jsupdatePlanes.updatePlane);
 }
 function addPlaneRender(req,res){
-	pagevalidate(req,res,jsaddPlane.addPlaneRender);
+	pagevalidate(req,res,jsaddPlanes.addPlaneRender);
 }
 function addPlane(req,res){
-	cmdvalidate(req,res,jsaddPlane.addPlane);
+	cmdvalidate(req,res,jsaddPlanes.addPlane);
+}
+function updateFlightRender(req,res){
+	pagevalidate(req,res,jsupdateFlights.updateFlightRender);
+}
+function updateFlight(req,res){
+	cmdvalidate(req,res,jsupdateFlights.updateFlight);
+}
+function addFlightRender(req,res){
+	pagevalidate(req,res,jsaddFlights.addFlightRender);
+}
+function addFlight(req,res){
+	cmdvalidate(req,res,jsaddFlights.addFlight);
 }
 module.exports={
 	addEmployeeRender:addEmployeeRender,
@@ -82,5 +96,9 @@ module.exports={
 	updatePlaneRender:updatePlaneRender,
 	addPlaneRender:addPlaneRender,
 	addPlane:addPlane,
-	updatePlane:updatePlane
+	updatePlane:updatePlane,
+	updateFlightRender:updateFlightRender,
+	updateFlight:updateFlight,
+	addFlightRender:addFlightRender,
+	addFlight:addFlight
 };
