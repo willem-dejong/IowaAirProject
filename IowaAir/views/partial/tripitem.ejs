@@ -55,14 +55,18 @@
                                 </div>
                                 <br>
                                 <div class="tofromh4">
-                                    <div><%=trip.tot_time%></div>
+                                    <%var totl=trip.tot_time.split(":")%>
+                                    <%var toth=parseInt(totl[0])%>
+                                    <%var totm=parseInt(totl[1])%>
+                                    <%var totstr=String(toth)+" Hours "+String(totm)+" Minutes"%>
+                                    <div><%=totstr%></div>
                                 </div>
                                 <div class="flighttimes">
                                     <span class="close" onclick="this.parentElement.style.display='none';">&times</span>
                                     <br>
                                     <% for (ii in trip.flights){%>
                                     <%var ii2=parseInt(ii)+1%>
-                                        flight<%=ii2%>: <%=trip.flights[ii].depart_time%>-<%=trip.flights[ii].arrive_time%>
+                                        flight<%=ii2%>: <%=trip.flights[ii].depart_time.toUTCString()%>-<%=trip.flights[ii].arrive_time.toUTCString()%>
                                         <br>
                                         <br>
                                     <%}%>
