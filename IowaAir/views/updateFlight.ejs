@@ -1,0 +1,377 @@
+<html>
+    <head>
+    <!--include link to javascript here for help email willem-dejong@uiowa.edu-->
+    <title>IowaAir</title>
+    <link rel="icon" href="/img/Logo1465.png">
+    <link rel="stylesheet" href="/css/Flight.css" type="text/css">
+    <link rel="stylesheet" href="/css/login.css" type="text/css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script type="text/javascript" src="/js/md5.js"></script>
+    <script type="text/javascript" src="/js/logsess.js"></script>
+    <script type="text/javascript" src="/js/updateFlight.js"></script>
+    <!--<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>-->
+</head>
+<body>
+        <% include partial/hdr %>
+<div id="main">
+    <img id="backimg" src="/img/corn.jpg">
+    <br>
+    <br>
+    <div id="upbox">
+        <div id="uphead">Update Flights</div>
+        <form id="uppform">
+            <div id="tbl">
+                <table id="wholeTable">
+                    <tr>
+                        <th>
+                            <div>Flight ID</div>
+                        </th>
+                        <th>
+                            <div>Flight #</div>
+                        </th>
+                        <th>
+                            <div>Gate</div>
+                        </th>
+                        <th>
+                            <div>Plane Model</div>
+                        </th>
+                        <th>
+                            <div>Dep. Date</div>
+                        </th>
+                        <th>
+                            <div>Dep. Time</div>
+                        </th>
+                        <th>
+                            <div>Dep. Loc.</div>
+                        </th>
+                        <th>
+                            <div>Ar. Date</div>
+                        </th>
+                        <th>
+                            <div>Ar. Time</div>
+                        </th>
+                        <th>
+                            <div>Ar. Loc.</div>
+                        </th>
+                        <th>
+                            <div>EC Seats Avail</div>
+                        </th>
+                        <th>
+                            <div>EC Seats Bk'd</div>
+                        </th>
+                        <th>
+                            <div>EC $/seat</div>
+                        </th>
+                        <th>
+                            <div>FC Seats Avail</div>
+                        </th>
+                        <th>
+                            <div>FC Seats Bk'd</div>
+                        </th>
+                        <th>
+                            <div>FC $/seat</div>
+                        </th>
+                    </tr>
+
+                    <tr id="r0">
+                        <td>
+                            <input class="bigBox" id="flightID" value="<%=sflight.flightID%>"/>
+                        </td>
+                        <td>
+                            <input class="bigBox" id="flightNum" value="<%=sflight.Flight_num%>"/>
+                        </td>
+                        <td>
+                            <input class ="smallBox" id="gate" value="<%=sflight.gate%>" />
+                        </td>
+                        <td>
+                            <input class="bigBox" list="lplanes" id="model" value="<%=sflight.model%>" />
+                        </td>
+                        
+                        <%var date=""%>
+                        <%var time=""%>
+                        <%if(sflight.departure_time){%>
+                            <%date+=String(sflight.departure_time.getFullYear())+"-"%>
+                            <%if(sflight.departure_time.getMonth()+1<10){%>
+                                <%date+="0"+String(sflight.departure_time.getMonth()+1)+"-"%>
+                            <%}else{%>
+                                <%date+=String(sflight.departure_time.getMonth()+1)+"-"%>
+                            <%}%>
+                            <%if(sflight.departure_time.getDate()<10){%>
+                                <%date+="0"+String(sflight.departure_time.getDate())%>
+                            <%}else{%>
+                                <%date+=String(sflight.departure_time.getDate())%>
+                            <%}%>
+                            <%if(sflight.departure_time.getHours()<10){%>
+                                <%time="0"+String(sflight.departure_time.getHours())+":"%>
+                            <%}else{%>
+                                <%time=String(sflight.departure_time.getHours())+":"%>
+                            <%}%>
+                            <%if(sflight.departure_time.getMinutes()<10){%>
+                                <%time+="0"+String(sflight.departure_time.getMinutes())%>
+                            <%}else{%>
+                                <%time+=String(sflight.departure_time.getMinutes())%>
+                            <%}%>
+                        <%}%>
+                        <td>
+                            <input class="medBox" id="dDate" type="date" value="<%=date%>" />
+                        </td>
+                        <td>
+                            <!--<input id="dTime" type="time" value="<%=time%>"/>-->
+                        </td>
+                        <td>
+                            <input class="smallBox" list="lports" id="dLoc" value="<%=sflight.origin_port%>"/>
+
+                        </td>
+                        <%var date=""%>
+                        <%var time=""%>
+                        <%if(sflight.arrival_time){%>
+                            <%date+=String(sflight.arrival_time.getFullYear())+"-"%>
+                            <%if(sflight.arrival_time.getMonth()+1<10){%>
+                                <%date+="0"+String(sflight.arrival_time.getMonth()+1)+"-"%>
+                            <%}else{%>
+                                <%date+=String(sflight.arrival_time.getMonth()+1)+"-"%>
+                            <%}%>
+                            <%if(sflight.arrival_time.getDate()<10){%>
+                                <%date+="0"+String(sflight.arrival_time.getDate())%>
+                            <%}else{%>
+                                <%date+=String(sflight.arrival_time.getDate())%>
+                            <%}%>
+                            <%if(sflight.arrival_time.getHours()<10){%>
+                                <%time="0"+String(sflight.arrival_time.getHours())+":"%>
+                            <%}else{%>
+                                <%time=String(sflight.arrival_time.getHours())+":"%>
+                            <%}%>
+                            <%if(sflight.arrival_time.getMinutes()<10){%>
+                                <%time+="0"+String(sflight.arrival_time.getMinutes())%>
+                            <%}else{%>
+                                <%time+=String(sflight.arrival_time.getMinutes())%>
+                            <%}%>
+                        <%}%>
+                        <td>
+                            <input class="medBox" id="aDate" type="date" value="<%=date%>"/>
+                        </td>
+                        <td>
+                            <!--<input id="aTime" type="time" value="<%=time%>"/>-->
+                        </td>
+                        <td>
+                            <input class="smallBox" list="lports" id="aLoc" value="<%=sflight.destined_port%>"/>
+                        </td>
+                        <td>
+                            <input class ="smallBox" id="ECAvail" type="number" min="0" value="<%=sflight.ec_seats_available%>" />
+                        </td>
+                        <td>
+                            <input class ="smallBox" id="ECBooked" type="number" min="0" value="<%=sflight.ec_seats_booked%>" />
+                        </td>
+                        <td>
+                            <input class ="smallBox" id="ECCost" type="number" min="0" value="<%=sflight.ec_cost_per_seat%>" />
+                        </td>
+                        <td>
+                            <input class ="smallBox" id="FCAvail" type="number" min="0" value="<%=sflight.fc_seats_available%>"/>
+                        </td>
+                        <td>
+                            <input class ="smallBox" id="FCBooked" type="number" min="0" value="<%=sflight.fc_seats_booked%>"/>
+                        </td>
+                        <td>
+                            <input class ="smallBox" id="FCCost" type="number" min="0" value="<%=sflight.fc_cost_per_seat%>"/>
+                        </td>
+                        <td>
+                            <input id="searchButton" type="button" value="Search" onclick="search()"/>
+                        </td>
+                    </tr>
+                    <% for(var i=0; i<flights.length; i++) {%>
+                        <tr id=<%="r"+String(i+1) %>>
+                            <td>
+                                <input class="flightIDEdit bigBox" disabled value= "<%= flights[i].flightID %>">
+                            </td>
+                            <td>
+                                <input class="flightNumEdit bigBox" value= "<%= flights[i].Flight_num %>">
+                            </td>
+                            <td>
+                                <input class="gateEdit smallBox" value= "<%= flights[i].Gate %>">
+                            </td>
+                            <% if (flights[i].booked == 1){%>
+                                <td>
+                                    <input class="modelEdit bigBox" list = "lplanes" disabled value= "<%= flights[i].model %>">
+                                </td>
+                            <%}else{%>
+                                <td><!-- list="lplanes"-->
+                                    <input class="modelEdit bigBox" list = "lplanes" value= "<%= flights[i].model %>">
+                                </td>
+                            <%}%>
+
+                            <%var year=flights[i].departure_time.getFullYear()%>
+                            <%var month=flights[i].departure_time.getMonth() + 1%>
+                            <% if (month<10){%>
+                                <%month = "0" + String(month);%>
+                            <%}else{%>
+                                <%month = String(month);%>
+                            <%}%>
+                            <%var date=flights[i].departure_time.getDate()%>
+                            <% if (date<10){%>
+                                <%date = "0" + String(date);%>
+                            <%}else{%>
+                                <%date = String(date);%>
+                            <%}%>
+                        
+                            <%var sDate = String(year)+"-"+month+"-"+date%>
+
+                            <% if (flights[i].booked == 1){%>
+                                <td>
+                                    <input class="dDateEdit medBox" type="date" disabled value= "<%= sDate %>">
+                                </td>
+                            <%}else{%>
+                                <td>
+                                    <input class="dDateEdit medBox" type="date" value= "<%= sDate %>">
+                                </td>
+                            <%}%>
+
+                            <%var hour=flights[i].departure_time.getHours()%>
+                            <% if (hour<10){%>
+                                <%hour = "0" + String(hour);%>
+                            <%}else{%>
+                                <%hour = String(hour);%>
+                            <%}%>
+                            <%var minute=flights[i].departure_time.getMinutes()%>
+                            <% if (minute<10){%>
+                                <%minute = "0" + String(minute);%>
+                            <%}else{%>
+                                <%minute = String(minute);%>
+                            <%}%>
+
+                            <%var sTime = String(hour)+":"+minute%>
+
+                            <% if (flights[i].booked == 1){%>
+                                <td>
+                                    <input class="dTimeEdit" type="time" disabled value= "<%= sTime %>">
+                                </td>
+                                <td>
+                                    <input class="dLocEdit smallBox" list="lports" disabled value= "<%= flights[i].origin_port %>">
+                                </td>
+                            <%}else{%>
+                                <td>
+                                    <input class="dTimeEdit" type="time" value= "<%= sTime %>">
+                                </td>
+                                <td>
+                                    <input class="dLocEdit smallBox" list="lports" value= "<%= flights[i].origin_port %>">
+                                </td>
+                            <%}%>
+                            <script>
+                            console.log("<%=sTime%>");
+                            console.log("<%=flights[i].departure_time%>");
+                            </script>
+                            <% year=flights[i].arrival_time.getFullYear()%>
+                            <% month=flights[i].arrival_time.getMonth() + 1%>
+                            <% if (month<10){%>
+                                <%month = "0" + String(month);%>
+                            <%}else{%>
+                                <%month = String(month);%>
+                            <%}%>
+                            <% date=flights[i].arrival_time.getDate()%>
+                            <% if (date<10){%>
+                                <%date = "0" + String(date);%>
+                            <%}else{%>
+                                <%date = String(date);%>
+                            <%}%>
+
+                            <% sDate = String(year)+"-"+month+"-"+date%>
+
+                            <% if (flights[i].booked == 1){%>
+                            <td>
+                                <input class="aDateEdit medBox" type="date" disabled value= "<%= sDate %>">
+                            </td>
+                            <%}else{%>
+                            <td>
+                                <input class="aDateEdit medBox" type="date" value= "<%= sDate %>">
+                            </td>
+                            <%}%>
+
+                            <% hour=flights[i].arrival_time.getHours()%>
+                            <% if (hour<10){%>
+                                <%hour = "0" + String(hour);%>
+                            <%}else{%>
+                                <%hour = String(hour);%>
+                            <%}%>
+
+                            <% minute=flights[i].arrival_time.getMinutes()%>
+                            <% if (minute<10){%>
+                                <%minute = "0" + String(minute);%>
+                            <%}else{%>
+                                <%minute = String(minute);%>
+                            <%}%>
+                            <% sTime = hour+":"+minute%>
+
+
+                            <% if (flights[i].booked == 1){%>
+                                <td>
+                                    <input class="aTimeEdit" type="time" disabled value= "<%= sTime %>">
+                                </td>
+                                <td>
+                                    <input class="aLocEdit smallBox" list="lports" disabled value= "<%= flights[i].destined_port %>">
+                                </td>
+                            <%}else{%>
+                                <td>
+                                    <input class="aTimeEdit" type="time" value= "<%= sTime %>">
+                                </td>
+                                <td>
+                                    <input class="aLocEdit smallBox" list="lports" value= "<%= flights[i].destined_port %>">
+                                </td>
+                            <%}%>
+
+                            <td>
+                                <input class="ECAvailEdit smallBox" type="number" min="0" value= "<%= flights[i].ec_seats_available %>">
+                            </td>
+                            <td>
+                                <input class="ECBookedEdit smallBox" type="number" min="0" disabled value= "<%= flights[i].ec_seats_booked %>">
+                            </td>
+                            <td>
+                                <input class="ECCostEdit smallBox" type="number" min="0" value= "<%= flights[i].ec_cost_per_seat %>">
+                            </td>
+                            <td>
+                                <input class="FCAvailEdit smallBox" type="number" min="0" value= "<%= flights[i].fc_seats_available %>">
+                            </td>
+                            <td>
+                                <input class="FCBookedEdit smallBox" type="number" min="0" disabled value= "<%= flights[i].fc_seats_booked %>">
+                            </td>
+                            <td>
+                                <input class="FCCostEdit smallBox" type="number" min="0" value= "<%= flights[i].fc_cost_per_seat %>">
+                            </td>
+                            <td>
+                                <input class="updateButton" type="button" value="Update" onclick="updateSingle(this)"/>
+                            </td>
+                        </tr>
+                    <% } %>
+
+                </table>
+
+                <datalist id="lports">
+                    <% for(var i in ports){ %>
+                    <%var port=ports[i]%>
+                    <option id=<%=port["portid"]%> value=<%=port["portid"]%>><%=port["airport"]%></option>
+                    <%}%>
+                </datalist>
+
+                <datalist id="lplanes">
+                    <% for(var i in planes){ %>
+                    <%var plane=planes[i]%>
+                    <%var temp=plane["model"]%>
+                    <%while(temp.indexOf(" ")!=-1){%>
+                    <%temp=temp.replace(" ","_")%>
+                    <%}%>
+                    <option id="<%=temp%>" value="<%=plane["model"]%>"></option>
+                    <%}%>
+                </datalist>
+
+                </div>
+                
+                <div id="invalidInput" style="display: none ;font-size:50%; color:red"align="center">*Some information is missing or incorrect</div>
+
+                <div style="text-align: center;"><button id="updateAllButton" class="updateAllButton" type="button" onclick="updateAll(this)"/>Update All</button></div>
+           
+               <div class="success" style="display: none ;font-size:50%; color:green"align="center">Updated!</div>
+            <br>
+        </form>
+
+    </div></div>
+
+</body></html>

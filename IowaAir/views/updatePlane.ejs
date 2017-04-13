@@ -2,7 +2,7 @@
     <!--include link to javascript here for help email willem-dejong@uiowa.edu-->
     <title>IowaAir</title>
     <link rel="icon" href="/img/Logo1465.png">
-    <link rel="stylesheet" href="/css/updatePlane.css" type="text/css">
+    <link rel="stylesheet" href="/css/Plane.css" type="text/css">
     <link rel="stylesheet" href="/css/login.css" type="text/css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script type="text/javascript" src="/js/md5.js"></script>
@@ -11,7 +11,6 @@
 </head>
 <body>
         <% include partial/hdr %>
-</div>
      <div id="main">
         <img id="backimg" src="/img/corn.jpg">
          <br>
@@ -77,14 +76,19 @@
  
     </table>
     <br>
+
+    <div id="invalidInput" style="display: none ;font-size:50%; color:red"align="center">*Some information is missing or incorrect</div>
+
     <%if(planes.length>0){%>
-    <div id="updateallbuttondiv">
-      <button id="updateallbutton" class = "btnExample" type="button" onclick="updateAll(this)" >UPDATE ALL</button>
-    </div>
+      <div style="text-align: center;"><button id="updateallbutton" class = "updateallbutton" type="button" onclick="updateAll(this)" >UPDATE ALL</button></div>
+    
     <%}%>
+
+    <div class="success" style="display: none ;font-size:50%; color:green"align="center">Updated!</div>
+    
   </div>
 </form>
-<div id="invalidInput" style="display:none;color:red"> *invalid input in a field</div>
+<!--<div id="invalidInput" style="display:none;color:red"> *invalid input in a field</div>-->
   
 </div></div>
 
