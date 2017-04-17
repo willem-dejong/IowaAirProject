@@ -1,0 +1,97 @@
+@charset "utf-8";
+#registration{
+    width: 60%;
+    margin:auto;
+    /*text-align: center;*/
+    border: solid;
+    background-color: rgba(255,255,255,0.5);
+    font-size: 24px;
+}
+
+h3{
+  text-align : center;
+  margin : auto;
+}
+
+#regbut{
+    width: 70%;
+    font-size: 24px;
+    left: 31%;
+    position: absolute;
+}
+#changebut{
+    width: 70%;
+    font-size: 24px;
+    left: 31%;
+    position: absolute;
+}
+
+.lab{
+  /*display: block;*/
+  /*float: left;*/
+  /*width : 180px;  */ 
+  width: 30%; 
+  text-align : right;
+  /*font-size : 24px;*/
+  /*margin-left: 200px;*/
+  /*border: solid;*/
+  position: absolute;
+}
+
+.inp {
+  /*border: solid;*/
+  font-size: 24px;
+  width: 70%;
+  left: 31%;
+  position: absolute;
+}
+
+#registrationhead{
+    text-align: center;
+    font-size: 80px;
+    /*border: solid;*/
+    /*background-color: gray;*/
+}
+
+.lidiv{
+  position: relative;
+  /*border: solid;*/
+  margin: auto;
+  width: 60%;
+  height: 38px;
+}
+
+#passengerform{
+  position: relative;
+  width: 100%;
+  /*border: solid;*/
+  /*background-color: blue;*/
+}
+
+.passengerBox{
+  position:relative;
+  border-top-style: solid;
+  border-bottom-style: solid;
+}
+.passengerBox2{
+  position:relative;
+  background: blue;
+  border-top-style: solid;
+  border-bottom-style: solid;
+}
+#t{background: red;}
+
+.bookbutton {
+  color: gold;
+  background: green;
+  font-weight: bold;
+  border: 1px solid darkgreen;
+  width: 150px;
+  height: 30px;
+  margin: auto;
+}
+.bookbutton:hover {
+  color: green;
+  background: gold;
+  cursor: pointer;
+}
