@@ -1,0 +1,46 @@
+<html>
+	<head>
+		<title>IowaAir</title>
+        <link rel="icon" href="/img/Logo1465.png">
+        <link rel="stylesheet" href="/css/book.css" type="text/css">
+        <link rel="stylesheet" href="/css/login.css" type="text/css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        <script type="text/javascript" src="/js/md5.js"></script>
+        <script type="text/javascript" src="/js/logsess.js"></script>>
+        <script type="text/javascript" src="/js/addPlane.js"></script>
+	</head>
+	<body>
+		<% include partial/hdr %>
+		<div id="main">
+			<img id="backimg" src="/img/corn.jpg">
+			
+			<div id = "registration">
+			 <div id = "registrationhead"> BOOK FLIGHT </div>
+			 	<form id="passengerform">
+
+			 		<% var passengerNumber = 1; %>
+
+					<% for(var i=0; i<passenger.num; i++) {%>
+						<% include partial/passenger %>
+
+						<% passengerNumber += 1; %>
+					<% } %>
+
+					<br>
+
+					<div class="lidiv">
+						<label class="lab" for="creditin">Credit Card #</label>
+						<input class="inp" type="text" name="creditin" form="passengerform"/>
+					</div>
+
+					<br>
+
+					<div style="text-align: center;"><button id="bookbutton" class = "bookbutton" type="button" >BOOK</button></div>
+			 	
+				</form>
+			</div>
+
+		</div>
+
+	</body>
+</html>
