@@ -4,10 +4,11 @@
         <link rel="icon" href="/img/Logo1465.png">
         <link rel="stylesheet" href="/css/book.css" type="text/css">
         <link rel="stylesheet" href="/css/login.css" type="text/css">
+        <link rel="stylesheet" href="/css/resultstyle.css" type="text/css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
         <script type="text/javascript" src="/js/md5.js"></script>
-        <script type="text/javascript" src="/js/logsess.js"></script>>
-        <script type="text/javascript" src="/js/addPlane.js"></script>
+        <script type="text/javascript" src="/js/logsess.js"></script>
+        <script type="text/javascript" src="/js/book.js"></script>
 	</head>
 	<body>
 		<% include partial/hdr %>
@@ -16,28 +17,68 @@
 			
 			<div id = "registration">
 			 <div id = "registrationhead"> BOOK FLIGHT </div>
-			 	<form id="passengerform">
+			 <% if(user.type == "G") { %>
+			 	<label style="color:red;font-size:50%;">Please log in to proceed </label>
+			 <% }else { %>
+			 <!-- passnum = "<%=passenger.num%>"-->
+			 	<ul id="resultlist" to = "<%=toTrip.flightIds%>" passnum = "<%=passenger.num%>"  <% if(returnTrip){ %>
+			 		 return = "<%=returnTrip.flightIds%>"
+			 		 <% if (returnTrip.has_ec){ %>
+			 		 	class2 = "ec"
+			 		 <% }else { %>
+			 		 	class2 = "fc"
+			 		 <% } %>
+			 	<% }else { %>
+			 		 return = null
+			 		 class2 = null
+			 	<% } %> 
+			 	<% if(toTrip.has_ec){ %>
+			 		class1 = "ec"
+			 	<% }else { %>
+			 		class1 = "fc"
+			 	<% } %>
 
-			 		<% var passengerNumber = 1; %>
+			 	>
 
-					<% for(var i=0; i<passenger.num; i++) {%>
-						<% include partial/passenger %>
+			 	<%var tobook=true%>
+                <%var mode=0%>
+                <%var trip=toTrip%>
+                <% include partial/tripitem %>
 
-						<% passengerNumber += 1; %>
-					<% } %>
+                <% if(returnTrip) { %>
+                	<%var trip=returnTrip %>
+                	<% include partial/tripitem %>
+                <% } %>
 
-					<br>
+			 
+				 	<form id="passengerform">
 
-					<div class="lidiv">
-						<label class="lab" for="creditin">Credit Card #</label>
-						<input class="inp" type="text" name="creditin" form="passengerform"/>
-					</div>
+				 		<% var passengerNumber = 1 %>
 
-					<br>
+						<% for(var i=0; i<pass; i++) {%>
+							<% include partial/passenger %>
 
-					<div style="text-align: center;"><button id="bookbutton" class = "bookbutton" type="button" >BOOK</button></div>
-			 	
-				</form>
+							<% passengerNumber += 1%>
+						<% } %>
+
+						<br>
+
+						<div class="lidiv">
+							<label class="lab" for="creditin">Credit Card #</label>
+							<input class="inp" type="text" name="creditin" form="passengerform"/>
+						</div>
+
+						<br>
+
+						<div style="text-align: center;"><button id="bookbutton" class = "bookbutton" type="button" onclick="confirmation(this)" >BOOK</button></div>
+
+						<div id="invalidInput" style="display: none ;font-size:50%; color:red"align="center">*Some information is missing or incorrect</div>
+
+						<div style="display: none" align="center"><button type="button" id="confirmation" class = "bookbutton" onclick="book(this)">ARE YOU SURE?</button></div>
+				 	
+					</form>
+
+				<% } %>
 			</div>
 
 		</div>
