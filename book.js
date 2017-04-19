@@ -14,23 +14,33 @@ function book(but){
 
 	var address = "/bookit?pass="+n;
 
+	//var date;
+	//var newDate;
+
 	while(pass!=null){
 	    console.log(pass);
 	    //var fname = pass.querySelector(".fnamein").value;
 	    //eval("var fname" + i + "=pass.querySelector(".fnamein").value;");
 	    fnames[i] = pass.querySelector("#fnamein").value;
 	    lnames[i] = pass.querySelector("#lnamein").value;
-	    dobs[i] = pass.querySelector("#dobin").value;
 	    phones[i] = pass.querySelector("#phonein").value;
 	    genders[i] = pass.querySelector("#genderin").value;
+	    dobs[i] = pass.querySelector("#dobin").value;
+
+	    //date = dobs[i].split("-");
+	    //newDate = new Date(parseInt(date[0]),parseInt(date[1])-1,parseInt(date[2]));
+
+
 
 	    console.log("fname"+i+":"+fnames[i]);
 	    console.log("lname"+i+":"+lnames[i]);
 	    console.log("dob"+i+":"+dobs[i]);
+	    //console.log("dob"+i+":"+newDate);
 	    console.log("phone"+i+":"+phones[i]);
 	    console.log("gender"+i+":"+genders[i]);
 
 	    address = address+"&fname"+i+"="+fnames[i]+"&lname"+i+"="+lnames[i]+"&dob"+i+"="+dobs[i]+"&phone"+i+"="+phones[i]+"&gender"+i+"="+genders[i];
+	    //address = address+"&fname"+i+"="+fnames[i]+"&lname"+i+"="+lnames[i]+"&dob"+i+"="+newDate+"&phone"+i+"="+phones[i]+"&gender"+i+"="+genders[i];
 
 	    i+=1
 	    pass = document.getElementById("pass"+ String(i));
@@ -78,14 +88,30 @@ function confirmBook(but){
 	var gender;
 
 	var flag = false;
+
+	var date;
+	var newDate;
 	
 	while(pass!=null){
 		console.log(pass)
 		fname = pass.querySelector("#fnamein").value;
 	    lname = pass.querySelector("#lnamein").value;
-	    dob = pass.querySelector("#dobin").value;
+	    //dob = pass.querySelector("#dobin").value;
 	    phone = pass.querySelector("#phonein").value;
 	    gender = pass.querySelector("#genderin").value;
+
+	    dob = pass.querySelector("#dobin").value;
+	    //date = dob.split("-");
+	    //newDate = new Date(parseInt(date[0]),parseInt(date[1])-1,parseInt(date[2]));
+
+	    if(dob.search("[0-9]{4}-[0-9]{2}-[0-9]{2}") == -1){
+	    	pass.querySelector("#labdobin").style.color="red";
+	    	flag = true;
+	    }
+	    /*else{
+	    	date = dob.split("-");
+	    	newDate = new Date(parseInt(date[0]),parseInt(date[1])-1,parseInt(date[2]));
+	    }*/
 
 		if(fname == "" || lname == "" || dob == "" || phone == "" || gender == "") {
 	    	//check date of birth
