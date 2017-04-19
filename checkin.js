@@ -21,16 +21,22 @@ function checkIn(but){
     var bags = row.querySelector(".bagsEdit").value;
 
     document.getElementById("invalidInput").style.display = "none";
+    document.getElementById("invalidServerInput").style.display = "none";
 
     if(resID == "" || bags == ""){
         row.bgColor = "#FF0000";
     }
     else{
+        row.bgColor = "green";
         setTimeout(function(){row.bgColor = "transparent"},3000);
         var address = "/manager/checkin?resid="+resID+"&bags="+bags;
 
         $.ajax({url:address,success:function(response){
-        },error:function(response){row.bgColor = "red"}
+            window.location = window.location;
+        },error:function(response){
+            row.bgColor = "red";
+            document.getElementById("invalidServerInput").style.display = "block";
+        }
         });
         console.log("Address: "+address);
     }
@@ -55,10 +61,13 @@ function cancelRes(but){
         var address = "/manager/cancel?resid="+resID;
 
         $.ajax({url:address,success:function(response){
-            row.bgColor = "green";
-            setTimeout(function(){row.bgColor = "transparent"},5000);
-            $('.successCancel').fadeIn().delay(2000).fadeOut(1000);
-        },error:function(response){row.bgColor = "red"}
+            console.log(response)
+            //window.location = window.location;
+            but.parentElement.parentElement.parentElement.removeChild(but.parentElement.parentElement);
+        },error:function(response){
+            row.bgColor = "red"
+            document.getElementById("invalidServerInput").style.display = "block";
+        }
         });
         console.log("Address: "+address);
     }

@@ -230,13 +230,13 @@
                         </td>
 
                         <td>
-                            <input class="seatEdit smallBox" disabled>
+                            <input class="seatEdit smallBox" disabled value ="<% if (passengers[i].seatnum){%><%= passengers[i].seatnum%><%}%>">
                         </td>
                         <td>
-                            <input class="bagsEdit smallBox" type="number" min="0">
+                            <input class="bagsEdit smallBox" type="number" min="0" value="<% if (passengers[i].bags){%><%= passengers[i].bags%><%}%>">
                         </td>
                         <td>
-                            <input class="checkinButton" type="button" value="Check In" onclick="checkIn(this)"/>
+                            <input class="checkinButton" type="button" value="Check In" onclick="checkIn(this)" <% if (passengers[i].seatnum){%>disabled<%}%>/>
                         </td>
                         <td>
                             <input class="cancelButton" type="button" value="Cancel" onclick="cancelRes(this)"/>
@@ -248,7 +248,9 @@
 
             </div>
 
-            <div id="invalidInput" style="display: none ;font-size:50%; color:red"align="center">*Seat# and Number of Bags Must Be Entered</div>
+            <div id="invalidInput" style="display: none ;font-size:50%; color:red"align="center">*Number of Bags Must Be Entered</div>
+
+            <div id="invalidServerInput" style="display: none ;font-size:50%; color:red"align="center">*Server sent back error</div>
 
             <div class="successCheckin" style="display: none ;font-size:50%; color:green"align="center">Checked In!</div>
 
