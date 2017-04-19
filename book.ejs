@@ -49,6 +49,24 @@
                 	<% include partial/tripitem %>
                 <% } %>
                 </ul>
+
+                <div id="totalPriceDisplay">
+	                <% var totalPrice = 0 %>
+	                <% if(toTrip.has_ec){ %>
+	                	<% totalPrice += toTrip.tot_ec_price %>
+	                <% }else { %>
+	                	<% totalPrice += toTrip.tot_fc_price %>
+	                <% } %>
+	                <% if(returnTrip) { %>
+	                	<% if(returnTrip.has_ec) { %>
+	                		<% totalPrice += returnTrip.tot_ec_price %>
+	                	<% }else { %>
+	                		<% totalPrice += returnTrip.tot_fc_price %>
+	                	<% } %>
+	                <% } %> 
+
+	                <label>TOTAL PRICE: $<%=totalPrice%></label> 
+                </div>
 			 
 				 	<form id="passengerform">
 
