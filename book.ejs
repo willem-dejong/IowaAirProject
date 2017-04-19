@@ -20,9 +20,8 @@
 			 <% if(user.type == "G") { %>
 			 	<label style="color:red;font-size:50%;">Please log in to proceed </label>
 			 <% }else { %>
-			 <!-- passnum = "<%=passenger.num%>"-->
-			 	<ul id="resultlist" to = "<%=toTrip.flightIds%>" passnum = "<%=passenger.num%>"  <% if(returnTrip){ %>
-			 		 return = "<%=returnTrip.flightIds%>"
+			 	<ul id="resultlist" to = "<%=toTrip.flightIDs%>" passnum = "<%=pass%>"  <% if(returnTrip){ %>
+			 		 return = "<%=returnTrip.flightIDs%>"
 			 		 <% if (returnTrip.has_ec){ %>
 			 		 	class2 = "ec"
 			 		 <% }else { %>
@@ -49,7 +48,7 @@
                 	<%var trip=returnTrip %>
                 	<% include partial/tripitem %>
                 <% } %>
-
+                </ul>
 			 
 				 	<form id="passengerform">
 
@@ -63,18 +62,44 @@
 
 						<br>
 
+						<h3>CREDIT CARD INFO</h3>
 						<div class="lidiv">
-							<label class="lab" for="creditin">Credit Card #</label>
-							<input class="inp" type="text" name="creditin" form="passengerform"/>
+							<label class="lab" for="creditnumin">Credit Card #</label>
+							<input class="inp" type="text" name="creditnumin" form="passengerform"/>
+						</div>
+
+						<div class="lidiv">
+							<label class="lab" for="securitycodein">Security Code</label>
+							<input class="inp" type="text" name="securitycodein" form="passengerform"/>
+						</div>
+						<br>
+						<div class="lidiv">
+							<label class="lab" for="creditexpdatein">Exp. Date</label>
+							<input class="inp" type="date" name="creditexpdatein" form="passengerform"/>
+						</div>
+
+						<div class="lidiv">
+							<label class="lab" for="creditfnamein">First Name</label>
+							<input class="inp" type="text" name="creditfnamein" form="passengerform"/>
+						</div>
+
+						<div class="lidiv">
+							<label class="lab" for="creditlnamein">Last Name</label>
+							<input class="inp" type="text" name="creditlnamein" form="passengerform"/>
+						</div>
+
+						<div class="lidiv">
+							<label class="lab" for="creditaddressin">Billing Address</label>
+							<input class="inp" type="text" name="creditaddressin" form="passengerform"/>
 						</div>
 
 						<br>
 
-						<div style="text-align: center;"><button id="bookbutton" class = "bookbutton" type="button" onclick="confirmation(this)" >BOOK</button></div>
+						<div id="bookDiv" style="text-align: center; ><button id="bookbutton" class = "bookbutton" type="button" onclick="confirmBook(this)" >BOOK</button></div>
 
 						<div id="invalidInput" style="display: none ;font-size:50%; color:red"align="center">*Some information is missing or incorrect</div>
 
-						<div style="display: none" align="center"><button type="button" id="confirmation" class = "bookbutton" onclick="book(this)">ARE YOU SURE?</button></div>
+						<div id="confirmDiv"  style="display: none" align="center"><button type="button" class = "bookbutton" onclick="book(this)">ARE YOU SURE?</button></div>
 				 	
 					</form>
 
