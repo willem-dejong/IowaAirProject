@@ -18,11 +18,11 @@ function book(but){
 	    console.log(pass);
 	    //var fname = pass.querySelector(".fnamein").value;
 	    //eval("var fname" + i + "=pass.querySelector(".fnamein").value;");
-	    fnames[i] = pass.querySelector(".fnamein").value;
-	    lnames[i] = pass.querySelector(".lnamein").value;
-	    dobs[i] = pass.querySelector(".dobin").value;
-	    phones[i] = pass.querySelector(".phonein").value;
-	    genders[i] = pass.querySelector(".genderin").value;
+	    fnames[i] = pass.querySelector("#fnamein").value;
+	    lnames[i] = pass.querySelector("#lnamein").value;
+	    dobs[i] = pass.querySelector("#dobin").value;
+	    phones[i] = pass.querySelector("#phonein").value;
+	    genders[i] = pass.querySelector("#genderin").value;
 
 	    console.log("fname"+i+":"+fnames[i]);
 	    console.log("lname"+i+":"+lnames[i]);
@@ -37,12 +37,12 @@ function book(but){
     }
 
     var toid = document.getElementById("resultlist").getAttribute("to");
-    var returnid = document.getElementById("resultlist").getAttribute("to");
+    var returnid = document.getElementById("resultlist").getAttribute("return");
 
     address = address+"&flightids1="+toid;
 
     //check if there is a return flight
-    if(returnid != null){
+    if(returnid != "null"){
     	address = address+"&flightids2="+returnid;
     }
 
@@ -51,18 +51,22 @@ function book(but){
 
     address = address+"&class1="+toclass;
 
-    if(returnclass != null){
+    if(returnclass != "null"){
     	address = address+"&class2="+returnclass;
     }
 
+    console.log(address);
 
     $.ajax({url:address,success:function(result){console.log(result)},error:function(error){console.log(error)}});
 }
 
 //After book button is selected first time, all fields are checked for errors
-function confirmation(but){
+function confirmBook(but){
 	var error = document.getElementById("invalidInput");
-	var confirm = document.getElementById("confirm");
+	var confirm = document.getElementById("confirmDiv");
+	var book = document.getElementById("bookDiv")
+
+	error.style.display = "none";
 
 	var i=1;
 	var pass=document.getElementById("pass"+ String(i));;
@@ -76,14 +80,30 @@ function confirmation(but){
 	var flag = false;
 	
 	while(pass!=null){
-		fname = pass.querySelector(".fnamein").value;
-	    lname = pass.querySelector(".lnamein").value;
-	    dob = pass.querySelector(".dobin").value;
-	    phone = pass.querySelector(".phonein").value;
-	    gender = pass.querySelector(".genderin").value;
+		console.log(pass)
+		fname = pass.querySelector("#fnamein").value;
+	    lname = pass.querySelector("#lnamein").value;
+	    dob = pass.querySelector("#dobin").value;
+	    phone = pass.querySelector("#phonein").value;
+	    gender = pass.querySelector("#genderin").value;
 
 		if(fname == "" || lname == "" || dob == "" || phone == "" || gender == "") {
 	    	//check date of birth
+	    	if(fname==""){
+	    		pass.querySelector("#labfnamein").style.color="red";
+	    	}
+	    	if(lname==""){
+	    		pass.querySelector("#lablnamein").style.color="red";
+	    	}
+	    	if(dob==""){
+	    		pass.querySelector("#labdobin").style.color="red";
+	    	}
+	    	if(phone==""){
+	    		pass.querySelector("#labphonein").style.color="red";
+	    	}
+	    	if(gender=""){
+	    		pass.querySelector("#labgenderin").style.color="red";
+	    	}
 	       	flag = true;
 	    }
 	    i += 1;
@@ -96,10 +116,11 @@ function confirmation(but){
     }
     else{
     	confirm.style.display = "block";
+    	book.style.display = "none";
     }
 
 }
-
+/*
 function bookAll(but){
     var pass;
     var i=1;
@@ -157,4 +178,4 @@ function checkErrors(){
         error.style.display = "none";
     }
     $('.success').fadeIn().delay(2000).fadeOut(1000);
-}
+}*/
