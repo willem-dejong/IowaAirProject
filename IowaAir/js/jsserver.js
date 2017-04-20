@@ -1,5 +1,6 @@
 //var flightq=require('./flightq');
 //var sql=require('./sql');
+var jspath=require("./jspath")
 var jsgetairports=require('./jsgetairports');
 var jsupdatepass=require('./jsupdatepass');
 var jsindex=require('./jsindex');
@@ -9,22 +10,23 @@ var jsregistration=require('./jsregistration');
 var jscreateAccount=require('./jscreateAccount');
 var jsaccount=require('./jsaccount');
 var jsresult=require('./jsresult');
-var express=require("C:\\Program Files\\nodejs\\node_modules\\express");
-var ejs=require("C:\\Program Files\\nodejs\\node_modules\\ejs");
-var body=require("C:\\Program Files\\nodejs\\node_modules\\body-parser");
-var session=require("C:\\Program Files\\nodejs\\node_modules\\express-session");
-var localstrat=require("C:\\Program Files\\nodejs\\node_modules\\passport-local");
-var passport=require("C:\\Program Files\\nodejs\\node_modules\\passport");
-var cookie=require("C:\\Program Files\\nodejs\\node_modules\\cookie-parser");
+var jsbook=require('./jsbook');
+var express=require(jspath.modpath()+"express");
+var ejs=require(jspath.modpath()+"ejs");
+var body=require(jspath.modpath()+"body-parser");
+var session=require(jspath.modpath()+"express-session");
+var localstrat=require(jspath.modpath()+"passport-local");
+var passport=require(jspath.modpath()+"passport");
+var cookie=require(jspath.modpath()+"cookie-parser");
 
 var app=express();
 app.set("view engine","ejs");
-app.set("views","C:\\Users\\the Crimson Moon\\Desktop\\IowaAir\\views");
+app.set("views",jspath.IApath()+"views");
 app.use(body.json());
 app.use(body.urlencoded({extended:false}));
 app.use(cookie());
 app.use(session({resave:true,saveUninitialized:true,secret:"sashfdgsfgier"}));
-app.use(express.static("C:\\Users\\the Crimson Moon\\Desktop\\IowaAir\\public"));
+app.use(express.static(jspath.IApath()+"public"));
 app.use("/getports",jsgetairports.getairports);
 app.use("/changepass",jsupdatepass.updatepass);
 app.use("/loginvalidate",jslogin.login);
@@ -54,6 +56,16 @@ app.use("/admin/updateFlight",jsadmin.updateFlight);
 app.use("/admin/addFlight",jsadmin.addFlightRender);//function(req,res){res.render("addFlight",{user:req.session.user,ports:[{portid:"ORG",airport:"fgdsgdsgs"},{portid:"DFF",airport:"fgdsgdsgs"}],planes:[{model:"ORG fsd"},{model:"DFF fdg"}]})});
 app.use("/admin/insertFlight",jsadmin.addFlight);
 app.use("/registration",jsregistration.registrationRender);
+app.use("/book",jsbook.bookrender);
+app.use("/bookit",jsbook.bookit);
+app.use("/ThankYou",function(req,res){
+	if(!req.session||!req.session.user){
+		res.redirect("/")
+	}
+	else{
+		res.render("Thank",{user:req.session.user})
+	}
+});
 app.use("/result",jsresult.resultRender);
 app.use("/", jsindex.indexRender);
 app.listen(80,function(){

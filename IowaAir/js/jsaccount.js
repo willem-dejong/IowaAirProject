@@ -1,4 +1,5 @@
-var mysql=require('C:\\Program Files\\nodejs\\node_modules\\mysql');
+var jspath=require("./jspath")
+var mysql=require(jspath.modpath()+'mysql');
 function accountRender(req,res){
 	if(!req.session.user){
 		res.redirect("/");

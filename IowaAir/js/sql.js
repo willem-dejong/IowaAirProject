@@ -1,4 +1,5 @@
-var mysql=require('C:\\Program Files\\nodejs\\node_modules\\mysql');
+var jspath=require("./jspath")
+var mysql=require(jspath.modpath()+'mysql');
 
 function getmodels(req,res,errh,succh,args){
     console.log("getmodels");
@@ -123,7 +124,106 @@ function getFlights3(org,dest,date,pass,req,res,errhandler,successhandler,args){
         }
     });
 }
-
+function getTrip1(flightID,pass,req,res,errHandler,successHandler,args){
+	var conn=mysql.createConnection({user:"admin",password:"IowaAir2017",port:"3306"});
+   conn.connect();
+   var inn="call iowaair.getTrip1(?,?);"
+   var argz=[flightID,pass];
+   conn.query(inn,argz,function(err,rows,feilds){
+   	conn.end();
+   	if (err){
+   		errHandler(err,req,res,args);
+   	}
+   	else{
+   		successHandler(rows[0],req,res,args);
+		}
+	});
+}
+function getTrip2(flightID1,flightID2,pass,req,res,errHandler,successHandler,args){
+	var conn=mysql.createConnection({user:"admin",password:"IowaAir2017",port:"3306"});
+   conn.connect();
+   var inn="call iowaair.getTrip2(?,?,?);"
+   var argz=[flightID1,flightID2,pass];
+   conn.query(inn,argz,function(err,rows,feilds){
+   	conn.end();
+   	if (err){
+   		errHandler(err,req,res,args);
+   	}
+   	else{
+   		successHandler(rows[0],req,res,args);
+		}
+	});
+}
+function getTrip3(flightID1,flightID2,flightID3,pass,req,res,errHandler,successHandler,args){
+	var conn=mysql.createConnection({user:"admin",password:"IowaAir2017",port:"3306"});
+   conn.connect();
+   var inn="call iowaair.getTrip3(?,?,?,?);"
+   var argz=[flightID1,flightID2,flightID3,pass];
+   conn.query(inn,argz,function(err,rows,feilds){
+   	conn.end();
+   	if (err){
+   		errHandler(err,req,res,args);
+   	}
+   	else{
+   		successHandler(rows[0],req,res,args);
+		}
+	});
+}
+/*function incbook(rows,argzs,req,res,successHandler,args){
+	var conn=mysql.createConnection({user:"admin",password:"IowaAir2017",port:"3306"});
+   conn.connect();
+   conn.query("call iowaair.incbook(?,?,?);",argzs.pop(),function(err,rows2,feilds){
+   	conn.end();
+   	if (err){
+   		console.log(err)
+   	}
+   	else{
+   		if(argzs.length>0){
+   			incbook(rows,argzs,req,res,successHandler,args)
+   		}
+   		else{
+   			successHandler(rows,req,res,args);
+   		}
+		}
+	});
+}*/
+function reserve(passengers,flightIDs,classes,req,res,errHandler,successHandler,args){
+	console.log(flightIDs)
+	var conn=mysql.createConnection({user:"admin",password:"IowaAir2017",port:"3306"});
+   conn.connect();
+   inn="select "
+   inns=[]
+   argzs=[]
+   var cnt=0;
+   argz=[]
+   for(var i in flightIDs){
+   	for(var ii in passengers){
+   		if(cnt>0){
+   			inn=inn+", ";
+   		}
+   		cnt+=1//(select idaccount from iowaair.account where email=? and password=? limit 1)req.session.user.email,req.session.user.passw,
+   		inn=inn+"iowaair.intoRes(f.a,?,?,?,?,f.b,?,?) as a"+String(cnt);
+   		argz=argz.concat([passengers[ii].fname,passengers[ii].lname,passengers[ii].dob,passengers[ii].gender,flightIDs[i],classes[i]])
+   	}
+   	//inns.push("call iowaair.incbook(?,?,?);")
+   	//argzs.push([flightIDs[i],passengers.length,classes[i]])
+   }
+   inn=inn+" from (select iowaair.intoTran(1) as a, idaccount as b from iowaair.account where email=? and password=? limit 1) as f;"
+   argz=argz.concat([req.session.user.email,req.session.user.passw]);
+	console.log(inn)
+   //argz=argz.concat(argz2);
+   conn.query(inn,argz,function(err,rows,feilds){
+   	conn.end();
+   	if (err){
+   	console.log(err)
+   		errHandler(err,req,res,args);
+   	}
+   	else{
+   		successHandler(rows,req,res,args);
+   		//incbook(rows,argzs,req,res,successHandler,args);
+		}
+	});
+}
 function getLogin(temail,topassw,req,res,errHandler,successHandler,args){
 	//console.log("getLogin")
 	args.temail=temail;
@@ -470,12 +570,16 @@ module.exports={
     getFlights1:getFlights1,
     getFlights2:getFlights2,
     getFlights3:getFlights3,
+    getTrip1:getTrip1,
+    getTrip2:getTrip2,
+    getTrip3:getTrip3,
     addPlane:addPlane,
     addFlight:addFlight,
     searchPlanes:searchPlanes,
     searchFligths:searchFligths,
     updatePlane:updatePlane,
     updateFlight:updateFlight,
-    getmodels:getmodels
+    getmodels:getmodels,
+    reserve:reserve
     //getFlight:getFlight
     };

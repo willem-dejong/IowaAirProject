@@ -1,5 +1,6 @@
-var nodeMailer =require('C:\\Program Files\\nodejs\\node_modules\\nodemailer');
-var mysql=require('C:\\Program Files\\nodejs\\node_modules\\mysql');
+var jspath=require("./jspath")
+var nodeMailer =require(jspath.modpath()+'nodemailer');
+var mysql=require(jspath.modpath()+'mysql');
 var md5 =require('./md5');
 //console.log(md5);
 var mailer=nodeMailer.createTransport({service:'gmail',auth:{user:'iowaairsystem@gmail.com',pass:'IowaAir2017'}});

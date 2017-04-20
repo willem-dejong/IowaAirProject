@@ -1,4 +1,5 @@
-var mysql=require('C:\\Program Files\\nodejs\\node_modules\\mysql');
+var jspath=require("./jspath")
+var mysql=require(jspath.modpath()+'mysql');
 var jscreateAccount=require('./jscreateAccount');
 var jsupdatePlanes=require('./jsupdatePlanes');
 var jsupdateFlights=require('./jsupdateFlights');
