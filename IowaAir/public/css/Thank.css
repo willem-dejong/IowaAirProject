@@ -1,0 +1,12 @@
+#Thanks{
+   width: 60%;
+   margin:auto;
+   /*text-align: center;*/
+   border: solid;
+   background-color: rgba(255,255,255,0.5);
+   font-size: 24px;
+}
+.ThanksM{
+   text-align: center;
+   font-size: 80px;
+}
