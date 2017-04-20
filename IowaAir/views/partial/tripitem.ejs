@@ -66,7 +66,7 @@
                                     <br>
                                     <% for (ii in trip.flights){%>
                                     <%var ii2=parseInt(ii)+1%>
-                                        flight<%=ii2%>: <%=trip.flights[ii].depart_time.toUTCString()%>-<%=trip.flights[ii].arrive_time.toUTCString()%>
+                                        flight<%=ii2%>: <%=trip.flights[ii].depart_time%>-<%=trip.flights[ii].arrive_time%>
                                         <br>
                                         <br>
                                     <%}%>

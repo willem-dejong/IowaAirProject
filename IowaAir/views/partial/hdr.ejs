@@ -4,32 +4,32 @@
          </div>
         <% if (user.type=="G"){ %>
         <div id="log">
-            <a href="javascript:void(0)" id="loginlink" onclick="createloginbox();">login</a>/<a href="/registration">register</a>
+            <a href="javascript:void(0)" id="loginlink" onclick="createloginbox();">login</a>/<a id="reglink" href="/registration">register</a>
         </div>
         <% } else{%>
         <script>getSession()</script>
         <%if(user.type=="A"){%>
         <div id="toolbit" onclick="showTools()">Admin Tools</div>
         <div id="tools">
-            <div class="toolopt">
+            <div class="toolopt" id="addE">
                 <a href="/admin/addEmployee" >Add Employees</a>
             </div>
-            <div class="toolopt">
+            <div class="toolopt" id="addP">
                 <a href="/admin/addPlane" >Add Plane</a>
             </div>
-            <div class="toolopt">
+            <div class="toolopt" id="upP">
                 <a href="/admin/updatePlanes" >update Planes</a>
             </div>
-            <div class="toolopt">
+            <div class="toolopt" id="addF">
                 <a href="/admin/addFlight" >Add Flight</a>
             </div>
-            <div class="toolopt">
+            <div class="toolopt" id="upF">
                 <a href="/admin/updateFlights" >update Flights</a>
             </div>
         </div>
         <%}%>
         <div id="log">
-            Welcome Back <a href="/account"><%=user.fname%></a>!   <a href="javascript:void(0);" onclick="logout();">logout</a>
+            Welcome Back <a id="accountlink" href="/account"><%=user.fname%></a>!   <a id="logoutlink" href="javascript:void(0);" onclick="logout();">logout</a>
         </div>
         <%}%>
 </div>

@@ -1,0 +1,8 @@
+<% for(var i in planes){ %>
+<%var plane=planes[i]%>
+<%var temp=plane["model"]%>
+<%while(temp.indexOf(" ")!=-1){%>
+<%temp=temp.replace(" ","_")%>
+<%}%>
+<option id="<%=temp%>" value="<%=plane["model"]%>"><%=plane["model"]%></option>
+<%}%>
