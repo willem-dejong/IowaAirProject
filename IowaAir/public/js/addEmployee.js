@@ -128,7 +128,7 @@ function validateForm(){
         missingFlag = true;
     }
     else{
-        var phoneMatch = document.getElementById('phonein').value.match(/(([0-9]\-)?[0-9]{3}\-)?[0-9]{3}\-[0-9]{4}/g);     /////////////// CHECK IF PHONE IS VALID FORMAT ////////////
+        var phoneMatch = document.getElementById('phonein').value.match(/(([0-9]+\-)?[0-9]{3}\-)?[0-9]{3}\-[0-9]{4}/g);     /////////////// CHECK IF PHONE IS VALID FORMAT ////////////
         console.log(phoneMatch);
         if(phoneMatch&&document.getElementById('phonein').value!=phoneMatch[0]){
         		document.getElementById('phonelab').style.color = 'red';
