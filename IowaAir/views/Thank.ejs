@@ -1,0 +1,27 @@
+<html>
+	<head>
+		<title>IowaAir</title>
+        <link rel="icon" href="/img/Logo1465.png">
+        <link rel="stylesheet" href="/css/login.css" type="text/css">
+        <link rel="stylesheet" href="/css/Thank.css" type="text/css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        <script type="text/javascript" src="/js/md5.js"></script>
+	</head>
+	<body>
+		<% include partial/hdr %>
+		<div id="main">
+			<img id="backimg" src="/img/corn.jpg">
+                            <div id = "Thanks">
+			 <div class = "ThanksM"> THANK YOU!</div>
+			 <div class = "ThanksM"> Enjoy your trip!</div>
+                            <audio id="takeoff" controls style="display:none;">
+                                        <source src="/mp3/airplane.mp3" type="audio/mpeg">
+                            </audio>
+                            <script>
+                                var x = document.getElementById("takeoff");
+                                setTimeout(function(){x.play()},500)
+                            </script>
+                    </div>
+        </body>
+    </html>
+                            

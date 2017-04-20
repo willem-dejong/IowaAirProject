@@ -1,0 +1,130 @@
+<html>
+	<head>
+		<title>IowaAir</title>
+        <link rel="icon" href="/img/Logo1465.png">
+        <link rel="stylesheet" href="/css/book.css" type="text/css">
+        <link rel="stylesheet" href="/css/login.css" type="text/css">
+        <link rel="stylesheet" href="/css/resultstyle.css" type="text/css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        <script type="text/javascript" src="/js/md5.js"></script>
+        <script type="text/javascript" src="/js/logsess.js"></script>
+        <script type="text/javascript" src="/js/book.js"></script>
+	</head>
+	<body>
+		<% include partial/hdr %>
+		<div id="main">
+			<img id="backimg" src="/img/corn.jpg">
+			
+			<div id = "registration">
+			 <div id = "registrationhead"> BOOK FLIGHT </div>
+			 <% if(user.type == "G") { %>
+			 	<label style="color:red;font-size:500%;">Please log in to proceed </label>
+			 <% }else { %>
+			 	<ul id="resultlist" to = "<%=toTrip.flightIDs%>" passnum = "<%=pass%>"  <% if(returnTrip){ %>
+			 		 return = "<%=returnTrip.flightIDs%>"
+			 		 <% if (returnTrip.has_ec){ %>
+			 		 	class2 = "ec"
+			 		 <% }else { %>
+			 		 	class2 = "fc"
+			 		 <% } %>
+			 	<% }else { %>
+			 		 return = null
+			 		 class2 = null
+			 	<% } %> 
+			 	<% if(toTrip.has_ec){ %>
+			 		class1 = "ec"
+			 	<% }else { %>
+			 		class1 = "fc"
+			 	<% } %>
+
+			 	>
+
+			 	<%var tobook=true%>
+                <%var mode=0%>
+                <%var trip=toTrip%>
+                <% include partial/tripitem %>
+
+                <% if(returnTrip) { %>
+                	<%var trip=returnTrip %>
+                	<% include partial/tripitem %>
+                <% } %>
+                </ul>
+
+                <div id="totalPriceDisplay">
+	                <% var totalPrice = 0 %>
+	                <% if(toTrip.has_ec){ %>
+	                	<% totalPrice += toTrip.tot_ec_price %>
+	                <% }else { %>
+	                	<% totalPrice += toTrip.tot_fc_price %>
+	                <% } %>
+	                <% if(returnTrip) { %>
+	                	<% if(returnTrip.has_ec) { %>
+	                		<% totalPrice += returnTrip.tot_ec_price %>
+	                	<% }else { %>
+	                		<% totalPrice += returnTrip.tot_fc_price %>
+	                	<% } %>
+	                <% } %> 
+
+	                <label>TOTAL PRICE: $<%=totalPrice%></label> 
+                </div>
+			 
+				 	<form id="passengerform">
+
+				 		<% var passengerNumber = 1 %>
+
+						<% for(var i=0; i<pass; i++) {%>
+							<% include partial/passenger %>
+
+							<% passengerNumber += 1%>
+						<% } %>
+
+						<br>
+
+						<h3>CREDIT CARD INFO</h3>
+						<div class="lidiv">
+							<label class="lab" id="labccnum" for="creditnumin">Credit Card #</label>
+							<input class="inp" id="ccnum" type="text" name="creditnumin" form="passengerform"/>
+						</div>
+
+						<div class="lidiv">
+							<label class="lab" id="labcsnum" for="securitycodein">Security Code</label>
+							<input class="inp" id="csnum" type="text" name="securitycodein" form="passengerform"/>
+						</div>
+						<br>
+						<div class="lidiv">
+							<label class="lab" id="labcedate" for="creditexpdatein">Exp. Date</label>
+							<input class="inp" id="cedate" type="text" name="creditexpdatein" form="passengerform"/>
+						</div>
+
+						<div class="lidiv">
+							<label class="lab" id="labcfname" for="creditfnamein">First Name</label>
+							<input class="inp" id="cfname" type="text" name="creditfnamein" form="passengerform"/>
+						</div>
+
+						<div class="lidiv">
+							<label class="lab" id="labclname" for="creditlnamein">Last Name</label>
+							<input class="inp" id="clname" type="text" name="creditlnamein" form="passengerform"/>
+						</div>
+
+						<div class="lidiv">
+							<label class="lab" id="labcaddress" for="creditaddressin">Billing Address</label>
+							<input class="inp" id="caddress" type="text" name="creditaddressin" form="passengerform"/>
+						</div>
+
+						<br>
+
+						<div id="bookDiv" style="text-align: center; ><button id="bookbutton" class = "bookbutton" type="button" onclick="confirmBook(this)" >BOOK</button></div>
+
+						<div id="invalidInput" style="display: none ;font-size:50%; color:red"align="center">*Some information is missing or incorrect</div>
+
+						<div id="confirmDiv"  style="display: none" align="center"><button type="button" class = "bookbutton" onclick="book(this)">ARE YOU SURE?</button></div>
+				 	
+					</form>
+
+				<% } %>
+			</div>
+
+		</div>
+
+	</body>
+</html>

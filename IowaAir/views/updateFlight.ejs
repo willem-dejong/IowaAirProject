@@ -85,7 +85,12 @@
                             <input class ="smallBox" id="gate" value="<%=sflight.gate%>" />
                         </td>
                         <td>
-                            <input class="bigBox" list="lplanes" id="model" value="<%=sflight.model%>" />
+                            <select class="bigBox" id="model" value="<%=sflight.model%>" >
+                                <%var cur=sflight.model%>
+                                <option value="<%=cur%>"><%=cur%></option>
+                                <option value=""></option>
+                                <%include partial/planeOptList%>
+                            </select>
                         </td>
                         
                         <%var date=""%>
@@ -120,7 +125,12 @@
                             <!--<input id="dTime" type="time" value="<%=time%>"/>-->
                         </td>
                         <td>
-                            <input class="smallBox" list="lports" id="dLoc" value="<%=sflight.origin_port%>"/>
+                            <select class="smallBox"  id="dLoc" value="<%=sflight.origin_port%>">
+                                <%var cur=sflight.origin_port%>
+                                <option value="<%=cur%>"><%=cur%></option>
+                                <option value=""></option>
+                                <%include partial/portOptList%>
+                            </select>
 
                         </td>
                         <%var date=""%>
@@ -155,7 +165,12 @@
                             <!--<input id="aTime" type="time" value="<%=time%>"/>-->
                         </td>
                         <td>
-                            <input class="smallBox" list="lports" id="aLoc" value="<%=sflight.destined_port%>"/>
+                            <select class="smallBox"  id="aLoc" value="<%=sflight.destined_port%>">
+                                <%var cur=sflight.destined_port%>
+                                <option value="<%=cur%>"><%=cur%></option>
+                                <option value=""></option>
+                                <%include partial/portOptList%>
+                            </select>
                         </td>
                         <td>
                             <input class ="smallBox" id="ECAvail" type="number" min="0" value="<%=sflight.ec_seats_available%>" />
@@ -180,6 +195,7 @@
                         </td>
                     </tr>
                     <% for(var i=0; i<flights.length; i++) {%>
+                    <%console.log(flights[i])%>
                         <tr id=<%="r"+String(i+1) %>>
                             <td>
                                 <input class="flightIDEdit bigBox" disabled value= "<%= flights[i].flightID %>">
@@ -196,7 +212,12 @@
                                 </td>
                             <%}else{%>
                                 <td><!-- list="lplanes"-->
-                                    <input class="modelEdit bigBox" list = "lplanes" value= "<%= flights[i].model %>">
+                                    <select class="modelEdit bigBox" value= "<%= flights[i].model %>">
+                                        <%var cur=flights[i].model%>
+                                <option value="<%=cur%>"><%=cur%></option>
+                                <option value=""></option>
+                                        <%include partial/planeOptList%>
+                                    </select>
                                 </td>
                             <%}%>
 
@@ -240,26 +261,34 @@
                             <%}%>
 
                             <%var sTime = String(hour)+":"+minute%>
-
+                            
+                    <%console.log(flights[i])%>
                             <% if (flights[i].booked == 1){%>
                                 <td>
                                     <input class="dTimeEdit" type="time" disabled value= "<%= sTime %>">
                                 </td>
                                 <td>
-                                    <input class="dLocEdit smallBox" list="lports" disabled value= "<%= flights[i].origin_port %>">
+                                    <select class="dLocEdit smallBox" disabled value= "<%= flights[i].origin_port %>">
+                                        <%var cur=flights[i].origin_port%>
+                                <option value="<%=cur%>"><%=cur%></option>
+                                <option value=""></option>
+                                        <%include partial/portOptList%>
+                                    </select>
                                 </td>
                             <%}else{%>
                                 <td>
                                     <input class="dTimeEdit" type="time" value= "<%= sTime %>">
                                 </td>
                                 <td>
-                                    <input class="dLocEdit smallBox" list="lports" value= "<%= flights[i].origin_port %>">
+                                    <select class="dLocEdit smallBox" value= "<%= flights[i].origin_port %>">
+                                        <%var cur=flights[i].origin_port%>
+                                <option value="<%=cur%>"><%=cur%></option>
+                                <option value=""></option>
+                                        <%include partial/portOptList%>
+                                    </select>
                                 </td>
                             <%}%>
-                            <script>
-                            console.log("<%=sTime%>");
-                            console.log("<%=flights[i].departure_time%>");
-                            </script>
+                    <%console.log(flights[i])%>
                             <% year=flights[i].arrival_time.getFullYear()%>
                             <% month=flights[i].arrival_time.getMonth() + 1%>
                             <% if (month<10){%>
@@ -307,14 +336,24 @@
                                     <input class="aTimeEdit" type="time" disabled value= "<%= sTime %>">
                                 </td>
                                 <td>
-                                    <input class="aLocEdit smallBox" list="lports" disabled value= "<%= flights[i].destined_port %>">
+                                    <select class="aLocEdit smallBox"  disabled value= "<%= flights[i].destined_port %>">
+                                        <%var cur=flights[i].destined_port%>
+                                <option value="<%=cur%>"><%=cur%></option>
+                                <option value=""></option>
+                                        <%include partial/portOptList%>
+                                    </select>
                                 </td>
                             <%}else{%>
                                 <td>
                                     <input class="aTimeEdit" type="time" value= "<%= sTime %>">
                                 </td>
                                 <td>
-                                    <input class="aLocEdit smallBox" list="lports" value= "<%= flights[i].destined_port %>">
+                                    <select class="aLocEdit smallBox" value= "<%= flights[i].destined_port %>">
+                                        <%var cur=flights[i].destined_port%>
+                                <option value="<%=cur%>"><%=cur%></option>
+                                <option value=""></option>
+                                        <%include partial/portOptList%>
+                                    </select>
                                 </td>
                             <%}%>
 
@@ -344,14 +383,14 @@
 
                 </table>
 
-                <datalist id="lports">
+                <!--<datalist id="lports">
                     <% for(var i in ports){ %>
                     <%var port=ports[i]%>
                     <option id=<%=port["portid"]%> value=<%=port["portid"]%>><%=port["airport"]%></option>
                     <%}%>
-                </datalist>
+                </datalist>-->
 
-                <datalist id="lplanes">
+                <!--<datalist id="lplanes">
                     <% for(var i in planes){ %>
                     <%var plane=planes[i]%>
                     <%var temp=plane["model"]%>
@@ -360,7 +399,7 @@
                     <%}%>
                     <option id="<%=temp%>" value="<%=plane["model"]%>"></option>
                     <%}%>
-                </datalist>
+                </datalist>-->
 
                 </div>
                 

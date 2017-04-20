@@ -14,16 +14,7 @@
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 </head>
 <body>
-<div id="hdr">
-    <div id="home">
-        <a id="homel" href="/"><img id="logo" src="/img/Logo1465.png"><img id="namelogo" src="/img/NameLogo.png"></a>
-    </div>
-
-    <div id="log">
-        <a href="javascript:void(0)" id="loginlink" onclick="createloginbox();">login</a>/<a href="/registration">register</a>
-    </div>
-
-</div>
+<% include partial/hdr %>
 <div id="main">
     <img id="backimg" src="/img/corn.jpg">
     <br>
@@ -89,50 +80,59 @@
                             <input class="bigBox flightIDSearch" value=""/>
                         </td>-->
                         <td>
-                            <input class="bigBox flightNumSearch"/>
+                            <input class="bigBox flightNumSearch"  id="fnumB"/>
                         </td>
                         <td>
-                            <input class ="smallBox gateSearch"/>
+                            <input class ="smallBox gateSearch"  id="gateB"/>
                         </td>
                         <td>
-                            <input class="bigBox planeIDSearch" list="lplanes"/>
+                            <select  class="bigBox planeIDSearch"  id="modelB">
+                                <option value=""/>
+                                <%include partial/planeOptList%>
+                            </select>
                         </td>
                         <td>
-                            <input class="medBox dDateSearch" type="date"/>
+                            <input class="medBox dDateSearch" type="date"  id="ddateB"/>
                         </td>
                         <td>
-                            <input class="dTimeSearch" type="time"/>
+                            <input class="dTimeSearch" type="time" id="dtimeB"/>
                         </td>
                         <td>
-                            <input class="smallBox dLocSearch" id="dLoc" list="lports"/>
+                            <select class="smallBox dLocSearch" id="dLoc" >
+                                <option value=""/>
+                                <%include partial/portOptList%>
+                            </select>
 
                         </td>
                         <td>
-                            <input class="medBox aDateSearch" type="date"/>
+                            <input class="medBox aDateSearch" type="date" id="adateB"/>
                         </td>
                         <td>
-                            <input class="aTimeSearch" type="time"/>
+                            <input class="aTimeSearch" type="time" id="atimeB"/>
                         </td>
                         <td>
-                            <input class="smallBox aLocSearch" id="aLoc" list="lports"/>
+                            <select class="smallBox aLocSearch" id="aLoc">
+                                <option value=""/>
+                                <%include partial/portOptList%>
+                            </select>
                         </td>
                         <td>
-                            <input class ="smallBox ECAvailSearch" type="number" min="0"/>
+                            <input class ="smallBox ECAvailSearch" type="number" min="0" id="ecsaB"/>
                         </td>
                         <td>
-                            <input class ="smallBox ECBookedSearch" type="number" min="0"/>
+                            <input class ="smallBox ECBookedSearch" type="number" min="0" id="ecsbB"/>
                         </td>
                         <td>
-                            <input class ="smallBox ECCostSearch" type="number" min="0"/>
+                            <input class ="smallBox ECCostSearch" type="number" min="0" id="eccpsB"/>
                         </td>
                         <td>
-                            <input class ="smallBox FCAvailSearch" type="number" min="0"/>
+                            <input class ="smallBox FCAvailSearch" type="number" min="0" id="fcsaB"/>
                         </td>
                         <td>
-                            <input class ="smallBox FCBookedSearch" type="number" min="0"/>
+                            <input class ="smallBox FCBookedSearch" type="number" min="0" id="fcsbB"/>
                         </td>
                         <td>
-                            <input class ="smallBox FCCostSearch" type="number" min="0"/>
+                            <input class ="smallBox FCCostSearch" type="number" min="0" id="fccpsB"/>
                         </td>
                         <!--<td>
                             <input id="addButton" type="button" value="Add" onclick="getRow(this)"/>
@@ -143,37 +143,17 @@
                 <div id="rep">
                     <label  for="interval" id="inter">repeat every  </label>
                     <input type="number" min="0" id="interval" name="interval" value="0">
-                    <input list="intervals" id="interval_type" value="days">
+                    <select list="intervals" id="interval_type" value="days">
+                        <option id="days" value="days">days</option>
+                        <option id="hours" value="hours">hours</option>
+                        <option id="minutes" value="minutes">minutes</option>
+                        <option id="months" value="months">months</option>
+                    </select>
                     <label  for="numtime" id="numt"> for </label>
                     <input type="number" min="0" id="numtime" name="numtime" value="0">
                     <label id="numt2"> more times </label>
                     
-                    <datalist id="intervals">
-                        <option id="minutes" value="minutes"/>
-                        <option id="hours" value="hours"/>
-                        <option id="days" value="days"/>
-                        <option id="months" value="months"/>
-                    </datalist>
                 </div>
-                
-
-                <datalist id="lports">
-                    <% for(var i in ports){ %>
-                    <%var port=ports[i]%>
-                    <option id=<%=port["portid"]%> value=<%=port["portid"]%>><%=port["airport"]%></option>
-                    <%}%>
-                </datalist>
-
-                <datalist id="lplanes">
-                    <% for(var i in planes){ %>
-                    <%var plane=planes[i]%>
-                    <%var temp=plane["model"]%>
-                    <%while(temp.indexOf(" ")!=-1){%>
-                    <%temp=temp.replace(" ","_")%>
-                    <%}%>
-                    <option id="<%=temp%>" value="<%=plane["model"]%>"></option>
-                    <%}%>
-                </datalist>
             <div style="text-align: center;"><button id="updateAllButton" class="updateAllButton" type="button" onclick="addFlight()"/>ADD</button></div>
             <div id="invalidInput" style="display: none ;font-size:50%; color:red"align="center">*Some information is missing or incorrect</div>
 
