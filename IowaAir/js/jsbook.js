@@ -30,6 +30,7 @@ function dq2t1(row){        //All 3 are the row mappers
             ec_price:row.ec_price1,
             PlaneDetails:row.model1
         }],
+		  path:[{lat:row.lat1,lng:row.lon1},{lat:row.lat2,lng:row.lon2}],
         flightIDs:String(row.flightID1)+";",
         num_stops:row.num_stops,
         tot_time:row.tot_time,
@@ -68,6 +69,7 @@ function dq2t2(row){
             ec_price:row.ec_price2,
             PlaneDetails:row.model2
         }],
+		  path:[{lat:row.lat1,lng:row.lon1},{lat:row.lat2,lng:row.lon2},{lat:row.lat3,lng:row.lon3}],
         flightIDs:String(row.flightID1)+";"+String(row.flightID2)+";",
         num_stops:row.num_stops,
         tot_time:row.tot_time,
@@ -118,6 +120,7 @@ function dq2t3(row){
             ec_price:row.ec_price3,
             PlaneDetails:row.model3
         }],
+		  path:[{lat:row.lat1,lng:row.lon1},{lat:row.lat2,lng:row.lon2},{lat:row.lat3,lng:row.lon3},{lat:row.lat4,lng:row.lon4}],
         flightIDs:String(row.flightID1)+";"+String(row.flightID2)+";"+String(row.flightID3)+";",
         num_stops:row.num_stops,
         tot_time:row.tot_time,

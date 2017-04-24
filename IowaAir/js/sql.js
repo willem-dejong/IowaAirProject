@@ -560,11 +560,56 @@ function updateFlight(id,fnum,dep,arv,ecsa,ecsb,eccps,fcsa,fcsb,fccps,am,org,des
 		}
 	});
 }
+function getPassengers(id,req,res, errhandler,successhandler,args){
+	var conn=mysql.createConnection({user:"admin",password:"IowaAir2017",port:"3306"});
+   conn.connect();
+	inn="call iowaair.getPassengers(?);"
+	argz=[id];
+	conn.query(inn,argz,function(err,rows,feilds){
+		conn.end();
+    	if (err){
+    		errhandler(err,req,res,args);
+    	}
+    	else{
+    		successhandler(rows[0],req,res,args);
+		}
+	});
+}
+function cancel(id,req,res, errhandler,successhandler,args){
+	var conn=mysql.createConnection({user:"admin",password:"IowaAir2017",port:"3306"});
+   conn.connect();
+	inn="DELETE FROM iowaair.reservations WHERE res_num=?;"
+	argz=[id];
+	conn.query(inn,argz,function(err,rows,feilds){
+		conn.end();
+    	if (err){
+    		errhandler(err,req,res,args);
+    	}
+    	else{
+    		successhandler(rows,req,res,args);
+		}
+	});
+}
+function checkin(id,bags,req,res, errhandler,successhandler,args){
+	var conn=mysql.createConnection({user:"admin",password:"IowaAir2017",port:"3306"});
+   conn.connect();
+	inn="call iowaair.checkin(?,?);"
+	argz=[id,bags];
+	conn.query(inn,argz,function(err,rows,feilds){
+		conn.end();
+    	if (err){
+    		errhandler(err,req,res,args);
+    	}
+    	else{
+    		successhandler(rows,req,res,args);
+		}
+	});
+}
 module.exports={
     getairports:getairports,
-    //getNewSession:getNewSession,
-    //getSession:getSession,
-    //logout:logout,
+    getPassengers:getPassengers,
+    cancel:cancel,
+    checkin:checkin,
     updatepass:updatepass,
     getLogin:getLogin,
     getFlights1:getFlights1,
