@@ -33,6 +33,11 @@
     padding:0px;
     display:none;
 }
+.map{
+    position:relative;
+    width:100%;
+    height:auto;
+}
 .resultitem{
     margin-top:10px;
     position:relative;
