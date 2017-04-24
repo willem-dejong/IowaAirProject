@@ -42,14 +42,75 @@
 			 	<%var tobook=true%>
                 <%var mode=0%>
                 <%var trip=toTrip%>
+                <%var mapid="map1"%>
                 <% include partial/tripitem %>
 
                 <% if(returnTrip) { %>
                 	<%var trip=returnTrip %>
+                <%var mapid="map2"%>
                 	<% include partial/tripitem %>
                 <% } %>
                 </ul>
+                     <script> function initMap() {
+                                var iowacity = {lat: 41.661128,lng: -101.530168}
+                                var map1 = new google.maps.Map(document.getElementById('map1'), {
+                                  zoom: 3,
+                                  center: iowacity,
+                                  mapTypeId: 'terrain'
+                                });
+                                var marker = new google.maps.Marker({
+                                  position: {lat:<%=toTrip.path[0].lat%>,lng:<%=toTrip.path[0].lng%>},
+                                  map: map1
+                                });
+                                <%for(var ii=0; ii<toTrip.path.length-1; ii++) {%>
+                                    var flightpath = [{lat: <%=toTrip.path[ii].lat%>,lng: <%=toTrip.path[ii].lng%>},{lat: <%=toTrip.path[ii+1].lat%>,lng: <%=toTrip.path[ii+1].lng%>}];
+                                    var marker = new google.maps.Marker({
+                                        position: {lat: <%=toTrip.path[ii+1].lat%>,lng: <%=toTrip.path[ii+1].lng%>},
+                                        map: map1
+                                    });
+                                    var flightPath = new google.maps.Polyline({
+                                            path: flightpath,
+                                            geodesic: true,
+                                            strokeColor: '#FF0000',
+                                            strokeOpacity: 1.0,
+                                            strokeWeight: 2
+                                          });
+                                          
+                                          flightPath.setMap(map1);
+                                <%}%>
+                                <%if(returnTrip){%>
+                                     var map2 = new google.maps.Map(document.getElementById('map2'), {
+                                      zoom: 3,
+                                      center: iowacity,
+                                      mapTypeId: 'terrain'
+                                    });
+                                    var marker = new google.maps.Marker({
+                                      position: {lat:<%=returnTrip.path[0].lat%>,lng:<%=returnTrip.path[0].lng%>},
+                                      map: map2
+                                    });
+                                    <%for(var ii=0; ii<fromTrips[i].path.length-1; ii++) {%>
+                                        var flightpath = [{lat: <%=returnTrip.path[ii].lat%>,lng: <%=returnTrip.path[ii].lng%>},{lat: <%=returnTrip.path[ii+1].lat%>,lng: <%=returnTrip.path[ii+1].lng%>}];
+                                        var marker = new google.maps.Marker({
+                                            position: {lat: <%=returnTrip.path[ii+1].lat%>,lng: <%=returnTrip.path[ii+1].lng%>},
+                                            map: map2
+                                        });
+                                        var flightPath = new google.maps.Polyline({
+                                                path: flightpath,
+                                                geodesic: true,
+                                                strokeColor: '#FF0000',
+                                                strokeOpacity: 1.0,
+                                                strokeWeight: 2
+                                              });
+                                              
+                                              flightPath.setMap(map2);
+                                    <%}%>
+                                <%}%>
 
+                              }
+                              </script>
+                            <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCAJ1nc1IYhRTgZXigJYWFEF2AuOTZQrtA&callback=initMap">
+                           
+                            </script>
                 <div id="totalPriceDisplay">
 	                <% var totalPrice = 0 %>
 	                <% if(toTrip.has_ec){ %>
