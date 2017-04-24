@@ -27,6 +27,13 @@
                 <a href="/admin/updateFlights" >update Flights</a>
             </div>
         </div>
+        <%}else if(user.type=="M"){%>
+        <div id="toolbit" onclick="showTools()">Manager Tools</div>
+        <div id="tools">
+            <div class="toolopt" id="Chec">
+                <a href="/manager/manageBookings" >Manage Bookings</a>
+            </div>
+        </div>
         <%}%>
         <div id="log">
             Welcome Back <a id="accountlink" href="/account"><%=user.fname%></a>!   <a id="logoutlink" href="javascript:void(0);" onclick="logout();">logout</a>
