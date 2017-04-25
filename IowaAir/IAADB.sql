@@ -580,6 +580,248 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `getMapFlights1` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`admin`@`localhost` PROCEDURE `getMapFlights1`(pass int,port1 varchar(25),port2 varchar(25),ddate datetime)
+BEGIN
+SELECT 
+f.Flight_num as Flight_num1,
+f.Gate as gate1,
+f.origin_port as opID1,
+f.destined_port as dpID1,
+ap1.airport as porta1,
+ap2.airport as portb1,
+ap1.lat as lat1,
+ap1.lon as lon1,
+ap2.lat as lat2,
+ap2.lon as lon2,
+f.departure_time as depTime1,
+f.arrival_time as arrTime1,
+f.fc_cost_per_seat*pass as fc_price1,
+f.ec_cost_per_seat*pass as ec_price1,
+p.model as model1,
+f.flightID as flightID1,
+0 as num_stops,
+timediff(f.arrival_time,f.departure_time) as tot_time,
+f.fc_cost_per_seat*pass as tot_fc_price,
+f.ec_cost_per_seat*pass as tot_ec_price,
+f.fc_seats_available>(f.fc_seats_booked+pass) as has_fc,
+f.ec_seats_available>(f.ec_seats_booked+pass) as has_ec
+from
+iowaair.flights as f,
+iowaair.airports as ap1,
+iowaair.airports as ap2,
+iowaair.planes as p
+where
+f.plane_id=p.plane_id and
+f.origin_port=ap1.portid and
+f.destined_port=ap2.portid and
+f.origin_port=port1 and
+f.destined_port=port2 and
+f.departure_time<=ddate+ interval 1.5 day and
+f.departure_time>=ddate and
+f.departure_time>=now()+interval 1 hour and
+((f.fc_seats_available>(f.fc_seats_booked+pass)) or (f.ec_seats_available>(f.ec_seats_booked+pass)));
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `getMapFlights2` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`admin`@`localhost` PROCEDURE `getMapFlights2`(pass int,port1 varchar(25),port2 varchar(25),port3 varchar(25),ddate datetime)
+BEGIN
+SELECT 
+f.Flight_num as Flight_num1,
+f.Gate as gate1,
+f.origin_port as opID1,
+f.destined_port as dpID1,
+ap1.airport as porta1,
+ap2.airport as portb1,
+ap1.lat as lat1,
+ap1.lon as lon1,
+f.departure_time as depTime1,
+f.arrival_time as arrTime1,
+f.fc_cost_per_seat*pass as fc_price1,
+f.ec_cost_per_seat*pass as ec_price1,
+p.model as model1,
+f.flightID as flightID1,
+f2.Flight_num as Flight_num2,
+f2.Gate as gate2,
+f2.origin_port as opID2,
+f2.destined_port as dpID2,
+ap12.airport as porta2,
+ap22.airport as portb2,
+ap12.lat as lat2,
+ap12.lon as lon2,
+ap22.lat as lat3,
+ap22.lon as lon3,
+f2.departure_time as depTime2,
+f2.arrival_time as arrTime2,
+f2.fc_cost_per_seat*pass as fc_price2,
+f2.ec_cost_per_seat*pass as ec_price2,
+p2.model as model2,
+f2.flightID as flightID2,
+1 as num_stops,
+timediff(f2.arrival_time,f.departure_time) as tot_time,
+(f.fc_cost_per_seat+f2.fc_cost_per_seat)*pass as tot_fc_price,
+(f.ec_cost_per_seat+f2.ec_cost_per_seat)*pass as tot_ec_price,
+((f.fc_seats_available>(f.fc_seats_booked+pass)) and (f2.fc_seats_available>(f2.fc_seats_booked+pass))) as has_fc,
+((f.ec_seats_available>(f.ec_seats_booked+pass)) and (f2.ec_seats_available>(f2.ec_seats_booked+pass))) as has_ec
+from
+iowaair.flights as f,
+iowaair.airports as ap1,
+iowaair.airports as ap2,
+iowaair.planes as p,
+iowaair.flights as f2,
+iowaair.airports as ap12,
+iowaair.airports as ap22,
+iowaair.planes as p2
+where
+f.plane_id=p.plane_id and
+f.origin_port=ap1.portid and
+f.destined_port=ap2.portid and
+f2.plane_id=p2.plane_id and
+f2.origin_port=ap12.portid and
+f2.destined_port=ap22.portid and
+f.origin_port=port1 and
+f.destined_port=port2 and
+f.destined_port=f2.origin_port and
+f2.destined_port=port3 and
+f.departure_time<=ddate+ interval 1.5 day and
+f.departure_time>=ddate and
+f.departure_time>=now()+interval 1 hour and
+f2.departure_time>=DATE_ADD(f.arrival_time, INTERVAL 30 MINUTE) and
+f2.departure_time<=DATE_ADD(f.arrival_time, INTERVAL 1 DAY) and
+((f.fc_seats_available>(f.fc_seats_booked+pass) and f2.fc_seats_available>(f2.fc_seats_booked+pass)) or (f.ec_seats_available>(f.ec_seats_booked+pass) and f2.ec_seats_available>(f2.ec_seats_booked+pass)));
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `getMapFlights3` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`admin`@`localhost` PROCEDURE `getMapFlights3`(pass int,port1 varchar(25),port2 varchar(25),port3 varchar(25),port4 varchar(25),ddate datetime)
+BEGIN
+SELECT 
+f.Flight_num as Flight_num1,
+f.Gate as gate1,
+f.origin_port as opID1,
+f.destined_port as dpID1,
+ap1.airport as porta1,
+ap2.airport as portb1,
+ap1.lat as lat1,
+ap1.lon as lon1,
+f.departure_time as depTime1,
+f.arrival_time as arrTime1,
+f.fc_cost_per_seat*pass as fc_price1,
+f.ec_cost_per_seat*pass as ec_price1,
+p.model as model1,
+f.flightID as flightID1,
+f2.Flight_num as Flight_num2,
+f2.Gate as gate2,
+f2.origin_port as opID2,
+f2.destined_port as dpID2,
+ap12.airport as porta2,
+ap22.airport as portb2,
+ap12.lat as lat2,
+ap12.lon as lon2,
+f2.departure_time as depTime2,
+f2.arrival_time as arrTime2,
+f2.fc_cost_per_seat*pass as fc_price2,
+f2.ec_cost_per_seat*pass as ec_price2,
+p2.model as model2,
+f2.flightID as flightID2,
+f3.Flight_num as Flight_num3,
+f3.Gate as gate3,
+f3.origin_port as opID3,
+f3.destined_port as dpID3,
+ap13.airport as porta3,
+ap23.airport as portb3,
+ap13.lat as lat3,
+ap13.lon as lon3,
+ap23.lat as lat4,
+ap23.lon as lon4,
+f3.departure_time as depTime3,
+f3.arrival_time as arrTime3,
+f3.fc_cost_per_seat*pass as fc_price3,
+f3.ec_cost_per_seat*pass as ec_price3,
+p3.model as model3,
+f3.flightID as flightID3,
+2 as num_stops,
+timediff(f3.arrival_time,f.departure_time) as tot_time,
+(f.fc_cost_per_seat+f2.fc_cost_per_seat+f3.fc_cost_per_seat)*pass as tot_fc_price,
+(f.ec_cost_per_seat+f2.ec_cost_per_seat+f3.ec_cost_per_seat)*pass as tot_ec_price,
+((f.fc_seats_available>(f.fc_seats_booked+pass)) and (f2.fc_seats_available>(f2.fc_seats_booked+pass)) and (f3.fc_seats_available>(f3.fc_seats_booked+pass))) as has_fc,
+((f.ec_seats_available>(f.ec_seats_booked+pass)) and (f2.ec_seats_available>(f2.ec_seats_booked+pass)) and (f3.ec_seats_available>(f3.ec_seats_booked+pass))) as has_ec
+from
+iowaair.flights as f,
+iowaair.airports as ap1,
+iowaair.airports as ap2,
+iowaair.planes as p,
+iowaair.flights as f2,
+iowaair.airports as ap12,
+iowaair.airports as ap22,
+iowaair.planes as p2,
+iowaair.flights as f3,
+iowaair.airports as ap13,
+iowaair.airports as ap23,
+iowaair.planes as p3
+where
+f.plane_id=p.plane_id and
+f.origin_port=ap1.portid and
+f.destined_port=ap2.portid and
+f2.plane_id=p2.plane_id and
+f2.origin_port=ap12.portid and
+f2.destined_port=ap22.portid and
+f3.plane_id=p3.plane_id and
+f3.origin_port=ap13.portid and
+f3.destined_port=ap23.portid and
+f.origin_port=port1 and
+f.destined_port=port2 and
+f.destined_port=f2.origin_port and
+f2.destined_port=port3 and
+f2.destined_port=f3.origin_port and
+f3.destined_port=port4 and
+f.departure_time<=ddate+ interval 1.5 day and
+f.departure_time>=ddate and
+f.departure_time>=now()+interval 1 hour and
+f2.departure_time>=DATE_ADD(f.arrival_time, INTERVAL 30 MINUTE) and
+f3.departure_time>=DATE_ADD(f2.arrival_time, INTERVAL 30 MINUTE) and
+f3.departure_time<=DATE_ADD(f.arrival_time, INTERVAL 1 DAY) and
+((f.fc_seats_available>(f.fc_seats_booked+pass) and f2.fc_seats_available>(f2.fc_seats_booked+pass) and f3.fc_seats_available>(f3.fc_seats_booked+pass)) or (f.ec_seats_available>(f.ec_seats_booked+pass) and f2.ec_seats_available>(f2.ec_seats_booked+pass) and f3.ec_seats_available>(f3.ec_seats_booked+pass)));
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!50003 DROP PROCEDURE IF EXISTS `getPassengers` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
@@ -913,4 +1155,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-04-23 23:03:07
+-- Dump completed on 2017-04-25  0:06:56
