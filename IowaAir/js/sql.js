@@ -124,6 +124,57 @@ function getFlights3(org,dest,date,pass,req,res,errhandler,successhandler,args){
         }
     });
 }
+function getMapFlights1(port1,port2,date,pass,req,res,errhandler,successhandler,args){
+    //console.log("getFlights")
+    var conn=mysql.createConnection({user:"admin",password:"IowaAir2017",port:"3306"});
+    conn.connect();
+    var inn="call iowaair.getMapFlights1(?,?,?,?);"
+    var argz=[pass,port1,port2,date];
+    conn.query(inn,argz,function(err,rows,feilds){
+    	  conn.end();
+        if (err){
+        		errhandler(err,req,res,args);
+        } 
+        else{
+        		successhandler(rows[0],req,res,args);
+        		//console.log(rows)
+        }
+    });
+}
+function getMapFlights2(port1,port2,port3,date,pass,req,res,errhandler,successhandler,args){
+    //console.log("getFlights")
+    var conn=mysql.createConnection({user:"admin",password:"IowaAir2017",port:"3306"});
+    conn.connect();
+    var inn="call iowaair.getMapFlights2(?,?,?,?,?);"
+    var argz=[pass,port1,port2,port3,date];
+    conn.query(inn,argz,function(err,rows,feilds){
+    	  conn.end();
+        if (err){
+        		errhandler(err,req,res,args);
+        } 
+        else{
+        		successhandler(rows[0],req,res,args);
+        		//console.log(rows)
+        }
+    });
+}
+function getMapFlights3(port1,port2,port3,port4,date,pass,req,res,errhandler,successhandler,args){
+    //console.log("getFlights")
+    var conn=mysql.createConnection({user:"admin",password:"IowaAir2017",port:"3306"});
+    conn.connect();
+    var inn="call iowaair.getMapFlights3(?,?,?,?,?,?);"
+    var argz=[pass,port1,port2,port3,port4,date];
+    conn.query(inn,argz,function(err,rows,feilds){
+    	  conn.end();
+        if (err){
+        		errhandler(err,req,res,args);
+        } 
+        else{
+        		successhandler(rows[0],req,res,args);
+        		//console.log(rows)
+        }
+    });
+}
 function getTrip1(flightID,pass,req,res,errHandler,successHandler,args){
 	var conn=mysql.createConnection({user:"admin",password:"IowaAir2017",port:"3306"});
    conn.connect();
@@ -615,6 +666,9 @@ module.exports={
     getFlights1:getFlights1,
     getFlights2:getFlights2,
     getFlights3:getFlights3,
+    getMapFlights1:getMapFlights1,
+    getMapFlights2:getMapFlights2,
+    getMapFlights3:getMapFlights3,
     getTrip1:getTrip1,
     getTrip2:getTrip2,
     getTrip3:getTrip3,

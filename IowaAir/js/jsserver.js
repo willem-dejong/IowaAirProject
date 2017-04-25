@@ -71,6 +71,7 @@ app.use("/ThankYou",function(req,res){
 	}
 });
 app.use("/result",jsresult.resultRender);
+app.use("/mapResult",jsresult.mapResultRender);
 app.use("/", jsindex.indexRender);
-app.listen(80,function(){
+app.listen('80',function(){
 	});
