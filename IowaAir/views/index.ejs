@@ -22,7 +22,7 @@
              <div id="qhead">
                  Search Flights
              </div>
-             <form id="quein" action="/result.html" method="get">
+             <form id="quein">
                 <div id="missReq" style="display: none; color: red"> - One or more required fields are empty or incorrect * </div>
                 <div id="dateErr" style="display: none; color: red"> - Return Date can not be earlier than Depart Date  nor can you book in the past* </div>
                 <div id="portErr" style="display: none; color: red"> - Not a valid airport*</div>
@@ -43,7 +43,7 @@
                     <option id=<%=port["portid"]%> value=<%=port["portid"]%>><%=port["airport"]%></option>
                     <%}%>
                 </datalist>
-                <div id="dates">
+                <div class="dates">
                     <div class="dated">
                         <label id="datelab" for="date">Depart Date*</label>
                         <input type="date" id="date" class="date" name="date" form="quein"/>
@@ -53,7 +53,7 @@
                         <input type="date" id="date2" class="date" name="date2" form="quein"/>
                     </div>
                 </div>
-                <div id="passd">
+                <div class="passd">
                     <label for="pass"># of Passengers</label>
                     <input type="number" id="pass" name="pass" value=1 min=1 form="quein">
                 </div>
@@ -62,6 +62,114 @@
                 <div id="req">*Required.<br/>leave return date empty for one way trip.</div>
              </form>
          </div>
+        <br>
+        <br>
+        <br>
+         <div id="que2">
+             <div id="qhead2">
+                 Search Flights With Map
+             </div>
+             <div id="quein2">
+                <div id="missReqb" style="display: none; color: red"> - One or more required fields are empty or incorrect * </div>
+                <div id="dateErrb" style="display: none; color: red"> - Return Date can not be earlier than Depart Date  nor can you book in the past* </div>
+                <div id="portErrb" style="display: none; color: red"> - Please select 2 to 4 airports on map*</div>
+                <div id="map">
+                </div>
+                <div class="dates">
+                    <div class="dated">
+                        <label id="datelabb" for="dateb">Depart Date*</label>
+                        <input type="date" id="dateb" class="date" name="dateb"/>
+                    </div>
+                    <div class="dated">
+                        <label id="date2labb" for="date2b">Return Date</label>
+                        <input type="date" id="date2b" class="date" name="date2b"/>
+                    </div>
+                </div>
+                <div class="passd">
+                    <label for="passb"># of Passengers</label>
+                    <input type="number" id="passb" name="passb" value=1 min=1 >
+                </div>
+                <input type="button" value="Search" id="butb" onclick="verifyAndSubmit2();" /><!--for Javascript change this input in the html! make type="button", and add onclick="verifyAndSubmit(this.parentElement)"! verifyAndSubmit should verify that the required feilds are filled and if they are then submit the form, if not change the unfilled fields' labels' text red-->
+                <div id="req">*Required.<br/>leave return date empty for one way trip.</div>
+                <script>
+                        var flights=[];
+                        var paths=[];
+                        function initialize() {
+                          var map = new google.maps.Map(document.getElementById('map'), {
+                            zoom: 3,
+                            center: {lat: 41.661128,lng: -101.530168}
+                          });
+
+                          // Add a marker at the center of the map.
+                        <%for (i in ports){%>
+                          addMarker({lat:<%=ports[i].lat%>,lng:<%=ports[i].lon%>},"<%=ports[i].portid%>","<%=ports[i].airport%>","<%=ports[i].location%>", map);
+                          <%}%>
+                        }
+
+                        // Adds a marker to the map.
+                        function addMarker(location,lab,nam,loc, map) {
+                          var contentString = '<div id="content">'+
+                              '<div id="siteNotice">'+
+                              '</div>'+
+                              '<h1 id="firstHeading" class="firstHeading">'+lab+'</h1>'+
+                              '<div id="bodyContent">'+
+                              nam+
+                              '<br>'+
+                              loc+
+                              '</div>'+
+                              '</div>'
+
+                          var infowindow = new google.maps.InfoWindow({
+                            content: contentString
+                          });
+                          var marker = new google.maps.Marker({
+                            position: location,
+                            label: lab,
+                            map: map,
+                            icon:'http://localhost/img/cornP.png'
+                          });
+                          marker.addListener('mouseover', function() {
+                            infowindow.open(map, marker);
+                          });
+                          marker.addListener('mouseout', function() {
+                            infowindow.close();
+                          });
+                          var  flightPath;
+                          marker.addListener('click', function() {
+                          	if (flights.indexOf(lab)==-1&&flights.length<4){
+                                flights.push(lab);
+                        	   paths.push(location);
+                                if(paths.length>1){
+                                        flightPath= new google.maps.Polyline({
+                                        path: [paths[paths.length-2],paths[paths.length-1]],
+                                        geodesic: true,
+                                        strokeColor: '#FF0000',
+                                        strokeOpacity: 1.0,
+                                        strokeWeight: 2
+                                      });
+                                      flightPath.setMap(map);
+                                }
+                                marker.setIcon('http://localhost/img/cornP2.png')
+                            }
+                            else if(flights.indexOf(lab)==flights.length-1){
+                            	flights.pop();
+                        		paths.pop();
+                                    if(flightPath){
+                                     flightPath.setMap(null);
+                                     }
+                            	marker.setIcon('http://localhost/img/cornP.png')
+                            }
+                          });
+                        }
+                        google.maps.event.addDomListener(window, 'load', initialize);
+               </script>
+               <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCAJ1nc1IYhRTgZXigJYWFEF2AuOTZQrtA&callback=initialize">
+                </script>
+             </div>
+         </div>
+        <br>
+        <br>
+        <br>
      </div>
 </body>
 </html>

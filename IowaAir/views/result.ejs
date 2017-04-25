@@ -8,7 +8,6 @@
         <script type="text/javascript" src="/js/logsess.js"></script>
         <script type="text/javascript" src="/js/md5.js"></script>
         <script type="text/javascript" src="/js/result.js"></script>
-        <script type="text/javascript" src="/js/tripitem.js"></script>
     </head>
     <body>
     <% include partial/hdr %>
@@ -66,6 +65,7 @@
                         <%}%>
                     <%}%>
                 </ul>
+                 <script>document.querySelector("#resultlist_return").style.display="none" </script>
                 <script> function initMap() {
                                 var iowacity = {lat: 41.661128,lng: -101.530168}
                                 <%for (i in toTrips){%>
@@ -75,14 +75,18 @@
                                       mapTypeId: 'terrain'
                                     });
                                     var marker = new google.maps.Marker({
-                                      position: {lat:<%=toTrips[0].path[0].lat%>,lng:<%=toTrips[0].path[0].lng%>},
-                                      map: <%="to"+i%>
+                                      position: {lat:<%=toTrips[i].path[0].lat%>,lng:<%=toTrips[i].path[0].lng%>},
+                                      map: <%="to"+i%>,
+                                            icon:'http://localhost/img/cornP.png',
+                                            label:"<%=toTrips[i].path[0].pid%>"
                                     });
                                     <%for(var ii=0; ii<toTrips[i].path.length-1; ii++) {%>
                                         var flightpath = [{lat: <%=toTrips[i].path[ii].lat%>,lng: <%=toTrips[i].path[ii].lng%>},{lat: <%=toTrips[i].path[ii+1].lat%>,lng: <%=toTrips[i].path[ii+1].lng%>}];
                                         var marker = new google.maps.Marker({
                                             position: {lat: <%=toTrips[i].path[ii+1].lat%>,lng: <%=toTrips[i].path[ii+1].lng%>},
-                                            map: <%="to"+i%>
+                                            map: <%="to"+i%>,
+                                            icon:'http://localhost/img/cornP.png',
+                                            label:"<%=toTrips[i].path[ii+1].pid%>"
                                         });
                                         var flightPath = new google.maps.Polyline({
                                                 path: flightpath,
@@ -103,13 +107,17 @@
                                     });
                                     var marker = new google.maps.Marker({
                                       position: {lat:<%=fromTrips[0].path[0].lat%>,lng:<%=fromTrips[0].path[0].lng%>},
-                                      map: <%="ret"+i%>
+                                      map: <%="ret"+i%>,
+                                        icon:'http://localhost/img/cornP.png',
+                                            label:"<%=fromTrips[i].path[0].pid%>"
                                     });
                                     <%for(var ii=0; ii<fromTrips[i].path.length-1; ii++) {%>
                                         var flightpath = [{lat: <%=fromTrips[i].path[ii].lat%>,lng: <%=fromTrips[i].path[ii].lng%>},{lat: <%=fromTrips[i].path[ii+1].lat%>,lng: <%=fromTrips[i].path[ii+1].lng%>}];
                                         var marker = new google.maps.Marker({
                                             position: {lat: <%=fromTrips[i].path[ii+1].lat%>,lng: <%=fromTrips[i].path[ii+1].lng%>},
-                                            map: <%="ret"+i%>
+                                            map: <%="ret"+i%>,
+                                            icon:'http://localhost/img/cornP.png',
+                                            label:"<%=fromTrips[i].path[ii+1].pid%>"
                                         });
                                         var flightPath = new google.maps.Polyline({
                                                 path: flightpath,
