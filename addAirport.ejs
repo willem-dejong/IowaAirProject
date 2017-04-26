@@ -1,0 +1,70 @@
+<html>
+    <head>
+        <!--include link to javascript here for help email willem-dejong@uiowa.edu-->
+        <title>IowaAir</title>
+        <link rel="icon" href="/img/Logo1465.png">
+        <link rel="stylesheet" href="/css/upplane.css" type="text/css">
+        <link rel="stylesheet" href="/css/login.css" type="text/css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        <script type="text/javascript" src="/js/md5.js"></script>
+        <script type="text/javascript" src="/js/logsess.js"></script>>
+        <script type="text/javascript" src="/js/addAirport.js"></script>
+    </head>
+    <body>
+         <% include partial/hdr %>
+         <div id="main">
+            <img id="backimg" src="/img/corn.jpg">
+             <br>
+             <br>
+             <div id="upbox">
+                <div id="uphead">Add Airport</div>
+                <form id="uppform">
+                    <table>
+                        <tr>
+  		                <th>
+                                <div>Port ID</div>
+  		                </th>
+  		                <th>
+                                <div>Airport Name</div>
+  		                </th>
+                        <th>
+                                <div>Location</div>
+  		                </th>
+                        <th>
+                                <div>Latitude</div>
+                        </th>
+                        <th>
+                                <div>Longitude</div>
+                        </th>
+                        </tr>
+                        <tr id="r0">
+                            <td>
+                                <input id="portidcrit" type="text"/>
+                            </td>
+                            <td>
+                                <input id="airportcrit" type="text"/>
+                            </td>
+                            <td>
+                                <input id="locationcrit" type="text"/>
+                            </td>
+                            <td>
+                                <input id="latcrit" type="number"/>
+                            </td>
+                            <td>
+                                <input id="longcrit" type="number"/>
+                            </td>
+                            <td>
+                                <input id="addbutton" type="button" value="ADD" onclick="addSingle(this)" />
+                            </td>
+                        </tr>
+                    </table>
+                    <div id="invalidInput" style="display:none;color:red"> *invalid input in a field</div>
+
+                    <div class="success" style="display: none ;font-size:50%; color:green"align="center">Added!</div>
+                </form>
+                <br>
+                <br>
+            </div>
+         </div>
+    </body>
+</html>
