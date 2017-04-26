@@ -29,6 +29,9 @@
                             <div>Res ID</div>
                         </th>
                         <th>
+                            <div>Trans ID</div>
+                        </th>
+                        <th>
                             <div>First Name</div>
                         </th>
                         <th>
@@ -82,6 +85,9 @@
                     <tr id=<%="r"+String(i+1) %>>
                         <td>
                             <input class="residEdit smallBox" disabled value= "<%= passengers[i].resid%>">
+                        </td>
+                        <td>
+                            <input class="transIDEdit smallBox" disabled value= "<%= passengers[i].transID%>">
                         </td>
                         <td>
                             <input class="fnameEdit bigBox" disabled value= "<%= passengers[i].fname %>">
@@ -201,7 +207,7 @@
                             <input class="seatEdit smallBox" disabled value ="<% if (passengers[i].seatnum){%><%= passengers[i].seatnum%><%}%>">
                         </td>
                         <td>
-                            <input class="bagsEdit smallBox" type="number" min="0" value="<% if (passengers[i].bags){%><%= passengers[i].bags%><%}%>">
+                            <input class="bagsEdit smallBox" type="number" min="0" disabled value="<% if (passengers[i].bags){%><%= passengers[i].bags%><%}%>">
                         </td>
                         <td>
                             <input class="cancelButton" type="button" value="Cancel" onclick="cancelRes(this)"/>
@@ -213,7 +219,7 @@
 
             </div>
 
-            <div id="invalidInput" style="display: none ;font-size:50%; color:red"align="center">*Number of Bags Must Be Entered</div>
+            <div id="invalidInput" style="display: none ;font-size:50%; color:red"align="center">*CANNOT CANCEL</div>
 
             <div id="invalidServerInput" style="display: none ;font-size:50%; color:red"align="center">*Server sent back error</div>
 
