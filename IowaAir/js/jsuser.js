@@ -14,7 +14,7 @@ function cmdvalidate(req,res,toCall){
 	if (!req.session.user){
    	forbidden(req,res);
 	}
-	else if (req.session.user.type=="M"){
+	else if (req.session.user.type=="U"){
 		validateandcall(req,res,toCall,forbidden)
 	}
 	else{
@@ -25,7 +25,7 @@ function pagevalidate(req,res,toCall){
 	if (!req.session.user){
 		redirect(req,res);	
 	}
-	else if (req.session.user.type=="M"){
+	else if (req.session.user.type=="U"){
 		validateandcall(req,res,toCall,redirect)
 	}
 	else{
@@ -35,7 +35,7 @@ function pagevalidate(req,res,toCall){
 function validateandcall(req,res,toCall,handleUnAuth){
 	var conn=mysql.createConnection({user:"admin",password:"IowaAir2017",port:"3306",dateString:"date"});
  	conn.connect();
-	var inn="SELECT idaccount,email,fname,lname,account_type,password from iowaair.account where email=? and password=? and account_type='M';"
+	var inn="SELECT idaccount,email,fname,lname,account_type,password from iowaair.account where email=? and password=? and account_type='U';"
 	var args=[req.session.user.email,req.session.user.passw];
 	conn.query(inn,args,function(err,rows,feilds){
 		conn.end();
@@ -54,21 +54,13 @@ function validateandcall(req,res,toCall,handleUnAuth){
 		}
 	});
 }
-function manageBookingsRender(req,res){
-	pagevalidate(req,res,jsmanageBookings.manageBookingsRender);
+function userBookingsRender(req,res){
+	pagevalidate(req,res,jsmanageBookings.userBookingsRender);
 }
 function cancel(req,res){
 	cmdvalidate(req,res,jsmanageBookings.cancel);
 }
-function checkin(req,res){
-	cmdvalidate(req,res,jsmanageBookings.checkin);
-}
-function ticketRender(req,res){
-	pagevalidate(req,res,jsmanageBookings.ticketRender);
-}
 module.exports={
-	manageBookingsRender:manageBookingsRender,
-	cancel:cancel,
-	checkin:checkin,
-	ticketRender:ticketRender
+	userBookingsRender:userBookingsRender,
+	cancel:cancel
 };

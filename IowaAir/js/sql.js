@@ -626,6 +626,36 @@ function getPassengers(id,req,res, errhandler,successhandler,args){
 		}
 	});
 }
+function getPassengers2(e,p,req,res, errhandler,successhandler,args){
+	var conn=mysql.createConnection({user:"admin",password:"IowaAir2017",port:"3306"});
+   conn.connect();
+	inn="call iowaair.getPassengers2(?,?);"
+	argz=[e,p];
+	conn.query(inn,argz,function(err,rows,feilds){
+		conn.end();
+    	if (err){
+    		errhandler(err,req,res,args);
+    	}
+    	else{
+    		successhandler(rows[0],req,res,args);
+		}
+	});
+}
+function getPassenger(id,req,res, errhandler,successhandler,args){
+	var conn=mysql.createConnection({user:"admin",password:"IowaAir2017",port:"3306"});
+   conn.connect();
+	inn="call iowaair.getPassenger(?);"
+	argz=[id];
+	conn.query(inn,argz,function(err,rows,feilds){
+		conn.end();
+    	if (err){
+    		errhandler(err,req,res,args);
+    	}
+    	else{
+    		successhandler(rows[0],req,res,args);
+		}
+	});
+}
 function cancel(id,req,res, errhandler,successhandler,args){
 	var conn=mysql.createConnection({user:"admin",password:"IowaAir2017",port:"3306"});
    conn.connect();
@@ -638,6 +668,21 @@ function cancel(id,req,res, errhandler,successhandler,args){
     	}
     	else{
     		successhandler(rows,req,res,args);
+		}
+	});
+}
+function cancel2(id,e,preq,res, errhandler,successhandler,args){
+	var conn=mysql.createConnection({user:"admin",password:"IowaAir2017",port:"3306"});
+   conn.connect();
+	inn="call iowaair.cancel2(?,?,?);"
+	argz=[id,e,p];
+	conn.query(inn,argz,function(err,rows,feilds){
+		conn.end();
+    	if (err){
+    		errhandler(err,req,res,args);
+    	}
+    	else{
+    		successhandler(rows[0],req,res,args);
 		}
 	});
 }
@@ -659,7 +704,10 @@ function checkin(id,bags,req,res, errhandler,successhandler,args){
 module.exports={
     getairports:getairports,
     getPassengers:getPassengers,
+    getPassengers2:getPassengers2,
+    getPassenger:getPassenger,
     cancel:cancel,
+    cancel2:cancel2,
     checkin:checkin,
     updatepass:updatepass,
     getLogin:getLogin,
