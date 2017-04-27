@@ -42,13 +42,13 @@
           <input id="modelcrit" value="<%=splane.model%>"/>
   	    </td>
   		  <td>
-          <input id="ecnumcrit" type="number" min="0" value="<%=splane.ec_num_seats%>"/>
+          <input id="ecnumcrit" type="number" min="0" value="<%=splane.ec_num_seats%>"   placeholder="#>=0"/>
   	    </td>
   		  <td>
-          <input id="fcnumcrit" type="number" min="0" value="<%=splane.fc_num_seats%>"/>
+          <input id="fcnumcrit" type="number" min="0" value="<%=splane.fc_num_seats%>"   placeholder="#>=0"/>
   		  </td>
         <td>
-          <input id="searchbutton" type="button" value="SEARCH" onclick="search()"/>
+          <input id="searchbutton" type="button" value="SEARCH" onclick="search()" />
         </td>
       </tr>
 
@@ -62,10 +62,10 @@
               <input class = "modelEdit" value = "<%= planes[i].model %>"/>
             </td>
             <td>
-              <input class = "ecnumEdit" value = "<%= planes[i].ec_num_seats %>" />
+              <input class = "ecnumEdit" value = "<%= planes[i].ec_num_seats %>"   placeholder="#>=0"/>
             </td>
             <td>
-              <input class = "fcnumEdit" value = "<%= planes[i].fc_num_seats %>" />
+              <input class = "fcnumEdit" value = "<%= planes[i].fc_num_seats %>"  placeholder="#>=0" />
             </td>
             <td>
               <input class="updatebutton" type="button" value="UPDATE" onclick="updateSingle(this)" />

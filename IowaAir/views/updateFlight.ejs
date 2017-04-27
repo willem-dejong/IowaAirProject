@@ -119,7 +119,7 @@
                             <%}%>
                         <%}%>
                         <td>
-                            <input class="medBox" id="dDate" type="date" value="<%=date%>" />
+                            <input class="medBox" id="dDate" type="date" value="<%=date%>" placeholder="YYYY-MM-DD"  />
                         </td>
                         <td>
                             <!--<input id="dTime" type="time" value="<%=time%>"/>-->
@@ -159,7 +159,7 @@
                             <%}%>
                         <%}%>
                         <td>
-                            <input class="medBox" id="aDate" type="date" value="<%=date%>"/>
+                            <input class="medBox" id="aDate" type="date" value="<%=date%>"  placeholder="YYYY-MM-DD"/>
                         </td>
                         <td>
                             <!--<input id="aTime" type="time" value="<%=time%>"/>-->
@@ -173,22 +173,22 @@
                             </select>
                         </td>
                         <td>
-                            <input class ="smallBox" id="ECAvail" type="number" min="0" value="<%=sflight.ec_seats_available%>" />
+                            <input class ="smallBox" id="ECAvail" type="number" min="0" value="<%=sflight.ec_seats_available%>" placeholder="#>=0" />
                         </td>
                         <td>
-                            <input class ="smallBox" id="ECBooked" type="number" min="0" value="<%=sflight.ec_seats_booked%>" />
+                            <input class ="smallBox" id="ECBooked" type="number" min="0" value="<%=sflight.ec_seats_booked%>" placeholder="#>=0"  />
                         </td>
                         <td>
-                            <input class ="smallBox" id="ECCost" type="number" min="0" value="<%=sflight.ec_cost_per_seat%>" />
+                            <input class ="smallBox" id="ECCost" type="number" min="0" value="<%=sflight.ec_cost_per_seat%>" placeholder="#>=0"  />
                         </td>
                         <td>
-                            <input class ="smallBox" id="FCAvail" type="number" min="0" value="<%=sflight.fc_seats_available%>"/>
+                            <input class ="smallBox" id="FCAvail" type="number" min="0" value="<%=sflight.fc_seats_available%>" placeholder="#>=0" />
                         </td>
                         <td>
-                            <input class ="smallBox" id="FCBooked" type="number" min="0" value="<%=sflight.fc_seats_booked%>"/>
+                            <input class ="smallBox" id="FCBooked" type="number" min="0" value="<%=sflight.fc_seats_booked%>" placeholder="#>=0" />
                         </td>
                         <td>
-                            <input class ="smallBox" id="FCCost" type="number" min="0" value="<%=sflight.fc_cost_per_seat%>"/>
+                            <input class ="smallBox" id="FCCost" type="number" min="0" value="<%=sflight.fc_cost_per_seat%>" placeholder="#>=0" />
                         </td>
                         <td>
                             <input id="searchButton" type="button" value="Search" onclick="search()"/>
@@ -239,11 +239,11 @@
 
                             <% if (flights[i].booked == 1){%>
                                 <td>
-                                    <input class="dDateEdit medBox" type="date" disabled value= "<%= sDate %>">
+                                    <input class="dDateEdit medBox" type="date" disabled value= "<%= sDate %>" placeholder="YYYY-MM-DD" >
                                 </td>
                             <%}else{%>
                                 <td>
-                                    <input class="dDateEdit medBox" type="date" value= "<%= sDate %>">
+                                    <input class="dDateEdit medBox" type="date" value= "<%= sDate %>" placeholder="YYYY-MM-DD">
                                 </td>
                             <%}%>
 
@@ -265,7 +265,7 @@
                     <%console.log(flights[i])%>
                             <% if (flights[i].booked == 1){%>
                                 <td>
-                                    <input class="dTimeEdit" type="time" disabled value= "<%= sTime %>">
+                                    <input class="dTimeEdit" type="time" disabled value= "<%= sTime %>" placeholder="HH:MM">
                                 </td>
                                 <td>
                                     <select class="dLocEdit smallBox" disabled value= "<%= flights[i].origin_port %>">
@@ -277,7 +277,7 @@
                                 </td>
                             <%}else{%>
                                 <td>
-                                    <input class="dTimeEdit" type="time" value= "<%= sTime %>">
+                                    <input class="dTimeEdit" type="time" value= "<%= sTime %>" placeholder="HH:MM">
                                 </td>
                                 <td>
                                     <select class="dLocEdit smallBox" value= "<%= flights[i].origin_port %>">
@@ -307,11 +307,11 @@
 
                             <% if (flights[i].booked == 1){%>
                             <td>
-                                <input class="aDateEdit medBox" type="date" disabled value= "<%= sDate %>">
+                                <input class="aDateEdit medBox" type="date" disabled value= "<%= sDate %>" placeholder="YYYY-MM-DD">
                             </td>
                             <%}else{%>
                             <td>
-                                <input class="aDateEdit medBox" type="date" value= "<%= sDate %>">
+                                <input class="aDateEdit medBox" type="date" value= "<%= sDate %>" placeholder="YYYY-MM-DD">
                             </td>
                             <%}%>
 
@@ -333,7 +333,7 @@
 
                             <% if (flights[i].booked == 1){%>
                                 <td>
-                                    <input class="aTimeEdit" type="time" disabled value= "<%= sTime %>">
+                                    <input class="aTimeEdit" type="time" disabled value= "<%= sTime %>" placeholder="HH:MM">
                                 </td>
                                 <td>
                                     <select class="aLocEdit smallBox"  disabled value= "<%= flights[i].destined_port %>">
@@ -345,7 +345,7 @@
                                 </td>
                             <%}else{%>
                                 <td>
-                                    <input class="aTimeEdit" type="time" value= "<%= sTime %>">
+                                    <input class="aTimeEdit" type="time" value= "<%= sTime %>" placeholder="HH:MM">
                                 </td>
                                 <td>
                                     <select class="aLocEdit smallBox" value= "<%= flights[i].destined_port %>">
@@ -358,22 +358,22 @@
                             <%}%>
 
                             <td>
-                                <input class="ECAvailEdit smallBox" type="number" min="0" value= "<%= flights[i].ec_seats_available %>">
+                                <input class="ECAvailEdit smallBox" type="number" min="0" value= "<%= flights[i].ec_seats_available %>" placeholder="#>=0">
                             </td>
                             <td>
-                                <input class="ECBookedEdit smallBox" type="number" min="0" disabled value= "<%= flights[i].ec_seats_booked %>">
+                                <input class="ECBookedEdit smallBox" type="number" min="0" disabled value= "<%= flights[i].ec_seats_booked %>" placeholder="#>=0">
                             </td>
                             <td>
-                                <input class="ECCostEdit smallBox" type="number" min="0" value= "<%= flights[i].ec_cost_per_seat %>">
+                                <input class="ECCostEdit smallBox" type="number" min="0" value= "<%= flights[i].ec_cost_per_seat %>" placeholder="#>=0">
                             </td>
                             <td>
-                                <input class="FCAvailEdit smallBox" type="number" min="0" value= "<%= flights[i].fc_seats_available %>">
+                                <input class="FCAvailEdit smallBox" type="number" min="0" value= "<%= flights[i].fc_seats_available %>" placeholder="#>=0">
                             </td>
                             <td>
-                                <input class="FCBookedEdit smallBox" type="number" min="0" disabled value= "<%= flights[i].fc_seats_booked %>">
+                                <input class="FCBookedEdit smallBox" type="number" min="0" disabled value= "<%= flights[i].fc_seats_booked %>" placeholder="#>=0">
                             </td>
                             <td>
-                                <input class="FCCostEdit smallBox" type="number" min="0" value= "<%= flights[i].fc_cost_per_seat %>">
+                                <input class="FCCostEdit smallBox" type="number" min="0" value= "<%= flights[i].fc_cost_per_seat %>" placeholder="#>=0">
                             </td>
                             <td>
                                 <input class="updateButton" type="button" value="Update" onclick="updateSingle(this)"/>

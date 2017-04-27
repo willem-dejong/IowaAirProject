@@ -46,16 +46,16 @@
                 <div class="dates">
                     <div class="dated">
                         <label id="datelab" for="date">Depart Date*</label>
-                        <input type="date" id="date" class="date" name="date" form="quein"/>
+                        <input type="date" id="date" class="date" name="date" form="quein"  placeholder="YYYY-MM-DD"/>
                     </div>
                     <div class="dated">
                         <label id="date2lab" for="date2">Return Date</label>
-                        <input type="date" id="date2" class="date" name="date2" form="quein"/>
+                        <input type="date" id="date2" class="date" name="date2" form="quein"   placeholder="YYYY-MM-DD"/>
                     </div>
                 </div>
                 <div class="passd">
                     <label for="pass"># of Passengers</label>
-                    <input type="number" id="pass" name="pass" value=1 min=1 form="quein">
+                    <input type="number" id="pass" name="pass" value=1 min=1 form="quein"  placeholder="#>0">
                 </div>
                 <!--see https://www.formget.com/javascript-submit-form/ for making the javascript client side javascript!-->
                 <input type="button" value="Search" id="but" onclick="verifyAndSubmit();" /><!--for Javascript change this input in the html! make type="button", and add onclick="verifyAndSubmit(this.parentElement)"! verifyAndSubmit should verify that the required feilds are filled and if they are then submit the form, if not change the unfilled fields' labels' text red-->
@@ -78,16 +78,16 @@
                 <div class="dates">
                     <div class="dated">
                         <label id="datelabb" for="dateb">Depart Date*</label>
-                        <input type="date" id="dateb" class="date" name="dateb"/>
+                        <input type="date" id="dateb" class="date" name="dateb"  placeholder="YYYY-MM-DD"/>
                     </div>
                     <div class="dated">
                         <label id="date2labb" for="date2b">Return Date</label>
-                        <input type="date" id="date2b" class="date" name="date2b"/>
+                        <input type="date" id="date2b" class="date" name="date2b"  placeholder="YYYY-MM-DD"/>
                     </div>
                 </div>
                 <div class="passd">
                     <label for="passb"># of Passengers</label>
-                    <input type="number" id="passb" name="passb" value=1 min=1 >
+                    <input type="number" id="passb" name="passb" value=1 min=1   placeholder="#>0">
                 </div>
                 <input type="button" value="Search" id="butb" onclick="verifyAndSubmit2();" /><!--for Javascript change this input in the html! make type="button", and add onclick="verifyAndSubmit(this.parentElement)"! verifyAndSubmit should verify that the required feilds are filled and if they are then submit the form, if not change the unfilled fields' labels' text red-->
                 <div id="req">*Required.<br/>leave return date empty for one way trip.</div>
