@@ -74,7 +74,7 @@ function book(but){var error = document.getElementById("invalidInput");
 	    phone = pass.querySelector("#phonein").value;
 	    gender = pass.querySelector("#genderin").value;
 
-	    if(dob.search("[0-9]{4}-[0-9]{2}-[0-9]{2}") == -1){
+	    if(dob.match(/[0-9]{4}-[0-9]{2}-[0-9]{2}/g)[0]!=dob){
 	    	pass.querySelector("#labdobin").style.color="red";
 	    	flag = true;
 	    }

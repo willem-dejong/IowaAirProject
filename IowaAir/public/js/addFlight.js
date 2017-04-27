@@ -9,13 +9,29 @@ function addFlight(){
     	model=model.replace(" ","_")
     }
     var dDate = row.querySelector(".dDateSearch").value;
+    var m=dDate.match(/[0-9]{4}-[0-9]{2}-[0-9]{2}/g)
+    if (!m||m[0]!=dDate){
+   	dDate=""
+    }
     var dTime = row.querySelector(".dTimeSearch").value;
+    var m=dTime.match(/[0-2][0-9]:[0-5][0-9]/g)
+    if (!m||m[0]!=dTime){
+   	dTime=""
+    }
     var dd=dDate.split("-")
     var dt=dTime.split(":")
     var dept=new Date(parseInt(dd[0]),parseInt(dd[1])-1,parseInt(dd[2]),parseInt(dt[0]),parseInt(dt[1]))
     var dLoc = row.querySelector(".dLocSearch").value;
     var aDate = row.querySelector(".aDateSearch").value;
+    m=aDate.match(/[0-9]{4}-[0-9]{2}-[0-9]{2}/g)
+    if (!m||m[0]!=aDate){
+   	aDate=""
+    }
     var aTime = row.querySelector(".aTimeSearch").value;
+    var m=aTime.match(/[0-2][0-9]:[0-5][0-9]/g)
+    if (!m||m[0]!=aTime){
+   	aTime=""
+    }
     var ad=aDate.split("-")
     var at=aTime.split(":")
     var arv=new Date(parseInt(ad[0]),parseInt(ad[1])-1,parseInt(ad[2]),parseInt(at[0]),parseInt(at[1]))

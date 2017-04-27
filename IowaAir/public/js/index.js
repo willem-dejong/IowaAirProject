@@ -11,6 +11,14 @@ function verifyAndSubmit(){            //validate for required fields
    var invalidDate = false;
    var portFlag=false;
    var portFlag2=false;
+   var m=departDate.match(/[0-9]{4}-[0-9]{2}-[0-9]{2}/g)
+   if (!m||m[0]!=departDate){
+   	departDate=""
+   }
+   m=returnDate.match(/[0-9]{4}-[0-9]{2}-[0-9]{2}/g)
+   if (!m||m[0]!=returnDate){
+   	returnDate=""
+   }
    var depdl=departDate.split("-")
    var depDate = new Date(parseInt(depdl[0]),parseInt(depdl[1])-1,parseInt(depdl[2]));
    var retdl=returnDate.split("-")
@@ -105,6 +113,14 @@ function verifyAndSubmit2(){            //validate for required fields
    var invalidDate = false;
    var portFlag=false;
    //var portFlag2=false;
+   var m=departDate.match(/[0-9]{4}-[0-9]{2}-[0-9]{2}/g)
+   if (!m||m[0]!=departDate){
+   	departDate=""
+   }
+   m=returnDate.match(/[0-9]{4}-[0-9]{2}-[0-9]{2}/g)
+   if (!m||m[0]!=returnDate){
+   	returnDate=""
+   }
    var depdl=departDate.split("-")
    var depDate = new Date(parseInt(depdl[0]),parseInt(depdl[1])-1,parseInt(depdl[2]));
    var retdl=returnDate.split("-")

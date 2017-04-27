@@ -167,12 +167,29 @@ function updateRow(row){
     while(model.indexOf(" ")!=-1){
         model=model.replace(" ","_");
     }
-
+    
+    
     var dDate = row.querySelector(".dDateEdit").value;
+    var m=dDate.match(/[0-9]{4}-[0-9]{2}-[0-9]{2}/g)
+    if (!m||m[0]!=dDate){
+   	dDate=""
+    }
     var dTime = row.querySelector(".dTimeEdit").value;
+    var m=dTime.match(/[0-2][0-9]:[0-5][0-9]/g)
+    if (!m||m[0]!=dTime){
+   	dTime=""
+    }
     var dLoc = row.querySelector(".dLocEdit").value;
     var aDate = row.querySelector(".aDateEdit").value;
+    m=aDate.match(/[0-9]{4}-[0-9]{2}-[0-9]{2}/g)
+    if (!m||m[0]!=aDate){
+   	aDate=""
+    }
     var aTime = row.querySelector(".aTimeEdit").value;
+    var m=aTime.match(/[0-2][0-9]:[0-5][0-9]/g)
+    if (!m||m[0]!=aTime){
+   	aTime=""
+    }
     var aLoc = row.querySelector(".aLocEdit").value;
     var ECAvail = row.querySelector(".ECAvailEdit").value;
     var ECBooked = row.querySelector(".ECBookedEdit").value;
