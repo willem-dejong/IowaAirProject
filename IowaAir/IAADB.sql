@@ -114,7 +114,7 @@ CREATE TABLE `flights` (
 
 LOCK TABLES `flights` WRITE;
 /*!40000 ALTER TABLE `flights` DISABLE KEYS */;
-INSERT INTO `flights` VALUES (1,'3rdd','2017-07-12 07:45:00','2017-07-12 08:45:00',100,71,500,25,34,1000,1,'ORD','CID',NULL,2,0),(2,'df4','2017-07-12 11:45:00','2017-07-12 13:45:00',75,91,412,10,4,1000,2,'CID','ORD',NULL,3,0),(3,'dfee','2017-07-12 14:45:00','2017-07-12 16:45:00',33,22,245,10,0,1000,2,'ORD','OSS',NULL,0,0),(4,'s4r','2017-07-12 03:45:00','2017-07-12 05:46:00',90,16,412,10,1,1011,1,'CID','ORD',NULL,0,0),(5,'sffaf','2017-07-12 23:45:00','2017-07-13 00:40:00',100,90,111,10,0,1233,1,'ORD','CID',NULL,0,0),(6,'e43','2017-07-12 20:45:00','2017-07-12 21:45:00',12,6,111,11,5,1222,3,'CID','OSS',NULL,0,0),(13,'3r43r','2017-06-06 04:00:00','2017-06-06 06:00:00',10,10,10,10,10,10,1,'CID','ORD',NULL,0,0),(14,'3r43r','2017-07-06 07:00:00','2017-07-06 08:00:00',10,10,10,10,10,10,1,'CID','ORD',NULL,0,0),(15,'3r43r','2017-07-07 07:00:00','2017-07-07 08:00:00',10,10,10,10,10,10,1,'CID','ORD',NULL,0,0),(16,'3r43r','2017-07-08 07:00:00','2017-07-08 08:00:00',10,10,10,10,10,10,1,'CID','ORD',NULL,0,0),(17,'3r43r','2017-07-09 07:00:00','2017-07-09 08:00:00',10,10,10,10,10,10,1,'CID','ORD',NULL,0,0),(18,'3r43r','2017-07-18 07:00:00','2017-07-18 08:00:00',10,10,10,10,10,10,1,'CID','ORD',NULL,0,0),(19,'3r43r','2017-07-19 07:00:00','2017-07-19 08:00:00',10,10,10,10,10,10,1,'CID','ORD',NULL,0,0),(23,'dwq','2017-04-27 01:00:00','2017-04-27 02:00:00',11,11,11,11,11,11,1,'CID','ORD',NULL,0,0),(26,'adwa','2017-04-26 01:00:00','2017-04-26 02:00:00',11,11,11,11,11,11,1,'CID','ORD',NULL,0,0);
+INSERT INTO `flights` VALUES (1,'3rdd','2017-07-12 07:45:00','2017-07-12 08:45:00',100,71,500,25,34,1000,1,'ORD','CID',NULL,3,0),(2,'df4','2017-07-12 11:45:00','2017-07-12 13:45:00',75,91,412,10,4,1000,2,'CID','ORD',NULL,3,0),(3,'dfee','2017-07-12 14:45:00','2017-07-12 16:45:00',33,22,245,10,0,1000,2,'ORD','OSS',NULL,0,0),(4,'s4r','2017-07-12 03:45:00','2017-07-12 05:46:00',90,16,412,10,1,1011,1,'CID','ORD',NULL,0,0),(5,'sffaf','2017-07-12 23:45:00','2017-07-13 00:40:00',100,90,111,10,0,1233,1,'ORD','CID',NULL,0,0),(6,'e43','2017-07-12 20:45:00','2017-07-12 21:45:00',12,6,111,11,5,1222,3,'CID','OSS',NULL,0,0),(13,'3r43r','2017-06-06 04:00:00','2017-06-06 06:00:00',10,10,10,10,10,10,1,'CID','ORD',NULL,0,0),(14,'3r43r','2017-07-06 07:00:00','2017-07-06 08:00:00',10,10,10,10,10,10,1,'CID','ORD',NULL,0,0),(15,'3r43r','2017-07-07 07:00:00','2017-07-07 08:00:00',10,10,10,10,10,10,1,'CID','ORD',NULL,0,0),(16,'3r43r','2017-07-08 07:00:00','2017-07-08 08:00:00',10,10,10,10,10,10,1,'CID','ORD',NULL,0,0),(17,'3r43r','2017-07-09 07:00:00','2017-07-09 08:00:00',10,10,10,10,10,10,1,'CID','ORD',NULL,0,0),(18,'3r43r','2017-07-18 07:00:00','2017-07-18 08:00:00',10,10,10,10,10,10,1,'CID','ORD',NULL,0,0),(19,'3r43r','2017-07-19 07:00:00','2017-07-19 08:00:00',10,10,10,10,10,10,1,'CID','ORD',NULL,0,0),(23,'dwq','2017-04-27 01:00:00','2017-04-27 02:00:00',11,11,11,11,11,11,1,'CID','ORD',NULL,0,0),(26,'adwa','2017-04-26 01:00:00','2017-04-26 02:00:00',11,11,11,11,11,11,1,'CID','ORD',NULL,0,0);
 /*!40000 ALTER TABLE `flights` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -131,7 +131,7 @@ CREATE TABLE `planes` (
   `fc_num_seats` int(11) NOT NULL,
   `ec_num_seats` int(11) NOT NULL,
   PRIMARY KEY (`plane_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -140,7 +140,7 @@ CREATE TABLE `planes` (
 
 LOCK TABLES `planes` WRITE;
 /*!40000 ALTER TABLE `planes` DISABLE KEYS */;
-INSERT INTO `planes` VALUES (1,'boeing 474',122,110),(2,'boeing 747',100,211),(3,'boeing 456',100,122),(4,'boeing 456',100,100),(5,'xdgs',100,100),(6,'boeing 747',25,100),(7,'boeing 747',25,100),(8,'boeing 747',25,100),(9,'Boeing 727',0,100);
+INSERT INTO `planes` VALUES (1,'boeing 474',122,110),(2,'boeing 747',100,211),(3,'boeing 456',100,122),(4,'boeing 456',100,100),(5,'xdgs',100,100),(6,'boeing 747',25,100),(7,'boeing 747',25,100),(8,'boeing 747',25,100),(9,'Boeing 727',0,100),(10,'aaa',0,0);
 /*!40000 ALTER TABLE `planes` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -179,7 +179,7 @@ CREATE TABLE `reservations` (
 
 LOCK TABLES `reservations` WRITE;
 /*!40000 ALTER TABLE `reservations` DISABLE KEYS */;
-INSERT INTO `reservations` VALUES (2,'sas','dej','1991-04-02','F',3,2,'ec',1,'ec2',1),(3,'bob','saget','1960-01-01','F',14,1,'ec',1,'ec1',1),(4,'bob','saget','1960-01-01','F',14,1,'ec',1,'ec2',1),(37,'bob','dear','1990-01-01','M',2,2,'ec',1,'ec3',1),(39,'bob','dear','1990-01-01','M',2,1,'ec',1,NULL,NULL),(40,'bob','dear','1990-01-01','M',2,1,'ec',1,NULL,NULL),(43,'bob','dear','1990-01-01','M',2,1,'fc',1,NULL,NULL),(44,'bob','dear','1990-01-01','M',2,1,'fc',1,NULL,NULL),(45,'dfs','sfdsdf','2017-04-04','o',1,1,'fc',1,NULL,NULL),(46,'asda','asd','2017-04-04','m',1,1,'fc',1,NULL,NULL),(47,'asda','asd','2017-04-04','m',1,1,'fc',1,NULL,NULL),(48,'asda','asd','2017-04-04','m',1,1,'fc',1,NULL,NULL),(49,'sdfs','sdfs','2017-04-04','M',1,1,'fc',9,NULL,NULL),(50,'sdfs','sdfs','2017-04-04','M',1,1,'fc',10,NULL,NULL),(51,'sdfs','sdfs','2017-04-04','M',1,1,'fc',11,NULL,NULL),(52,'sdfs','sdfs','2017-04-04','M',1,1,'fc',11,NULL,NULL),(53,'bob','dear','1990-01-01','M',2,2,'ec',12,NULL,NULL),(54,'bob','dear','1990-01-01','M',2,2,'ec',12,NULL,NULL),(55,'bob','dear','1990-01-01','M',2,1,'ec',12,NULL,NULL),(56,'bob','dear','1990-01-01','M',2,1,'ec',12,NULL,NULL),(57,'bob','dear','1990-01-01','M',2,2,'ec',13,NULL,NULL),(58,'bob','dear','1990-01-01','M',2,2,'ec',13,NULL,NULL),(59,'bob','dear','1990-01-01','M',2,1,'ec',13,NULL,NULL),(60,'bob','dear','1990-01-01','M',2,1,'ec',13,NULL,NULL),(61,'bob','dear','1990-01-01','M',2,2,'ec',14,NULL,NULL),(62,'bob','dear','1990-01-01','M',2,2,'ec',14,NULL,NULL),(63,'bob','dear','1990-01-01','M',2,1,'ec',14,NULL,NULL),(64,'bob','dear','1990-01-01','M',2,1,'ec',14,NULL,NULL),(65,'bob','dear','1990-01-01','M',2,2,'ec',15,NULL,NULL),(66,'bob','dear','1990-01-01','M',2,2,'ec',15,NULL,NULL),(67,'bob','dear','1990-01-01','M',2,1,'ec',15,NULL,NULL),(68,'bob','dear','1990-01-01','M',2,1,'ec',15,NULL,NULL),(69,'bob','dear','1990-01-01','M',15,2,'ec',16,NULL,NULL),(70,'bob','dear','1990-01-01','M',15,2,'ec',16,NULL,NULL),(71,'bob','dear','1990-01-01','M',15,1,'ec',16,NULL,NULL),(72,'bob','dear','1990-01-01','M',15,1,'ec',16,NULL,NULL),(73,'bob','dear','1990-01-01','M',14,2,'ec',17,NULL,NULL),(74,'bob','dear','1990-01-01','M',14,2,'ec',17,NULL,NULL),(75,'bob','dear','1990-01-01','M',14,1,'ec',17,NULL,NULL),(76,'bob','dear','1990-01-01','M',14,1,'ec',17,NULL,NULL),(77,'bob','dear','1990-01-01','M',2,2,'ec',18,NULL,NULL),(78,'bob','dear','1990-01-01','M',2,2,'ec',18,NULL,NULL),(79,'bob','dear','1990-01-01','M',2,1,'ec',18,NULL,NULL),(80,'bob','dear','1990-01-01','M',2,1,'ec',18,NULL,NULL),(81,'bob','dear','1990-01-01','M',2,2,'ec',19,NULL,NULL),(82,'bob','dear','1990-01-01','M',2,2,'ec',19,NULL,NULL),(83,'bob','dear','1990-01-01','M',2,1,'ec',19,NULL,NULL),(84,'bob','dear','1990-01-01','M',2,1,'ec',19,NULL,NULL),(85,'bob','dear','1990-01-01','M',2,2,'ec',20,NULL,NULL),(86,'bob','dear','1990-01-01','M',2,2,'ec',20,NULL,NULL),(87,'bob','dear','1990-01-01','M',2,1,'ec',20,NULL,NULL),(88,'bob','dear','1990-01-01','M',2,1,'ec',20,NULL,NULL),(89,'bob','dear','1990-01-01','M',2,2,'ec',21,NULL,NULL),(90,'bob','dear','1990-01-01','M',2,2,'ec',21,NULL,NULL),(91,'bob','dear','1990-01-01','M',2,1,'ec',21,NULL,NULL),(92,'bob','dear','1990-01-01','M',2,1,'ec',21,NULL,NULL),(93,'bob','dear','1990-01-01','M',2,2,'ec',22,NULL,NULL),(94,'bob','dear','1990-01-01','M',2,2,'ec',22,NULL,NULL),(95,'bob','dear','1990-01-01','M',2,1,'ec',22,NULL,NULL),(96,'bob','dear','1990-01-01','M',2,1,'ec',22,NULL,NULL),(97,'bob','dear','1990-01-01','M',2,2,'ec',23,NULL,NULL),(98,'bob','dear','1990-01-01','M',2,2,'ec',23,NULL,NULL),(99,'bob','dear','1990-01-01','M',2,1,'ec',23,NULL,NULL),(100,'bob','dear','1990-01-01','M',2,1,'ec',23,NULL,NULL),(101,'bob','dear','1990-01-01','M',17,2,'ec',24,NULL,NULL),(102,'bob','dear','1990-01-01','M',17,2,'ec',24,NULL,NULL),(103,'bob','dear','1990-01-01','M',17,1,'ec',24,NULL,NULL),(104,'bob','dear','1990-01-01','M',17,1,'ec',24,NULL,NULL),(105,'bob','dear','1990-01-01','M',15,2,'ec',25,NULL,NULL),(106,'bob','dear','1990-01-01','M',15,2,'ec',25,NULL,NULL),(107,'bob','dear','1990-01-01','M',15,1,'ec',25,NULL,NULL),(108,'bob','dear','1990-01-01','M',15,1,'ec',25,NULL,NULL),(109,'we','wd','2017-04-19','M',2,2,'ec',26,NULL,NULL),(110,'we','wd','2017-04-19','M',2,1,'ec',26,NULL,NULL),(111,'gjgj','grttg','2017-01-17','M',15,2,'fc',27,NULL,NULL),(112,'wfe','wefew','2017-04-19','M',15,2,'fc',27,NULL,NULL),(113,'wil','de','1991-09-18','M',2,4,'fc',28,NULL,NULL),(114,'arie','DeJong','1957-06-29','O',2,4,'ec',29,NULL,NULL);
+INSERT INTO `reservations` VALUES (2,'sas','dej','1991-04-02','F',3,2,'ec',1,'ec2',1),(3,'bob','saget','1960-01-01','F',14,1,'ec',1,'ec1',1),(4,'bob','saget','1960-01-01','F',14,1,'ec',1,'ec2',1),(37,'bob','dear','1990-01-01','M',2,2,'ec',1,'ec3',1),(39,'bob','dear','1990-01-01','M',2,1,'ec',1,'ec3',1),(40,'bob','dear','1990-01-01','M',2,1,'ec',1,NULL,NULL),(43,'bob','dear','1990-01-01','M',2,1,'fc',1,NULL,NULL),(44,'bob','dear','1990-01-01','M',2,1,'fc',1,NULL,NULL),(45,'dfs','sfdsdf','2017-04-04','o',1,1,'fc',1,NULL,NULL),(46,'asda','asd','2017-04-04','m',1,1,'fc',1,NULL,NULL),(47,'asda','asd','2017-04-04','m',1,1,'fc',1,NULL,NULL),(48,'asda','asd','2017-04-04','m',1,1,'fc',1,NULL,NULL),(49,'sdfs','sdfs','2017-04-04','M',1,1,'fc',9,NULL,NULL),(50,'sdfs','sdfs','2017-04-04','M',1,1,'fc',10,NULL,NULL),(51,'sdfs','sdfs','2017-04-04','M',1,1,'fc',11,NULL,NULL),(52,'sdfs','sdfs','2017-04-04','M',1,1,'fc',11,NULL,NULL),(53,'bob','dear','1990-01-01','M',2,2,'ec',12,NULL,NULL),(54,'bob','dear','1990-01-01','M',2,2,'ec',12,NULL,NULL),(55,'bob','dear','1990-01-01','M',2,1,'ec',12,NULL,NULL),(56,'bob','dear','1990-01-01','M',2,1,'ec',12,NULL,NULL),(57,'bob','dear','1990-01-01','M',2,2,'ec',13,NULL,NULL),(58,'bob','dear','1990-01-01','M',2,2,'ec',13,NULL,NULL),(59,'bob','dear','1990-01-01','M',2,1,'ec',13,NULL,NULL),(60,'bob','dear','1990-01-01','M',2,1,'ec',13,NULL,NULL),(61,'bob','dear','1990-01-01','M',2,2,'ec',14,NULL,NULL),(62,'bob','dear','1990-01-01','M',2,2,'ec',14,NULL,NULL),(63,'bob','dear','1990-01-01','M',2,1,'ec',14,NULL,NULL),(64,'bob','dear','1990-01-01','M',2,1,'ec',14,NULL,NULL),(65,'bob','dear','1990-01-01','M',2,2,'ec',15,NULL,NULL),(66,'bob','dear','1990-01-01','M',2,2,'ec',15,NULL,NULL),(67,'bob','dear','1990-01-01','M',2,1,'ec',15,NULL,NULL),(68,'bob','dear','1990-01-01','M',2,1,'ec',15,NULL,NULL),(69,'bob','dear','1990-01-01','M',15,2,'ec',16,NULL,NULL),(70,'bob','dear','1990-01-01','M',15,2,'ec',16,NULL,NULL),(71,'bob','dear','1990-01-01','M',15,1,'ec',16,NULL,NULL),(72,'bob','dear','1990-01-01','M',15,1,'ec',16,NULL,NULL),(73,'bob','dear','1990-01-01','M',14,2,'ec',17,NULL,NULL),(74,'bob','dear','1990-01-01','M',14,2,'ec',17,NULL,NULL),(75,'bob','dear','1990-01-01','M',14,1,'ec',17,NULL,NULL),(76,'bob','dear','1990-01-01','M',14,1,'ec',17,NULL,NULL),(77,'bob','dear','1990-01-01','M',2,2,'ec',18,NULL,NULL),(78,'bob','dear','1990-01-01','M',2,2,'ec',18,NULL,NULL),(79,'bob','dear','1990-01-01','M',2,1,'ec',18,NULL,NULL),(80,'bob','dear','1990-01-01','M',2,1,'ec',18,NULL,NULL),(81,'bob','dear','1990-01-01','M',2,2,'ec',19,NULL,NULL),(82,'bob','dear','1990-01-01','M',2,2,'ec',19,NULL,NULL),(83,'bob','dear','1990-01-01','M',2,1,'ec',19,NULL,NULL),(84,'bob','dear','1990-01-01','M',2,1,'ec',19,NULL,NULL),(85,'bob','dear','1990-01-01','M',2,2,'ec',20,NULL,NULL),(86,'bob','dear','1990-01-01','M',2,2,'ec',20,NULL,NULL),(87,'bob','dear','1990-01-01','M',2,1,'ec',20,NULL,NULL),(88,'bob','dear','1990-01-01','M',2,1,'ec',20,NULL,NULL),(89,'bob','dear','1990-01-01','M',2,2,'ec',21,NULL,NULL),(90,'bob','dear','1990-01-01','M',2,2,'ec',21,NULL,NULL),(91,'bob','dear','1990-01-01','M',2,1,'ec',21,NULL,NULL),(92,'bob','dear','1990-01-01','M',2,1,'ec',21,NULL,NULL),(93,'bob','dear','1990-01-01','M',2,2,'ec',22,NULL,NULL),(94,'bob','dear','1990-01-01','M',2,2,'ec',22,NULL,NULL),(95,'bob','dear','1990-01-01','M',2,1,'ec',22,NULL,NULL),(96,'bob','dear','1990-01-01','M',2,1,'ec',22,NULL,NULL),(97,'bob','dear','1990-01-01','M',2,2,'ec',23,NULL,NULL),(98,'bob','dear','1990-01-01','M',2,2,'ec',23,NULL,NULL),(99,'bob','dear','1990-01-01','M',2,1,'ec',23,NULL,NULL),(100,'bob','dear','1990-01-01','M',2,1,'ec',23,NULL,NULL),(101,'bob','dear','1990-01-01','M',17,2,'ec',24,NULL,NULL),(102,'bob','dear','1990-01-01','M',17,2,'ec',24,NULL,NULL),(103,'bob','dear','1990-01-01','M',17,1,'ec',24,NULL,NULL),(104,'bob','dear','1990-01-01','M',17,1,'ec',24,NULL,NULL),(105,'bob','dear','1990-01-01','M',15,2,'ec',25,NULL,NULL),(106,'bob','dear','1990-01-01','M',15,2,'ec',25,NULL,NULL),(107,'bob','dear','1990-01-01','M',15,1,'ec',25,NULL,NULL),(108,'bob','dear','1990-01-01','M',15,1,'ec',25,NULL,NULL),(109,'we','wd','2017-04-19','M',2,2,'ec',26,NULL,NULL),(110,'we','wd','2017-04-19','M',2,1,'ec',26,NULL,NULL),(111,'gjgj','grttg','2017-01-17','M',15,2,'fc',27,NULL,NULL),(112,'wfe','wefew','2017-04-19','M',15,2,'fc',27,NULL,NULL),(113,'wil','de','1991-09-18','M',2,4,'fc',28,NULL,NULL),(114,'arie','DeJong','1957-06-29','O',2,4,'ec',29,NULL,NULL);
 /*!40000 ALTER TABLE `reservations` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -294,6 +294,86 @@ CREATE DEFINER=`admin`@`localhost` FUNCTION `intoTran`(id int) RETURNS int(11)
 BEGIN
 insert into iowaair.transact(accountid) value(id);
 RETURN (select LAST_INSERT_ID() limit 1);
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `addFlight` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`admin`@`localhost` PROCEDURE `addFlight`(fnum varchar(50),dep datetime,arv datetime,ecsa int,ecsb int,eccps float,fcsa int,fcsb int,fccps float,am varchar(50),org varchar(25),dest varchar(25),g varchar(25),inter int,interType varchar(25),numTime int)
+BEGIN
+DECLARE oop CONDITION FOR SQLSTATE '45000';
+DECLARE EXIT HANDLER FOR SQLEXCEPTION
+    BEGIN
+		ROLLBACK;
+		SIGNAL oop;
+    END;
+START TRANSACTION;
+set @pid=(select plane_id from iowaair.planes as f where f.plane_id not in (SELECT distinct plane_id FROM iowaair.flights where departure_time<=arv+interval 5 hour and arrival_time>=dep-interval 5 hour) and model=am limit 1);
+insert into iowaair.flights(Flight_num,departure_time,arrival_time,ec_seats_available,ec_seats_booked,ec_cost_per_seat,fc_seats_available,fc_seats_booked,fc_cost_per_seat,plane_id,origin_port,destined_port,gate) values (fnum,dep,arv,ecsa,ecsb,eccps,fcsa,fcsb,fccps,@pid,org,dest,g);
+set @i=0;
+WHILE @i<numTime DO
+if interType="minutes" then
+set @pid=(select plane_id from iowaair.planes as f where f.plane_id not in (SELECT distinct plane_id FROM iowaair.flights where departure_time<=arv+interval inter minute+interval 5 hour and arrival_time>=dep+interval inter minute-interval 5 hour) and model=am limit 1);
+insert into iowaair.flights(Flight_num,departure_time,arrival_time,ec_seats_available,ec_seats_booked,ec_cost_per_seat,fc_seats_available,fc_seats_booked,fc_cost_per_seat,plane_id,origin_port,destined_port,gate) values (fnum,dep+interval inter minute,arv+interval inter minute,ecsa,ecsb,eccps,fcsa,fcsb,fccps,@pid,org,dest,g);
+elseif interType="hours" then
+set @pid=(select plane_id from iowaair.planes as f where f.plane_id not in (SELECT distinct plane_id FROM iowaair.flights where departure_time<=arv+interval inter hour+interval 5 hour and arrival_time>=dep+interval inter hour-interval 5 hour) and model=am limit 1);
+insert into iowaair.flights(Flight_num,departure_time,arrival_time,ec_seats_available,ec_seats_booked,ec_cost_per_seat,fc_seats_available,fc_seats_booked,fc_cost_per_seat,plane_id,origin_port,destined_port,gate) values (fnum,dep+interval inter hour,arv+interval inter hour,ecsa,ecsb,eccps,fcsa,fcsb,fccps,@pid,org,dest,g);
+elseif interType="days" then
+set @pid=(select plane_id from iowaair.planes as f where f.plane_id not in (SELECT distinct plane_id FROM iowaair.flights where departure_time<=arv+interval inter day+interval 5 hour and arrival_time>=dep+interval inter day-interval 5 hour) and model=am limit 1);
+insert into iowaair.flights(Flight_num,departure_time,arrival_time,ec_seats_available,ec_seats_booked,ec_cost_per_seat,fc_seats_available,fc_seats_booked,fc_cost_per_seat,plane_id,origin_port,destined_port,gate) values (fnum,dep+interval inter day,arv+interval inter day,ecsa,ecsb,eccps,fcsa,fcsb,fccps,@pid,org,dest,g);
+elseif interType="months" then
+set @pid=(select plane_id from iowaair.planes as f where f.plane_id not in (SELECT distinct plane_id FROM iowaair.flights where departure_time<=arv+interval inter month+interval 5 hour and arrival_time>=dep+interval inter month-interval 5 hour) and model=am limit 1);
+insert into iowaair.flights(Flight_num,departure_time,arrival_time,ec_seats_available,ec_seats_booked,ec_cost_per_seat,fc_seats_available,fc_seats_booked,fc_cost_per_seat,plane_id,origin_port,destined_port,gate) values (fnum,dep+interval inter month,arv+interval inter month,ecsa,ecsb,eccps,fcsa,fcsb,fccps,@pid,org,dest,g);
+else
+ROLLBACK;
+SIGNAL oop;
+end if;
+set @i=@i+1;
+END WHILE;
+COMMIT;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `cancel2` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`admin`@`localhost` PROCEDURE `cancel2`(resID int, email varchar(45),pass varchar(45))
+BEGIN
+DECLARE oop CONDITION FOR SQLSTATE '45000';
+DECLARE EXIT HANDLER FOR SQLEXCEPTION
+    BEGIN
+		ROLLBACK;
+		SIGNAL oop;
+    END;
+START TRANSACTION;
+set @dd=(select f.departure_time from iowaair.flights as f,iowaair.reservations as r,iowaair.account as a where f.flightID=r.flightID and r.res_num=resID and a.idaccount=r.accountID and a.email=email and a.password=pass limit 1);
+if @dd is null or @dd-interval 1 day<=NOW() then
+rollback;
+signal oop;
+end if;
+DELETE FROM iowaair.reservations WHERE res_num=resID;
+commit;
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -822,6 +902,25 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `getPassenger` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`admin`@`localhost` PROCEDURE `getPassenger`(resID int)
+BEGIN
+select r.res_num as resid,r.fname as fname,r.lname as lname,r.DOB as dob,r.gender as gender, r.flightID as flightID,f.Flight_num as Flight_num,f.Gate as Gate,p.model as model, f.departure_time as departure_time, f.origin_port as origin_port,f.arrival_time as arrival_time, f.destined_port as destined_port, r.seatnum as seatnum, r.numbags as bags from iowaair.reservations as r, iowaair.flights as f, iowaair.planes as p where r.flightID=f.flightID and f.plane_id=p.plane_id and r.res_num=resID limit 1;
+end ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!50003 DROP PROCEDURE IF EXISTS `getPassengers` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
@@ -832,10 +931,29 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`admin`@`localhost` PROCEDURE `getPassengers`(transID int)
+CREATE DEFINER=`admin`@`localhost` PROCEDURE `getPassengers`(transid int)
 BEGIN
-select r.res_num as resid,r.fname as fname,r.lname as lname,r.DOB as dob,r.gender as gender, r.flightID as flightID,f.Flight_num as Flight_num,f.Gate as Gate,p.model as model, f.departure_time as departure_time, f.origin_port as origin_port,f.arrival_time as arrival_time, f.destined_port as destined_port, r.seatnum as seatnum, r.numbags as bags from iowaair.reservations as r, iowaair.flights as f, iowaair.planes as p where r.flightID=f.flightID and f.plane_id=p.plane_id and r.transactID=transID;
+select r.transactID as transID, r.res_num as resid,r.fname as fname,r.lname as lname,r.DOB as dob,r.gender as gender, r.flightID as flightID,f.Flight_num as Flight_num,f.Gate as Gate,p.model as model, f.departure_time as departure_time, f.origin_port as origin_port,f.arrival_time as arrival_time, f.destined_port as destined_port, r.seatnum as seatnum, r.numbags as bags from iowaair.reservations as r, iowaair.flights as f, iowaair.planes as p where r.flightID=f.flightID and f.plane_id=p.plane_id and r.transactID=transid;
 end ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `getPassengers2` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`admin`@`localhost` PROCEDURE `getPassengers2`(email varchar(45),pass varchar(45))
+BEGIN
+select r.transactID as transID, r.res_num as resid,r.fname as fname,r.lname as lname,r.DOB as dob,r.gender as gender, r.flightID as flightID,f.Flight_num as Flight_num,f.Gate as Gate,p.model as model, f.departure_time as departure_time, f.origin_port as origin_port,f.arrival_time as arrival_time, f.destined_port as destined_port, r.seatnum as seatnum, r.numbags as bags from iowaair.reservations as r, iowaair.flights as f, iowaair.planes as p, iowaair.account as a where r.flightID=f.flightID and f.plane_id=p.plane_id and a.idaccount=r.account_ID and a.email=email and a.password=pass order by f.departure_time desc;
+END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
@@ -1155,4 +1273,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-04-25  0:06:56
+-- Dump completed on 2017-04-26 20:39:14
