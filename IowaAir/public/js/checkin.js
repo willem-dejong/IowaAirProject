@@ -31,7 +31,7 @@ function checkIn(but){
         var address = "/manager/checkin?resid="+resID+"&bags="+bags;
 
         $.ajax({url:address,success:function(response){
-        		window.open("http://localhost/manager/ticket?resID="+resID,"_blank","height=500,width=1000")
+        		window.open("http://localhost/manager/ticket?resid="+resID,"_blank","height=500,width=1000")
             window.location = window.location;
         },error:function(response){
             row.bgColor = "red";

@@ -31,7 +31,7 @@ function swaplists(bl,cls){
 	rlist.parentElement.removeChild(rlist)
 	var rrlist=document.querySelector("#resultlist_return");
 	rrlist.id="resultlist"
-	rrlist.style.display="block"
+	rrlist.style.visibility="visible"
 }
 function goToBook(bl,cls){
 	var toItem= bl.parentElement.parentElement.parentElement;

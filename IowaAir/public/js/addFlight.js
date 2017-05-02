@@ -52,9 +52,11 @@ function addFlight(){
     console.log("model: "+model);
     console.log("dDate: "+dDate);
     console.log("dTime: "+dTime);
+    console.log("Dept: "+dept);
     console.log("dLoc: "+dLoc);
     console.log("aDate: "+aDate);
     console.log("aTime: "+aTime);
+    console.log("Arv: "+arv);
     console.log("aLoc: "+aLoc);
     console.log("ECAvail: "+ECAvail);
     console.log("ECBooked: "+ECBooked);
@@ -67,18 +69,21 @@ function addFlight(){
     error.style.display = "none";
 
     if(/*flightID == "" ||*/ dept>=arv||flightNum == "" || model == "" || dDate == "" || dTime == "" || dLoc == "" || aDate == "" || aTime == "" || aLoc == "" || ECAvail == "" || ECBooked == "" || ECCost == "" || FCAvail == "" || FCBooked == "" || FCCost == ""){
-
+		
+    	console.log("a");
         row.bgColor = "#FF0000";
         error.style.display = "block";
         setTimeout(function(){error.style.display = "none"},10000);
 
     }
-    else if(dLoc == aLoc||!document.querySelector("#"+dLoc)||!document.querySelector("#"+aLoc)||!document.querySelector("#"+model)){
+    else if(dLoc == aLoc||!document.querySelector("."+dLoc)||!document.querySelector("."+aLoc)||!document.querySelector("#"+model)){
+    	console.log("b");
         row.bgColor = "#FF0000";
         error.style.display = "block";
         setTimeout(function(){error.style.display = "none"},10000);
     }
     else if(inter<0||!document.querySelector("#"+interType)||numTime<0){
+    	console.log("c");
         document.querySelector("#rep").bgColor = "#FF0000";
         error.style.display = "block";
         setTimeout(function(){error.style.display = "none"},10000);
