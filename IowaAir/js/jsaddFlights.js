@@ -26,6 +26,7 @@ function addFlightRender(req,res){
 }
 function errh(err,req,res,args){
 	console.log("errh")
+	console.log(err)
 	res.writeHead(500, {'Content-Type': 'text/plain'});
 	res.end("oops");	
 }

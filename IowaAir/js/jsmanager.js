@@ -64,7 +64,8 @@ function checkin(req,res){
 	cmdvalidate(req,res,jsmanageBookings.checkin);
 }
 function ticketRender(req,res){
-	pagevalidate(req,res,jsmanageBookings.ticketRender);
+	//pagevalidate(req,res,jsmanageBookings.ticketRender);
+	jsmanageBookings.ticketRender(req,res)
 }
 module.exports={
 	manageBookingsRender:manageBookingsRender,

@@ -293,7 +293,8 @@ function parseMapArgs(url){
 	return {ports:ports,date1:date1,date2:date2,pass:pass}
 }
 function succh1(rows,req,res,args){
-		args.toTrips=[]
+    args.toTrips = []
+        console.log(rows)
 		for(i in rows){
 			if(args.ports.length==2){
 				args.toTrips.push(dq2t1(rows[i]))
@@ -304,16 +305,17 @@ function succh1(rows,req,res,args){
 			else if(args.ports.length==4){
 				args.toTrips.push(dq2t3(rows[i]))
 			}
-		}
+        }
+        console.log(args)
 		if(args.date2){
 			if(args.ports.length==2){
 				sql.getMapFlights1(args.ports[1],args.ports[0],args.date2,args.pass,req,res,errHandler,succh2,args)
 			}
 			else if(args.ports.length==3){
-				sql.getMapFlights2(args.port2[2],args.ports[1],args.ports[0],args.date2,args.pass,req,res,errHandler,succh2,args)
+				sql.getMapFlights2(args.ports[2],args.ports[1],args.ports[0],args.date2,args.pass,req,res,errHandler,succh2,args)
 			}
 			else if(args.ports.length==4){
-				sql.getMapFlights3(args.ports[3],args.port2[2],args.ports[1],args.ports[0],args.date2,args.pass,req,res,errHandler,succh2,args)
+				sql.getMapFlights3(args.ports[3],args.ports[2],args.ports[1],args.ports[0],args.date2,args.pass,req,res,errHandler,succh2,args)
 			}
 		}
 		else{

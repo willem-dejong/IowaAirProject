@@ -671,7 +671,7 @@ function cancel(id,req,res, errhandler,successhandler,args){
 		}
 	});
 }
-function cancel2(id,e,preq,res, errhandler,successhandler,args){
+function cancel2(id,e,p,req,res, errhandler,successhandler,args){
 	var conn=mysql.createConnection({user:"admin",password:"IowaAir2017",port:"3306"});
    conn.connect();
 	inn="call iowaair.cancel2(?,?,?);"

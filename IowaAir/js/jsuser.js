@@ -1,6 +1,6 @@
 var jspath=require("./jspath")
 var mysql=require(jspath.modpath()+'mysql');
-var jsmanageBookings=require('./jsmanageBookings');
+var jsuserBookings=require('./jsuserBookings');
 function forbidden(req,res){
 	req.session.user={fname:"",lname:"",email:"",passw:"",type:"G"};
 	res.writeHead(401, {'Content-Type': 'text/plain'});
@@ -55,10 +55,10 @@ function validateandcall(req,res,toCall,handleUnAuth){
 	});
 }
 function userBookingsRender(req,res){
-	pagevalidate(req,res,jsmanageBookings.userBookingsRender);
+	pagevalidate(req,res,jsuserBookings.userBookingsRender);
 }
 function cancel(req,res){
-	cmdvalidate(req,res,jsmanageBookings.cancel);
+	cmdvalidate(req,res,jsuserBookings.cancel);
 }
 module.exports={
 	userBookingsRender:userBookingsRender,

@@ -128,13 +128,23 @@ function checkin(req,res){
 }
 function succh3(rows,req,res,args){
 	args.passenger=rows[0]
-	sql.getTrip(rows[0].flightID,req,res,send400,succh4,args)
+	console.log(rows[0])
+	sql.getTrip1(rows[0].flightID,1,req,res,send400,succh4,args)
 }
 function succh4(rows,req,res,args){
 	args.trip=dq2t1(rows[0])
+	if(args.passenger.class=="fc"){
+		args.trip.has_fc=true
+		args.trip.has_ec=false
+	}
+	else{
+		args.trip.has_ec=true
+		args.trip.has_fc=false
+	}
 	res.render("ticket",{trip:args.trip,passenger:args.passenger})
 }
 function ticketRender(req,res){
+	args={}
 	args.resID=parseCArgs(req.url)
 	if (args.resID){
 		sql.getPassenger(args.resID,req,res,send400,succh3,args)

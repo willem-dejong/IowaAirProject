@@ -7,6 +7,7 @@ var jsindex=require('./jsindex');
 var jslogin=require('./jslogin');
 var jsadmin=require('./jsadmin');
 var jsmanager=require('./jsmanager');
+var jsuser=require('./jsuser');
 var jsregistration=require('./jsregistration');
 var jscreateAccount=require('./jscreateAccount');
 var jsaccount=require('./jsaccount');
@@ -58,6 +59,7 @@ app.use("/admin/addFlight",jsadmin.addFlightRender);//function(req,res){res.rend
 app.use("/admin/insertFlight",jsadmin.addFlight);
 app.use("/manager/manageBookings",jsmanager.manageBookingsRender);
 app.use("/manageBookings",jsuser.userBookingsRender);
+app.use("/userCancel",jsuser.cancel);
 app.use("/manager/cancel",jsmanager.cancel);
 app.use("/manager/checkin",jsmanager.checkin);
 app.use("/manager/ticket",jsmanager.ticketRender);
