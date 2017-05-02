@@ -62,10 +62,13 @@ th{
 }
 .smallBox{
     width: 100%;
+    min-width:50px;
 }
 .bigBox{
-    width: 90px;
+    width: 100%;
+    min-width:90px;
 }
 .medBox{
-    width: 145px;
+    width: 100%;
+    min-width:145px;
 }
