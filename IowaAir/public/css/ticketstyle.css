@@ -1,0 +1,162 @@
+#result{
+    width: 60%;
+    height: auto;
+    margin:auto;
+}
+#twoway{
+    width: 60%;
+    height: auto;
+    margin:auto;
+    list-style: none;
+    padding:0px;
+}
+#resulthdr{
+    position:relative;
+    height: 100px;
+    width:100%;
+    border: solid;
+    text-align: center;
+    font-size:75px;
+    background-color:rgba(255,255,255,0.75);
+}
+#resultlist{
+    position: relative;
+    list-style: none;
+    padding:0px;
+}
+
+#resultlist_return{
+    position: relative;
+    list-style: none;
+    padding:0px;
+}
+.map{
+    position:relative;
+    width:100%;
+    height:auto;
+}
+.resultitem{
+    position:relative;
+    width:100%;
+    border: solid;
+    background-color:rgba(255,255,255,0.75);
+}
+.tofrombox{
+    position: relative;
+    width:44%;
+    margin-left:0%;
+    text-align: center;
+    display: inline-block;
+}
+.flights{
+    position: absolute;
+    height: 100%;
+    width:34%;
+    text-align:center;
+    display: inline-block;
+    border-left:solid;
+    border-right:solid;
+}
+.bookit{
+    position: absolute;
+    height: 100%;
+    margin-left:35%;
+    width:21%;
+    text-align:center;
+    display: inline-block;
+
+}
+.from{
+    position:relative;
+    width:39%;
+}
+.mid{
+}
+.to{
+    position:relative;
+    width:39%;
+}
+.tofromh1{
+    position:relative;
+    font-size: 150%;
+    margin-top:0px;
+    display: inline-block;
+}
+.tofromh2{
+    position:relative;
+    font-size: 110%;
+    text-align:left;
+}
+.tofromh3{
+    position:relative;
+    font-size: 110%;
+    display: inline-block;
+    vertical-align:middle;
+}
+.tofromh4{
+    position:relative;
+    width:100%;
+    font-size: 110%;
+}
+.numstops{
+    position:relative;
+    width:100%;
+    font-size:120%;
+}
+.indstops{
+    position:relative;
+    width:100%;
+    text-align: center;
+    border:solid;
+    border-right-width: 0px;
+    border-left-width: 0px;
+}
+.price{
+    position:relative;
+    width:100%;
+    font-size:150%;
+}
+#order{
+    position:relative;
+    width:25%;
+    margin-right: 10px;
+    margin-left: auto;
+    font-size: 50%;
+}
+#orderby{
+    font-size: 100%;
+    width:100%;
+}
+.flighttimes{
+    display:none;
+    position: absolute;
+    background-color: white;
+    width:200%;
+    left:-3px;
+    top:-3px;
+    border: solid;
+    text-align: center;
+    z-index: 2;
+}
+
+#restext{
+    position:absolute;
+    width: 100%;
+}
+.close{
+    position: relative;
+    width:25%;
+    margin-left:95%;
+    text-align: right;
+}
+.dash{
+    color: black;
+}
+.passInfo{
+    position:relative;
+    width:100%;
+    font-size:120%;
+    border: solid;
+    background-color:rgba(255,255,255,0.75);
+    border-bottom: hidden;
+}
