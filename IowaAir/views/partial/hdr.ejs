@@ -26,6 +26,9 @@
             <div class="toolopt" id="upF">
                 <a href="/admin/updateFlights" >update Flights</a>
             </div>
+            <div class="toolopt" id="addA">
+                <a href="/admin/addAirport" >Add Airport</a>
+            </div>
         </div>
         <%}else if(user.type=="M"){%>
         <div id="toolbit" onclick="showTools()">Manager Tools</div>
@@ -34,6 +37,8 @@
                 <a href="/manager/manageBookings" >Manage Bookings</a>
             </div>
         </div>
+        <%}else if(user.type=="U"){%>
+            <div id="toolbit"><a href="/manageBookings" >User Reservations</a></div>
         <%}%>
         <div id="log">
             Welcome Back <a id="accountlink" href="/account"><%=user.fname%></a>!   <a id="logoutlink" href="javascript:void(0);" onclick="logout();">logout</a>
