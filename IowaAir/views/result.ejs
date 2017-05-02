@@ -65,7 +65,6 @@
                         <%}%>
                     <%}%>
                 </ul>
-                 <script>document.querySelector("#resultlist_return").style.display="none" </script>
                 <script> function initMap() {
                                 var iowacity = {lat: 41.661128,lng: -101.530168}
                                 <%for (i in toTrips){%>
@@ -130,7 +129,7 @@
                                               flightPath.setMap(<%="ret"+i%>);
                                     <%}%>
                                 <%}%>
-
+				document.querySelector("#resultlist_return").style.visibility="hidden";
                               }
                               </script>
                             <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCAJ1nc1IYhRTgZXigJYWFEF2AuOTZQrtA&callback=initMap">

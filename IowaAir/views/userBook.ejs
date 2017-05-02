@@ -1,0 +1,234 @@
+<html>
+<head>
+    <!--include link to javascript here for help email willem-dejong@uiowa.edu-->
+    <title>IowaAir</title>
+    <link rel="icon" href="/img/Logo1465.png">
+    <link rel="stylesheet" href="/css/checkin.css" type="text/css">
+    <link rel="stylesheet" href="/css/login.css" type="text/css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script type="text/javascript" src="/js/md5.js"></script>
+    <script type="text/javascript" src="/js/logsess.js"></script>
+    <script type="text/javascript" src="/js/userCancel.js"></script>
+    <!--<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>-->
+</head>
+<body>
+<% include partial/hdr %>
+<div id="main">
+    <img id="backimg" src="/img/corn.jpg">
+    <br>
+    <br>
+    <div id="upbox">
+        <div id="uphead">User Cancel Reservation</div>
+        <form id="uppform">
+
+            <div id="tbl">
+                <table id="wholeTable">
+                    <tr>
+                        <th>
+                            <div>Res ID</div>
+                        </th>
+                        <th>
+                            <div>Trans ID</div>
+                        </th>
+                        <th>
+                            <div>First Name</div>
+                        </th>
+                        <th>
+                            <div>Last Name</div>
+                        </th>
+                        <th>
+                            <div>DOB</div>
+                        </th>
+                        <th>
+                            <div>Gender</div>
+                        </th>
+                        <th>
+                            <div>Flight ID</div>
+                        </th>
+                        <th>
+                            <div>Flight #</div>
+                        </th>
+                        <th>
+                            <div>Gate</div>
+                        </th>
+                        <th>
+                            <div>Plane Model</div>
+                        </th>
+                        <th>
+                            <div>Dep. Date</div>
+                        </th>
+                        <th>
+                            <div>Dep. Time</div>
+                        </th>
+                        <th>
+                            <div>Dep. Loc.</div>
+                        </th>
+                        <th>
+                            <div>Ar. Date</div>
+                        </th>
+                        <th>
+                            <div>Ar. Time</div>
+                        </th>
+                        <th>
+                            <div>Ar. Loc.</div>
+                        </th>
+                        <th>
+                            <div>Seat#</div>
+                        </th>
+                        <th>
+                            <div>Bags</div>
+                        </th>
+                    </tr>
+
+                    <% for(var i=0; i<passengers.length; i++) {%>
+                    <tr id=<%="r"+String(i+1) %>>
+                        <td>
+                            <input class="residEdit smallBox" disabled value= "<%= passengers[i].resid%>">
+                        </td>
+                        <td>
+                            <input class="transIDEdit smallBox" disabled value= "<%= passengers[i].transID%>">
+                        </td>
+                        <td>
+                            <input class="fnameEdit bigBox" disabled value= "<%= passengers[i].fname %>">
+                        </td>
+                        <td>
+                            <input class="lnameEdit bigBox" disabled value= "<%= passengers[i].lname %>">
+                        </td>
+                        <%var year=passengers[i].dob.getFullYear()%>
+                        <%var month=passengers[i].dob.getMonth() + 1%>
+                        <% if (month<10){%>
+                            <%month = "0" + String(month);%>
+                        <%}else{%>
+                            <%month = String(month);%>
+                        <%}%>
+                        <%var date=passengers[i].dob.getDate()%>
+                        <% if (date<10){%>
+                            <%date = "0" + String(date);%>
+                        <%}else{%>
+                            <%date = String(date);%>
+                        <%}%>
+                        <%var dobDate = String(year)+"-"+month+"-"+date%>
+                        <td>
+                            <input class="dobEdit medBox" type="date" disabled value= "<%= dobDate %>">
+                        </td>
+                        <td>
+                            <input class="genderEdit medBox" disabled value= "<%= passengers[i].gender %>">
+                        </td>
+                        <td>
+                            <input class="flightIDEdit bigBox" disabled value= "<%= passengers[i].flightID %>">
+                        </td>
+                        <td>
+                            <input class="flightNumEdit bigBox" disabled value= "<%= passengers[i].Flight_num %>">
+                        </td>
+                        <td>
+                            <input class="gateEdit smallBox"  disabled value= "<%= passengers[i].Gate %>">
+                        </td>
+                        <td>
+                            <input class="modelEdit bigBox" disabled value= "<%= passengers[i].model %>">
+                        </td>
+                        <%var year=passengers[i].departure_time.getFullYear()%>
+                        <%var month=passengers[i].departure_time.getMonth() + 1%>
+                        <% if (month<10){%>
+                            <%month = "0" + String(month);%>
+                        <%}else{%>
+                            <%month = String(month);%>
+                        <%}%>
+                        <%var date=passengers[i].departure_time.getDate()%>
+                        <% if (date<10){%>
+                            <%date = "0" + String(date);%>
+                        <%}else{%>
+                            <%date = String(date);%>
+                        <%}%>
+                        <%var sDate = String(year)+"-"+month+"-"+date%>
+                        <td>
+                            <input class="dDateEdit medBox" type="date" disabled value= "<%= sDate %>">
+                        </td>
+                        <%var hour=passengers[i].departure_time.getHours()%>
+                        <% if (hour<10){%>
+                            <%hour = "0" + String(hour);%>
+                        <%}else{%>
+                            <%hour = String(hour);%>
+                        <%}%>
+                        <%var minute=passengers[i].departure_time.getMinutes()%>
+                        <% if (minute<10){%>
+                            <%minute = "0" + String(minute);%>
+                        <%}else{%>
+                            <%minute = String(minute);%>
+                        <%}%>
+                        <%var sTime = String(hour)+":"+minute%>
+                        <td>
+                            <input class="dTimeEdit" type="time" disabled value= "<%= sTime %>">
+                        </td>
+                        <td>
+                            <input class="dLocEdit smallBox" disabled value= "<%= passengers[i].origin_port %>">
+                        </td>
+                        <script>
+                            console.log("<%=sTime%>");
+                            console.log("<%=passengers[i].departure_time%>");
+                        </script>
+                        <% year=passengers[i].arrival_time.getFullYear()%>
+                        <% month=passengers[i].arrival_time.getMonth() + 1%>
+                        <% if (month<10){%>
+                            <%month = "0" + String(month);%>
+                        <%}else{%>
+                            <%month = String(month);%>
+                        <%}%>
+                        <% date=passengers[i].arrival_time.getDate()%>
+                        <% if (date<10){%>
+                            <%date = "0" + String(date);%>
+                        <%}else{%>
+                            <%date = String(date);%>
+                        <%}%>
+                        <% sDate = String(year)+"-"+month+"-"+date%>
+                        <td>
+                            <input class="aDateEdit medBox" type="date" disabled value= "<%= sDate %>">
+                        </td>
+                        <% hour=passengers[i].arrival_time.getHours()%>
+                        <% if (hour<10){%>
+                            <%hour = "0" + String(hour);%>
+                        <%}else{%>
+                            <%hour = String(hour);%>
+                        <%}%>
+                        <% minute=passengers[i].arrival_time.getMinutes()%>
+                        <% if (minute<10){%>
+                            <%minute = "0" + String(minute);%>
+                        <%}else{%>
+                            <%minute = String(minute);%>
+                        <%}%>
+                        <% sTime = hour+":"+minute%>
+                        <td>
+                            <input class="aTimeEdit" type="time" disabled value= "<%= sTime %>">
+                        </td>
+                        <td>
+                            <input class="aLocEdit smallBox" disabled value= "<%= passengers[i].destined_port %>">
+                        </td>
+                        <td>
+                            <input class="seatEdit smallBox" disabled value ="<% if (passengers[i].seatnum){%><%= passengers[i].seatnum%><%}%>">
+                        </td>
+                        <td>
+                            <input class="bagsEdit smallBox" type="number" min="0" disabled value="<% if (passengers[i].bags){%><%= passengers[i].bags%><%}%>">
+                        </td>
+                        <td>
+                            <input class="cancelButton" type="button" value="Cancel" onclick="cancelRes(this)"/>
+                        </td>
+                    </tr>
+                    <% } %>
+
+                </table>
+
+            </div>
+
+            <div id="invalidInput" style="display: none ;font-size:50%; color:red"align="center">*CANNOT CANCEL</div>
+
+            <div id="invalidServerInput" style="display: none ;font-size:50%; color:red"align="center">*Can't cancel this flight. contact customer service for help.</div>
+
+            <div class="successCheckin" style="display: none ;font-size:50%; color:green"align="center">Checked In!</div>
+
+            <div class="successCancel" style="display: none ;font-size:50%; color:green"align="center">Passenger Removed!</div>
+            <br>
+        </form>
+
+    </div></div>
+
+</body></html>
