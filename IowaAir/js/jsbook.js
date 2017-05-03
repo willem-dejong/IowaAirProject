@@ -366,10 +366,10 @@ function bookitparse(url){
 
     for(var n = 1;n<=pass;n++){
         var person = {}
-        var i1 = url.search("fname"+ n + "=[a-zA-Z]+")
-        var i2 = url.search("lname"+ n + "=[a-zA-Z]+")
-        var i3 = url.search("dob"+ n + "=[0-9]{4}-[0-9]{2}-[0-9]{2}")
-        var i4 = url.search("gender"+ n + "=[a-zA-Z]+")
+        var i1 = url.search("fname"+ n + "=[a-zA-Z]+")+parseInt(Math.log10(n))
+        var i2 = url.search("lname" + n + "=[a-zA-Z]+") + parseInt(Math.log10(n))
+        var i3 = url.search("dob" + n + "=[0-9]{4}-[0-9]{2}-[0-9]{2}") + parseInt(Math.log10(n))
+        var i4 = url.search("gender" + n + "=[a-zA-Z]+") + parseInt(Math.log10(n))
 			if(i1==-1||i2==-1||i3==-1||i4==-1){
 				return null
 			}

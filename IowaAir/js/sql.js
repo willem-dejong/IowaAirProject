@@ -239,7 +239,7 @@ function getTrip3(flightID1,flightID2,flightID3,pass,req,res,errHandler,successH
 	});
 }*/
 function reserve(passengers,flightIDs,classes,req,res,errHandler,successHandler,args){
-	console.log(flightIDs)
+    console.log(passengers)
 	var conn=mysql.createConnection({user:"admin",password:"IowaAir2017",port:"3306"});
    conn.connect();
    inn="select "
@@ -583,7 +583,7 @@ function addPlane(model,ecnum,fcnum,req,res,errhandler,successhandler,args){
 //function getAvailPlane(d1,d2,model,req,res, errhandler,successhandler,args)
 function addFlight(fnum,dep,arv,ecsa,ecsb,eccps,fcsa,fcsb,fccps,am,org,dest,g,inter,interType,numTime,req,res, errhandler,successhandler,args){
 	var conn=mysql.createConnection({user:"admin",password:"IowaAir2017",port:"3306"});
-   conn.connect();
+	conn.connect();
 	inn="call iowaair.addFlight(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);"
 	argz=[fnum,dep,arv,ecsa,ecsb,eccps,fcsa,fcsb,fccps,am,org,dest,g,inter,interType,numTime];
 	conn.query(inn,argz,function(err,rows,feilds){
@@ -659,7 +659,7 @@ function getPassenger(id,req,res, errhandler,successhandler,args){
 function cancel(id,req,res, errhandler,successhandler,args){
 	var conn=mysql.createConnection({user:"admin",password:"IowaAir2017",port:"3306"});
    conn.connect();
-	inn="DELETE FROM iowaair.reservations WHERE res_num=?;"
+   inn = "call iowaair.cancel(?);"
 	argz=[id];
 	conn.query(inn,argz,function(err,rows,feilds){
 		conn.end();
