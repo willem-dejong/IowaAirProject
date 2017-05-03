@@ -1,4 +1,5 @@
-function book(but){var error = document.getElementById("invalidInput");
+function book(but) {
+    var error = document.getElementById("invalidInput");
 	var confirm = document.getElementById("confirmDiv");
 	var book = document.getElementById("bookDiv")
 
@@ -131,6 +132,7 @@ function book(but){var error = document.getElementById("invalidInput");
     	//check date of birth
     	confirm.style.display = "none";
     	book.style.display = "block";
+    	var error = document.getElementById("invalidInput");
       error.style.display = "block";
     }
     else{
@@ -214,7 +216,7 @@ function book(but){var error = document.getElementById("invalidInput");
 }
 //After book button is selected first time, all fields are checked for errors
 function confirmBook(but){
-	var error = document.getElementById("invalidInput");
+    var error = document.getElementById("invalidInput");
 	var confirm = document.getElementById("confirmDiv");
 	var book = document.getElementById("bookDiv")
 
